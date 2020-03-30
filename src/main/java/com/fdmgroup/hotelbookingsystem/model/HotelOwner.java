@@ -6,8 +6,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
-import java.util.List;
-
 import javax.persistence.Column;
 
 @Entity
