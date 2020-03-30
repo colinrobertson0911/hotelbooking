@@ -23,8 +23,14 @@ public class HotelService {
 		return hotelDao.save(hotel);
 	}
 	
-	public Optional<Hotel> retrieveOne(long hotelId) {
-		return hotelDao.findById(hotelId);
+	public Hotel retrieveOne(long hotelId) {
+		return hotelDao.findByHotelId(hotelId);
+		
+	}
+
+	public List<Hotel> findByCity(String city) {
+		
+		return hotelDao.findByCity(city);
 	}
 
 }
