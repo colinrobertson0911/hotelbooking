@@ -1,7 +1,7 @@
 package com.fdmgroup.hotelbookingsystem;
 
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.util.List;
 
@@ -50,6 +50,16 @@ class HotelOwnerTest {
 		assertEquals(hotelOwnerFromDB,hotelOwner);
 	}
 	
+	@Test
+	void test_RetreieveByUserEmail() {
+		HotelOwner hotelOwner = hotelOwnerService.findByEmail("user1@email.com");
+		equals(hotelOwner.getEmail());
+	}
 	
+	@Test
+	void test_RetrieveByUsernameAndPassword() {
+		HotelOwner hotelOwner = hotelOwnerService.findByUsernameAndPassword("user1", "password");
+		assertEquals(1, hotelOwner.getHotelOwnerId());
+	}
 
 }

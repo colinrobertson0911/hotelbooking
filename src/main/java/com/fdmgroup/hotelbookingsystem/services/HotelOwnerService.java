@@ -28,6 +28,13 @@ public class HotelOwnerService {
 		return hotelOwnerDao.findByHotelOwnerId(hotelOwnerId);
 	}
 
+	public HotelOwner findByEmail(String email) {
+		return hotelOwnerDao.findByEmail(email);
+	}
+
+	public HotelOwner findByUsernameAndPassword(String username, String password) {
+		return hotelOwnerDao.findByUsernameAndPassword(username, password);
+	}
 	
 
 }
