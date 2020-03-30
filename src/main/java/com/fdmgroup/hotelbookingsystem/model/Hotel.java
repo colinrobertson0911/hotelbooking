@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -37,7 +39,7 @@ public class Hotel {
 		this.numOfRooms = numOfRooms;
 		this.city = city;
 		this.starRating = starRating;
-		this.allBookings = allBookings;
+		this.allBookings = new ArrayList<bookings>;
 	}
 
 	public Hotel() {
