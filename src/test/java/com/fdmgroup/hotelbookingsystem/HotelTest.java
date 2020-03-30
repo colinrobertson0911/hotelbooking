@@ -1,6 +1,8 @@
 package com.fdmgroup.hotelbookingsystem;
 
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,13 @@ class HotelTest {
 		assertNotEquals(numberBeforeAdding,numberAfterAdding);
 	}
 	
+	@Test 
+	void test_thatAHotelCanBeCalledById() {
+		Hotel hotel = hotelService.retrieveOne(1).get();
+		long hotelId = hotel.getHotelId();
+		Hotel hotelFromDatabase = hotelService.retrieveOne(hotelId).get();
+		assertTrue(hotel.equals(hotelFromDatabase));
+	}
 	
 
 }
