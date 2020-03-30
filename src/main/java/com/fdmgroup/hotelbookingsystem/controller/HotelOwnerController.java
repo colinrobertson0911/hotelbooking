@@ -8,11 +8,13 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fdmgroup.hotelbookingsystem.model.Hotel;
 import com.fdmgroup.hotelbookingsystem.model.HotelOwner;
 import com.fdmgroup.hotelbookingsystem.services.HotelOwnerService;
+import com.fdmgroup.hotelbookingsystem.services.HotelService;
 
 @Controller
 public class HotelOwnerController {
@@ -21,6 +23,9 @@ public final static String SESSION_ATTRIBUTE_HOTELOWNER = "HOTELOWNER";
 	
 	@Autowired
 	HotelOwnerService hotelOwnerService;
+	
+	@Autowired
+	HotelService hotelService;
 	
 
 	@PostMapping("LoginSubmit")
@@ -39,9 +44,9 @@ public final static String SESSION_ATTRIBUTE_HOTELOWNER = "HOTELOWNER";
 		
 	}
 	
-	@GetMapping("OwnerHotels")
+	@RequestMapping("OwnerHotels")
 	public ModelAndView ownerHotels() {
-		return new ModelAndView("WEB-INF/OwnerHotels.jsp", "hotel", hotelService.findAll());
+		return new ModelAndView("WEB-INF/OwnerHotels.jsp", "hotels", hotelService.findAll());
 	}
 	
 	@GetMapping("AddHotel")
@@ -54,10 +59,10 @@ public final static String SESSION_ATTRIBUTE_HOTELOWNER = "HOTELOWNER";
 	@PostMapping("AddHotelSubmit")
 	public ModelAndView addHotelSubmit(@ModelAttribute("hotel")Hotel hotel) {
 		hotelService.save(hotel);
-		return new ModelAndView("forward: /OwnerHotels");
+		return new ModelAndView("WEB-INF/OwnerHotels.jsp", "hotel", hotelService.findAll());
 	}
 	
 	
-	}
+}
 	
 

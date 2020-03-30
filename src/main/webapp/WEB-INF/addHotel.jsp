@@ -10,12 +10,25 @@
 </head>
 <body>
 	<h2>Add your hotel</h2>
-	<f:form method="post" action="AddHotelSubmit"
-	modelAttribute="hotel">
-	<div>
-	<f:label path="hotelName">Hotel Name:</f:label>
-	</div>
-	<button type="submit">Add Hotel</button>
+	<f:form method="post" action="AddHotelSubmit" modelAttribute="hotel">
+		<div>
+			<f:label path="hotelName">Hotel Name:</f:label>
+			<f:input path="hotelName" type="text" required="required" />
+		</div>
+		<div>
+			<f:label path="numOfRooms">Number of Rooms</f:label>
+			<f:input path="numOfRooms" type="text" required="required" />
+		</div>
+		<div>
+			<f:label path="city">City</f:label>
+			<f:input path="city" type="text" required="required" />
+		</div>
+		<div>
+			<f:label path="starRating">Star Rating</f:label>
+			<f:input path="starRating" type="text" required="required" />
+		</div>
+
+		<button type="submit">Add Hotel</button>
 	</f:form>
 </body>
 </html>
