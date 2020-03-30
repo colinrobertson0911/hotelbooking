@@ -8,6 +8,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fdmgroup.hotelbookingsystem.model.Hotel;
@@ -42,6 +43,11 @@ public class HotelController {
 			return new ModelAndView("MainScreen.jsp", "hotel", hotelService.findAll());
 		}
 		return new ModelAndView("MainScreen.jsp", "hotel", hotelList);
+	}
+	
+	@GetMapping("SeeHotel")
+	public ModelAndView seeHotel(@RequestParam("hotelId")Long hotelId) {
+		return new ModelAndView("WEB-INF/seeHotel.jsp", "hotel", hotelService.retrieveOne(hotelId));
 	}
 
 }

@@ -20,23 +20,36 @@ public class Hotel {
 
 	@Column
 	private int numOfRooms;
+	
+	@Column
+	private String address;
+	
+	@Column
+	private  String postcode;
 
 	@Column
 	private String city;
-
+	
+	@Column(nullable = false, length = 8000)
+	private String ammenities;
+	
 	@Column
 	private int starRating;
 
 	public Hotel() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public Hotel(long hotelId, String hotelName, int numOfRooms, String city, int starRating) {
+	public Hotel(String hotelName, int numOfRooms, String address, String postcode, String city, String ammenities,
+			int starRating) {
 		super();
-		this.hotelId = hotelId;
 		this.hotelName = hotelName;
 		this.numOfRooms = numOfRooms;
+		this.address = address;
+		this.postcode = postcode;
 		this.city = city;
+		this.ammenities = ammenities;
 		this.starRating = starRating;
 	}
 
@@ -64,12 +77,36 @@ public class Hotel {
 		this.numOfRooms = numOfRooms;
 	}
 
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getPostcode() {
+		return postcode;
+	}
+
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
+	}
+
 	public String getCity() {
 		return city;
 	}
 
 	public void setCity(String city) {
 		this.city = city;
+	}
+
+	public String getAmmenities() {
+		return ammenities;
+	}
+
+	public void setAmmenities(String ammenities) {
+		this.ammenities = ammenities;
 	}
 
 	public int getStarRating() {
@@ -84,10 +121,13 @@ public class Hotel {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((address == null) ? 0 : address.hashCode());
+		result = prime * result + ((ammenities == null) ? 0 : ammenities.hashCode());
 		result = prime * result + ((city == null) ? 0 : city.hashCode());
 		result = prime * result + (int) (hotelId ^ (hotelId >>> 32));
 		result = prime * result + ((hotelName == null) ? 0 : hotelName.hashCode());
 		result = prime * result + numOfRooms;
+		result = prime * result + ((postcode == null) ? 0 : postcode.hashCode());
 		result = prime * result + starRating;
 		return result;
 	}
@@ -101,6 +141,16 @@ public class Hotel {
 		if (getClass() != obj.getClass())
 			return false;
 		Hotel other = (Hotel) obj;
+		if (address == null) {
+			if (other.address != null)
+				return false;
+		} else if (!address.equals(other.address))
+			return false;
+		if (ammenities == null) {
+			if (other.ammenities != null)
+				return false;
+		} else if (!ammenities.equals(other.ammenities))
+			return false;
 		if (city == null) {
 			if (other.city != null)
 				return false;
@@ -115,6 +165,11 @@ public class Hotel {
 			return false;
 		if (numOfRooms != other.numOfRooms)
 			return false;
+		if (postcode == null) {
+			if (other.postcode != null)
+				return false;
+		} else if (!postcode.equals(other.postcode))
+			return false;
 		if (starRating != other.starRating)
 			return false;
 		return true;
@@ -122,9 +177,13 @@ public class Hotel {
 
 	@Override
 	public String toString() {
-		return "Hotel [hotelId=" + hotelId + ", hotelName=" + hotelName + ", numOfRooms=" + numOfRooms + ", city="
-				+ city + ", starRating=" + starRating + "]";
+		return "Hotel [hotelId=" + hotelId + ", hotelName=" + hotelName + ", numOfRooms=" + numOfRooms + ", address="
+				+ address + ", postcode=" + postcode + ", city=" + city + ", ammenities=" + ammenities + ", starRating="
+				+ starRating + "]";
 	}
+
+	
+	
 
 	
 }
