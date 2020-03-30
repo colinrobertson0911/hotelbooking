@@ -16,21 +16,18 @@ public class HotelController {
 	@Autowired
 	HotelService hotelService;
 	
-	@GetMapping("OwnerHotels")
-	public ModelAndView ownerHotels() {
-		return new ModelAndView("WEB-INF/OwnerHotels.jsp", "hotel", hotelService.findAll());
+	@GetMapping("/")
+	public String main() {
+		return "MainScreen.jsp";
 	}
 	
-	@GetMapping("AddHotel")
-	public ModelAndView addHotels() {
-		ModelAndView modelAndView = new ModelAndView ("WEB-INF/addHotel.jsp");
-		modelAndView.addObject("hotel", new Hotel());
-		return modelAndView;
+	@GetMapping("LoginAsOwner")
+	public String login() {
+		return "loginOwner.jsp";
+	}
+	@GetMapping("")
+	public ModelAndView home() {
+		return new ModelAndView("MainScreen.jsp", "hotel", hotelService.findAll());
 	}
 	
-	@PostMapping("AddHotelSubmit")
-	public ModelAndView addHotelSubmit(@ModelAttribute("hotel")Hotel hotel) {
-		hotelService.save(hotel);
-		return new ModelAndView("forward: /OwnerHotels");
-	}
 }

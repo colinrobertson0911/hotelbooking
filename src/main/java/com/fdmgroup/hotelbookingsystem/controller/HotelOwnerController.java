@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fdmgroup.hotelbookingsystem.model.Hotel;
 import com.fdmgroup.hotelbookingsystem.model.HotelOwner;
 import com.fdmgroup.hotelbookingsystem.services.HotelOwnerService;
 
@@ -21,16 +22,7 @@ public final static String SESSION_ATTRIBUTE_HOTELOWNER = "HOTELOWNER";
 	@Autowired
 	HotelOwnerService hotelOwnerService;
 	
-	@GetMapping("/")
-	public String main() {
-		return "MainScreen.jsp";
-	}
-	
-	@GetMapping("LoginAsOwner")
-	public String login() {
-		return "loginOwner.jsp";
-	}
-	
+
 	@PostMapping("LoginSubmit")
 	public ModelAndView loginSubmit(@ModelAttribute("HotelOwner")HotelOwner hotelOwner, 
 			ModelMap model, HttpSession session) { 
@@ -45,6 +37,24 @@ public final static String SESSION_ATTRIBUTE_HOTELOWNER = "HOTELOWNER";
 		session.setAttribute(SESSION_ATTRIBUTE_HOTELOWNER, hotelownerfromdatabase);
 		return new ModelAndView("WEB-INF/OwnerHotels.jsp");
 		
+	}
+	
+	@GetMapping("OwnerHotels")
+	public ModelAndView ownerHotels() {
+		return new ModelAndView("WEB-INF/OwnerHotels.jsp", "hotel", hotelService.findAll());
+	}
+	
+	@GetMapping("AddHotel")
+	public ModelAndView addHotels() {
+		ModelAndView modelAndView = new ModelAndView ("WEB-INF/addHotel.jsp");
+		modelAndView.addObject("hotel", new Hotel());
+		return modelAndView;
+	}
+	
+	@PostMapping("AddHotelSubmit")
+	public ModelAndView addHotelSubmit(@ModelAttribute("hotel")Hotel hotel) {
+		hotelService.save(hotel);
+		return new ModelAndView("forward: /OwnerHotels");
 	}
 	
 	
