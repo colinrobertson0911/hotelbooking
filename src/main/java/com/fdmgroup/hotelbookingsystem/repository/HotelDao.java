@@ -1,5 +1,9 @@
 package com.fdmgroup.hotelbookingsystem.repository;
 
-public class HotelDao {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.fdmgroup.hotelbookingsystem.model.Hotel;
+
+public interface HotelDao extends JpaRepository<Hotel, Long> {
 
 }
