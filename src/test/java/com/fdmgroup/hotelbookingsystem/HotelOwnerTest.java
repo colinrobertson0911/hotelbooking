@@ -1,6 +1,9 @@
 package com.fdmgroup.hotelbookingsystem;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +24,32 @@ class HotelOwnerTest {
 	@Test
 	void test_ThatANewOwnerCanBeAdded () {
 	
-		HotelOwner hotelOwner = new HotelOwner("FancyHair29", "password", "fancyhair29@myownpresonalserver.com", "Mr Fancy", null);
+		HotelOwner hotelOwner = new HotelOwner();
+		hotelOwner.setUsername("user2");
+		hotelOwner.setEmail("Use21@email.com");
+		hotelOwner.setName("user two");
+		hotelOwner.setPassword("password");
 		int numberBeforeAdding = hotelOwnerService.findAll().size();
 		hotelOwnerService.save(hotelOwner);
 		int numberAfterAdding = hotelOwnerService.findAll().size();
 		assertNotEquals(numberBeforeAdding,numberAfterAdding);
 	}
+	
+	@Test
+	void test_RetrieveAListOfOwners() {
+		List<HotelOwner> hotelOwners = hotelOwnerService.findAll();
+		int numOfOwners = hotelOwners.size();
+		assert(numOfOwners>0);		
+	}
+	
+	@Test
+	void test_RetrieveAnOwnerById() {
+		HotelOwner hotelOwner = hotelOwnerService.retrieveOne(1L);
+		long hotelOwnerId = hotelOwner.getHotelOwnerId();
+		HotelOwner hotelOwnerFromDB = hotelOwnerService.retrieveOne(hotelOwnerId);
+		assertEquals(hotelOwnerFromDB,hotelOwner);
+	}
+	
+	
 
 }

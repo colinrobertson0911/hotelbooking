@@ -1,0 +1,1 @@
+insert into hotelowner(hotelOwnerId, username, password, email, name) values (HOTELOWNER_SEQ.nextval,'user1','password','user1@email.com','user one');

@@ -30,20 +30,18 @@ public class HotelOwner {
 	@Column
 	private String name;
 
-	@Column
-	private List<Hotel> myHotels;
-
-	public HotelOwner(String username, String password, String email, String name, List<Hotel> myHotels) {
+	public HotelOwner() {
 		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public HotelOwner(String username, String password, String email, String name) {
+		super();
+
 		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.name = name;
-		this.myHotels = myHotels;
-	}
-
-	public HotelOwner() {
-		super();
 	}
 
 	public long getHotelOwnerId() {
@@ -86,21 +84,12 @@ public class HotelOwner {
 		this.name = name;
 	}
 
-	public List<Hotel> getMyHotels() {
-		return myHotels;
-	}
-
-	public void setMyHotels(List<Hotel> myHotels) {
-		this.myHotels = myHotels;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + (int) (hotelOwnerId ^ (hotelOwnerId >>> 32));
-		result = prime * result + ((myHotels == null) ? 0 : myHotels.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
@@ -123,11 +112,6 @@ public class HotelOwner {
 			return false;
 		if (hotelOwnerId != other.hotelOwnerId)
 			return false;
-		if (myHotels == null) {
-			if (other.myHotels != null)
-				return false;
-		} else if (!myHotels.equals(other.myHotels))
-			return false;
 		if (name == null) {
 			if (other.name != null)
 				return false;
@@ -149,7 +133,9 @@ public class HotelOwner {
 	@Override
 	public String toString() {
 		return "HotelOwner [hotelOwnerId=" + hotelOwnerId + ", username=" + username + ", password=" + password
-				+ ", email=" + email + ", name=" + name + ", myHotels=" + myHotels + "]";
+				+ ", email=" + email + ", name=" + name + "]";
 	}
+	
 
+	
 }

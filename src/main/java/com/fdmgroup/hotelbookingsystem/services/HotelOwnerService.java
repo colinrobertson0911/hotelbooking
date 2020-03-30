@@ -1,6 +1,7 @@
 package com.fdmgroup.hotelbookingsystem.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,5 +23,11 @@ public class HotelOwnerService {
 		return hotelOwnerDao.save(hotelOwner);
 		
 	}
+
+	public HotelOwner retrieveOne(Long hotelOwnerId) {
+		return hotelOwnerDao.findByHotelOwnerId(hotelOwnerId);
+	}
+
+	
 
 }

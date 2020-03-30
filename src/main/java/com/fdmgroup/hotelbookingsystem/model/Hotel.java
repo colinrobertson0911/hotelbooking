@@ -1,14 +1,13 @@
 package com.fdmgroup.hotelbookingsystem.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class Hotel {
@@ -30,21 +29,18 @@ public class Hotel {
 	@Column
 	private int starRating;
 
-	@Column
-	private List<Booking> allBookings;
-
-	public Hotel(String hotelName, int numOfRooms, String city, int starRating, List<Booking> allBookings) {
+	public Hotel() {
 		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Hotel(long hotelId, String hotelName, int numOfRooms, String city, int starRating) {
+		super();
+		this.hotelId = hotelId;
 		this.hotelName = hotelName;
 		this.numOfRooms = numOfRooms;
 		this.city = city;
 		this.starRating = starRating;
-		this.allBookings = new ArrayList<bookings>;
-	}
-
-	public Hotel() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public long getHotelId() {
@@ -85,14 +81,6 @@ public class Hotel {
 
 	public void setStarRating(int starRating) {
 		this.starRating = starRating;
-	}
-
-	public List<Booking> getAllBookings() {
-		return allBookings;
-	}
-
-	public void setAllBookings(List<Booking> allBookings) {
-		this.allBookings = allBookings;
 	}
 
 	@Override
@@ -141,4 +129,5 @@ public class Hotel {
 				+ city + ", starRating=" + starRating + "]";
 	}
 
+	
 }
