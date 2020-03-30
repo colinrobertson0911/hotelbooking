@@ -43,7 +43,7 @@ public final static String SESSION_ATTRIBUTE_HOTELOWNER = "HOTELOWNER";
 		}
 		
 		session.setAttribute(SESSION_ATTRIBUTE_HOTELOWNER, hotelownerfromdatabase);
-		return new ModelAndView("HotelOwnerHome.jsp");
+		return new ModelAndView("WEB-INF/OwnerHotels.jsp");
 		
 	}
 	
