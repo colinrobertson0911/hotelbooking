@@ -12,5 +12,6 @@ public interface HotelDao extends JpaRepository<Hotel, Long> {
 	
 	List<Hotel> findByCity(String city);
 	
+	
 
 }

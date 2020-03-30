@@ -13,3 +13,4 @@ public interface HotelOwnerDao extends JpaRepository<HotelOwner, Long> {
 	HotelOwner findByUsernameAndPassword(String username, String password);
 
 }
+

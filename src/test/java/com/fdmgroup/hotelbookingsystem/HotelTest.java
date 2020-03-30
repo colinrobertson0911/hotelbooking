@@ -40,6 +40,7 @@ class HotelTest {
 		long hotelId = hotel.getHotelId();
 		Hotel hotelFromDatabase = hotelService.retrieveOne(hotelId);
 		assertEquals(hotel, hotelFromDatabase);
+		
 	}
 
 	@Test
