@@ -29,7 +29,6 @@ public class Hotel {
 
 	public Hotel() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Hotel(long hotelId, String hotelName, int numOfRooms, String city, int starRating) {

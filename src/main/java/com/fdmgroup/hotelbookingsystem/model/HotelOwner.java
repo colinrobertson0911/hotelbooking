@@ -30,7 +30,6 @@ public class HotelOwner {
 
 	public HotelOwner() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public HotelOwner(String username, String password, String email, String name) {
