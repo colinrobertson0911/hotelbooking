@@ -9,5 +9,9 @@
 <body>
 <h2>Administrator Home Page</h2>
 
+<div>
+<a href = "AllOwners"> See List of All Hotel Owners</a>
+</div>
+
 </body>
 </html>
