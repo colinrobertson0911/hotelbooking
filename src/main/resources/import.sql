@@ -5,6 +5,7 @@ insert into hotelowner(hotelOwnerId, username, password, email, name) values (HO
 
 insert into users(userId, username, password, email, userType) values (USER_SEQ.nextval, 'admin1', 'password', 'admin@email.com', 'ADMIN');
 
+
 insert into hotel(hotelId, hotelName, numOfRooms, address, postcode, city, ammenities, starRating) values (HOTEL_SEQ.nextval, 'Travelodge Glasgow', 53,'1 main street', 'g43 6pq', 'Glasgow','none', 3);
 insert into hotel(hotelId, hotelName, numOfRooms, address, postcode, city, ammenities, starRating) values (HOTEL_SEQ.nextval, 'Yotel', 50,'some street','EH71 7FA', 'Edinburgh','bowling alley', 4);
 insert into hotel(hotelId, hotelName, numOfRooms, address, postcode, city, ammenities, starRating) values (HOTEL_SEQ.nextval, 'Radisson Blue', 43,'123 argyle street','G3 6OP', 'Glasgow','Conference Rooms, Bars, Near Central Station', 4);
@@ -15,6 +16,9 @@ insert into hotel(hotelId, hotelName, numOfRooms, address, postcode, city, ammen
 insert into hotel(hotelId, hotelName, numOfRooms, address, postcode, city, ammenities, starRating) values (HOTEL_SEQ.nextval, 'Beehive BnB', 3,'Other street','D31 4PQ', 'Dundee','A Map out of dundee', 1);
 insert into hotel(hotelId, hotelName, numOfRooms, address, postcode, city, ammenities, starRating) values (HOTEL_SEQ.nextval, 'Sherbrook Hotel', 15, '31 Nithsdale Road','G41 7PQ', 'Glasgow','Wedding Suite, Bar, Restaurant', 4);
 insert into hotel(hotelId, hotelName, numOfRooms, address, postcode, city, ammenities, starRating) values (HOTEL_SEQ.nextval, 'Stirling Highland hotel', 25,'12 King Street', 'FK8 2RE', 'Stirling','Spa, Carpark, Restaurant', 4);
+
+insert into hotelOwner_hotel(hotelOwner_hotelOwnerId, hotel_hotelId) values (1,1);
+
 
 insert into room(roomId, roomNumber, beds, roomType, price, amenities, availability) values (ROOM_SEQ.nextval, '1', '2', 'STANDARD', '80.00', 'tv, fridge', true);
 insert into room(roomId, roomNumber, beds, roomType, price, amenities, availability) values (ROOM_SEQ.nextval, '2', '2', 'STANDARD', '80.00', 'tv, fridge', true);

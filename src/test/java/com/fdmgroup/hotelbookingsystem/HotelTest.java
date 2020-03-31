@@ -1,9 +1,9 @@
 package com.fdmgroup.hotelbookingsystem;
 
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -12,6 +12,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 
 import com.fdmgroup.hotelbookingsystem.model.Hotel;
+import com.fdmgroup.hotelbookingsystem.model.HotelOwner;
+import com.fdmgroup.hotelbookingsystem.services.HotelOwnerService;
 import com.fdmgroup.hotelbookingsystem.services.HotelService;
 
 @SpringBootTest
@@ -20,6 +22,9 @@ class HotelTest {
 
 	@Autowired
 	HotelService hotelService;
+
+	@Autowired
+	HotelOwnerService hotelOwnerService;
 
 	@Test
 	void test_thatANewHotelCanBeAdded() {
@@ -40,7 +45,7 @@ class HotelTest {
 		long hotelId = hotel.getHotelId();
 		Hotel hotelFromDatabase = hotelService.retrieveOne(hotelId);
 		assertEquals(hotel, hotelFromDatabase);
-		
+
 	}
 
 	@Test
@@ -54,6 +59,15 @@ class HotelTest {
 		Hotel hotel = hotelService.retrieveOne(1L);
 		int roomNumber = hotel.getNumOfRooms();
 		assertEquals(roomNumber, 53);
-		//TODO second half where if hotel is fully booked, an error is called.
+		// TODO second half where if hotel is fully booked, an error is called.
+	}
+
+	@Test
+	public void test_ThatTheManyToManyJoinWorks() {
+		HotelOwner hotelOwner = hotelOwnerService.retrieveOne(1L);
+		List<Hotel> hotel = hotelService.findAll();
+		hotelOwner.getHotel();
+		int numberOfHotels = hotel.size();
+		assert (numberOfHotels > 0);
 	}
 }

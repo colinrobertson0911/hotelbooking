@@ -20,14 +20,29 @@
 			<f:input path="numOfRooms" type="text" required="required" />
 		</div>
 		<div>
+			<f:label path="address">Address:</f:label>
+			<f:input path="address" type="text" required="required" />
+		</div>
+		<div>
+			<f:label path="postcode">Postcode:</f:label>
+			<f:input path="postcode" type="text" required="required" length="10" />
+		</div>
+		<div>
 			<f:label path="city">City</f:label>
 			<f:input path="city" type="text" required="required" />
+		</div>
+		<div>
+			<f:label path="ammenities">Ammenities:</f:label>
+			<f:input path="ammenities" type="text" required="required"
+				length="8000" />
 		</div>
 		<div>
 			<f:label path="starRating">Star Rating</f:label>
 			<f:input path="starRating" type="text" required="required" />
 		</div>
-
+		<div>
+			<f:hidden path="hotelOwner" value="${hotelOwner.hotelOwnerId}" />
+		</div>
 		<button type="submit">Add Hotel</button>
 	</f:form>
 </body>

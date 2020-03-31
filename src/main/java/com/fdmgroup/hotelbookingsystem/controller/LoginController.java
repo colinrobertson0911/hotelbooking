@@ -39,16 +39,16 @@ public class LoginController {
 	@PostMapping("LoginOwnerSubmit")
 	public ModelAndView loginSubmit(@ModelAttribute("HotelOwner") HotelOwner hotelOwner, ModelMap model,
 			HttpSession session) {
-		HotelOwner hotelownerfromdatabase = hotelOwnerService.findByUsernameAndPassword(hotelOwner.getUsername(),
+		HotelOwner hotelOwnerFromDB = hotelOwnerService.findByUsernameAndPassword(hotelOwner.getUsername(),
 				hotelOwner.getPassword());
 
-		if (hotelownerfromdatabase == null) {
+		if (hotelOwnerFromDB == null) {
 			model.addAttribute("errorMessage", "Incorrect username or password");
 			return new ModelAndView("loginOwner.jsp");
 		}
-
-		session.setAttribute(SESSION_ATTRIBUTE_HOTELOWNER, hotelownerfromdatabase);
-		return new ModelAndView("WEB-INF/OwnerHotels.jsp");
+		
+		session.setAttribute(SESSION_ATTRIBUTE_HOTELOWNER, hotelOwnerFromDB);
+		return new ModelAndView("WEB-INF/OwnerHotels.jsp", "hotelOwner", hotelOwnerFromDB);
 
 	}
 

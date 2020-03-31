@@ -10,8 +10,7 @@ public interface HotelDao extends JpaRepository<Hotel, Long> {
 
 	Hotel findByHotelId(long hotelId);
 	
-	List<Hotel> findByCity(String city);
-	
+	List<Hotel> findByCity(String city);	
 	
 
 }

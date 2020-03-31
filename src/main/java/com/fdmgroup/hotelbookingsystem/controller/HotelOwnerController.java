@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fdmgroup.hotelbookingsystem.model.Hotel;
@@ -36,9 +37,10 @@ public final static String SESSION_ATTRIBUTE_HOTELOWNER = "HOTELOWNER";
 	}
 	
 	@GetMapping("AddHotel")
-	public ModelAndView addHotels() {
+	public ModelAndView addHotels(@RequestParam("hotelOwnerId")Long hotelOwnerId) {
 		ModelAndView modelAndView = new ModelAndView ("WEB-INF/addHotel.jsp");
 		modelAndView.addObject("hotel", new Hotel());
+		modelAndView.addObject("hotelOwner", hotelOwnerService.retrieveOne(hotelOwnerId));
 		return modelAndView;
 	}
 	
