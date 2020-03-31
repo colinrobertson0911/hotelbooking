@@ -9,5 +9,4 @@ public interface GeneralServiceRepository<E> {
 	E findByUsername(String username);
 	
 	List<E> findAll();
-	E save(E e);
 }

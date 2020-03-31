@@ -9,7 +9,7 @@ import com.fdmgroup.hotelbookingsystem.model.Room;
 import com.fdmgroup.hotelbookingsystem.repository.RoomDao;
 
 @Service
-public class RoomService implements GeneralServiceRepository<Room> {
+public class RoomService {
 	
 	@Autowired
 	RoomDao roomDao;
@@ -18,19 +18,7 @@ public class RoomService implements GeneralServiceRepository<Room> {
 		return roomDao.findAll();
 	}
 
-	
 
-	@Override
-	public Room findByUsernameAndPassword(String username, String password) {
-		return null;
-	}
-
-	@Override
-	public Room findByUsername(String username) {
-		return null;
-	}
-
-	@Override
 	public Room save(Room room) {
 		return roomDao.save(room);
 	}

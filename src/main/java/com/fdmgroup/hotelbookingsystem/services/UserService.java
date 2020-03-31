@@ -28,7 +28,6 @@ public class UserService implements GeneralServiceRepository<User>{
 		return userDao.findById(userId);
 	}
 	
-	@Override
 	public User save(User user) {
 		return userDao.save(user);
 	}
