@@ -15,3 +15,4 @@ insert into hotel(hotelId, hotelName, numOfRooms, address, postcode, city, ammen
 insert into hotel(hotelId, hotelName, numOfRooms, address, postcode, city, ammenities, starRating) values (HOTEL_SEQ.nextval, 'Beehive BnB', 3,'Other street','D31 4PQ', 'Dundee','A Map out of dundee', 1);
 insert into hotel(hotelId, hotelName, numOfRooms, address, postcode, city, ammenities, starRating) values (HOTEL_SEQ.nextval, 'Sherbrook Hotel', 15, '31 Nithsdale Road','G41 7PQ', 'Glasgow','Wedding Suite, Bar, Restaurant', 4);
 insert into hotel(hotelId, hotelName, numOfRooms, address, postcode, city, ammenities, starRating) values (HOTEL_SEQ.nextval, 'Stirling Highland hotel', 25,'12 King Street', 'FK8 2RE', 'Stirling','Spa, Carpark, Restaurant', 4);
+
