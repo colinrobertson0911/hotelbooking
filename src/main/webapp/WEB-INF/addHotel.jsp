@@ -40,9 +40,7 @@
 			<f:label path="starRating">Star Rating</f:label>
 			<f:input path="starRating" type="text" required="required" />
 		</div>
-		<div>
-			<f:hidden path="hotelOwner" value="${hotelOwner.hotelOwnerId}" />
-		</div>
+
 		<button type="submit">Add Hotel</button>
 	</f:form>
 </body>
