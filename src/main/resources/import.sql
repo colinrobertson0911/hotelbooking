@@ -16,15 +16,15 @@ insert into hotel(hotelId, hotelName, numOfRooms, address, postcode, city, ammen
 insert into hotel(hotelId, hotelName, numOfRooms, address, postcode, city, ammenities, starRating) values (HOTEL_SEQ.nextval, 'Sherbrook Hotel', 15, '31 Nithsdale Road','G41 7PQ', 'Glasgow','Wedding Suite, Bar, Restaurant', 4);
 insert into hotel(hotelId, hotelName, numOfRooms, address, postcode, city, ammenities, starRating) values (HOTEL_SEQ.nextval, 'Stirling Highland hotel', 25,'12 King Street', 'FK8 2RE', 'Stirling','Spa, Carpark, Restaurant', 4);
 
-insert into room(roomId, roomNumber, beds, roomType, price, amenities, availability) values (ROOM_SEQ.nextval, '1', '2', 'Standard', '80.00', 'tv, fridge', true);
-insert into room(roomId, roomNumber, beds, roomType, price, amenities, availability) values (ROOM_SEQ.nextval, '2', '2', 'Standard', '80.00', 'tv, fridge', true);
-insert into room(roomId, roomNumber, beds, roomType, price, amenities, availability) values (ROOM_SEQ.nextval, '3', '2', 'Standard', '80.00', 'tv, fridge', true);
-insert into room(roomId, roomNumber, beds, roomType, price, amenities, availability) values (ROOM_SEQ.nextval, '4', '2', 'Deluxe', '100.00', 'tv, fridge, balcony', true);
-insert into room(roomId, roomNumber, beds, roomType, price, amenities, availability) values (ROOM_SEQ.nextval, '5', '2', 'Deluxe', '100.00', 'tv, fridge, balcony', true);
-insert into room(roomId, roomNumber, beds, roomType, price, amenities, availability) values (ROOM_SEQ.nextval, '6', '2', 'Deluxe', '100.00', 'tv, fridge, balcony', true);
-insert into room(roomId, roomNumber, beds, roomType, price, amenities, availability) values (ROOM_SEQ.nextval, '7', '3', 'Master', '120.00', 'tv, fridge, balcony, WIFI', true);
-insert into room(roomId, roomNumber, beds, roomType, price, amenities, availability) values (ROOM_SEQ.nextval, '8', '3', 'Master', '120.00', 'tv, fridge, balcony, WIFI', true);
-insert into room(roomId, roomNumber, beds, roomType, price, amenities, availability) values (ROOM_SEQ.nextval, '9', '3', 'Master', '120.00', 'tv, fridge, balcony, WIFI', true);
-insert into room(roomId, roomNumber, beds, roomType, price, amenities, availability) values (ROOM_SEQ.nextval, '10', '4', 'Presidential', '150.00', 'tv, fridge, balcony, WIFI', true);
-insert into room(roomId, roomNumber, beds, roomType, price, amenities, availability) values (ROOM_SEQ.nextval, '11', '4', 'Presidential', '150.00', 'tv, fridge, balcony, WIFI', true);
-insert into room(roomId, roomNumber, beds, roomType, price, amenities, availability) values (ROOM_SEQ.nextval, '12', '4', 'Presidential', '150.00', 'tv, fridge, balcony, WIFI', true);
+insert into room(roomId, roomNumber, beds, roomType, price, amenities, availability) values (ROOM_SEQ.nextval, '1', '2', 'STANDARD', '80.00', 'tv, fridge', true);
+insert into room(roomId, roomNumber, beds, roomType, price, amenities, availability) values (ROOM_SEQ.nextval, '2', '2', 'STANDARD', '80.00', 'tv, fridge', true);
+insert into room(roomId, roomNumber, beds, roomType, price, amenities, availability) values (ROOM_SEQ.nextval, '3', '2', 'STANDARD', '80.00', 'tv, fridge', true);
+insert into room(roomId, roomNumber, beds, roomType, price, amenities, availability) values (ROOM_SEQ.nextval, '4', '2', 'DELUXE', '100.00', 'tv, fridge, balcony', true);
+insert into room(roomId, roomNumber, beds, roomType, price, amenities, availability) values (ROOM_SEQ.nextval, '5', '2', 'DELUXE', '100.00', 'tv, fridge, balcony', true);
+insert into room(roomId, roomNumber, beds, roomType, price, amenities, availability) values (ROOM_SEQ.nextval, '6', '2', 'DELUXE', '100.00', 'tv, fridge, balcony', true);
+insert into room(roomId, roomNumber, beds, roomType, price, amenities, availability) values (ROOM_SEQ.nextval, '7', '3', 'MASTER', '120.00', 'tv, fridge, balcony, WIFI', true);
+insert into room(roomId, roomNumber, beds, roomType, price, amenities, availability) values (ROOM_SEQ.nextval, '8', '3', 'MASTER', '120.00', 'tv, fridge, balcony, WIFI', true);
+insert into room(roomId, roomNumber, beds, roomType, price, amenities, availability) values (ROOM_SEQ.nextval, '9', '3', 'MASTER', '120.00', 'tv, fridge, balcony, WIFI', true);
+insert into room(roomId, roomNumber, beds, roomType, price, amenities, availability) values (ROOM_SEQ.nextval, '10', '4', 'PRESIDENTIAL', '150.00', 'tv, fridge, balcony, WIFI', true);
+insert into room(roomId, roomNumber, beds, roomType, price, amenities, availability) values (ROOM_SEQ.nextval, '11', '4', 'PRESIDENTIAL', '150.00', 'tv, fridge, balcony, WIFI', true);
+insert into room(roomId, roomNumber, beds, roomType, price, amenities, availability) values (ROOM_SEQ.nextval, '12', '4', 'PRESIDENTIAL', '150.00', 'tv, fridge, balcony, WIFI', true);
