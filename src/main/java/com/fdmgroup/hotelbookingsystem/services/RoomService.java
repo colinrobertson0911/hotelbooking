@@ -1,5 +1,6 @@
 package com.fdmgroup.hotelbookingsystem.services;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,9 @@ public class RoomService {
 	
 	@Autowired
 	RoomDao roomDao;
+	
+	@Autowired
+	RoomService roomService;
 
 	public List<Room> findAll() {
 		return roomDao.findAll();
@@ -33,6 +37,14 @@ public class RoomService {
 	public Room findByRoomNumber(int roomNumber) {
 		return roomDao.findByRoomNumber(roomNumber);
 	}
+
+
+	public List<Room> findByPrice(BigDecimal price) {
+		
+		return roomDao.findByPrice(price);
+	}
+
+
 	
 
 }
