@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -35,6 +37,10 @@ public class Hotel {
 	
 	@Column
 	private int starRating;
+	
+	@ManyToOne
+	@JoinColumn(name = "hotelOwnerId")
+	private HotelOwner hotelOwner;
 
 	public Hotel() {
 		super();
@@ -42,7 +48,7 @@ public class Hotel {
 	}
 
 	public Hotel(String hotelName, int numOfRooms, String address, String postcode, String city, String ammenities,
-			int starRating) {
+			int starRating, HotelOwner hotelOwner) {
 		super();
 		this.hotelName = hotelName;
 		this.numOfRooms = numOfRooms;
@@ -51,6 +57,7 @@ public class Hotel {
 		this.city = city;
 		this.ammenities = ammenities;
 		this.starRating = starRating;
+		this.hotelOwner = hotelOwner;
 	}
 
 	public long getHotelId() {
@@ -117,6 +124,14 @@ public class Hotel {
 		this.starRating = starRating;
 	}
 
+	public HotelOwner getHotelOwner() {
+		return hotelOwner;
+	}
+
+	public void setHotelOwner(HotelOwner hotelOwner) {
+		this.hotelOwner = hotelOwner;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -126,6 +141,7 @@ public class Hotel {
 		result = prime * result + ((city == null) ? 0 : city.hashCode());
 		result = prime * result + (int) (hotelId ^ (hotelId >>> 32));
 		result = prime * result + ((hotelName == null) ? 0 : hotelName.hashCode());
+		result = prime * result + ((hotelOwner == null) ? 0 : hotelOwner.hashCode());
 		result = prime * result + numOfRooms;
 		result = prime * result + ((postcode == null) ? 0 : postcode.hashCode());
 		result = prime * result + starRating;
@@ -163,6 +179,11 @@ public class Hotel {
 				return false;
 		} else if (!hotelName.equals(other.hotelName))
 			return false;
+		if (hotelOwner == null) {
+			if (other.hotelOwner != null)
+				return false;
+		} else if (!hotelOwner.equals(other.hotelOwner))
+			return false;
 		if (numOfRooms != other.numOfRooms)
 			return false;
 		if (postcode == null) {
@@ -179,11 +200,9 @@ public class Hotel {
 	public String toString() {
 		return "Hotel [hotelId=" + hotelId + ", hotelName=" + hotelName + ", numOfRooms=" + numOfRooms + ", address="
 				+ address + ", postcode=" + postcode + ", city=" + city + ", ammenities=" + ammenities + ", starRating="
-				+ starRating + "]";
+				+ starRating + ", hotelOwner=" + hotelOwner + "]";
 	}
 
 	
-	
-
 	
 }
