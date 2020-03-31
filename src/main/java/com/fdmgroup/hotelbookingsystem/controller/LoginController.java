@@ -13,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fdmgroup.hotelbookingsystem.model.HotelOwner;
 import com.fdmgroup.hotelbookingsystem.model.User;
 import com.fdmgroup.hotelbookingsystem.services.AdminService;
-import com.fdmgroup.hotelbookingsystem.services.GeneralServiceRepository;
 import com.fdmgroup.hotelbookingsystem.services.HotelOwnerService;
 import com.fdmgroup.hotelbookingsystem.services.UserService;
 
@@ -31,9 +30,6 @@ public class LoginController {
 
 	@Autowired
 	UserService userService;
-
-	@Autowired
-	GeneralServiceRepository generalServiceRepository;
 
 	@GetMapping("LoginAsAdmin")
 	public String adminLogin() {

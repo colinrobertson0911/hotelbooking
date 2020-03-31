@@ -1,5 +1,8 @@
 package com.fdmgroup.hotelbookingsystem.services;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +18,23 @@ public class UserService implements GeneralServiceRepository<User>{
 	@Override
 	public User findByUsernameAndPassword(String username, String password) {
 		return userDao.findByUsernameAndPassword(username, password);
+	}
+
+	public List<User> findAll() {
+		return userDao.findAll();
+	}
+
+	public Optional<User> retrieveOne(long userId ) {
+		return userDao.findById(userId);
+	}
+
+	public void save(User user) {
+		userDao.save(user);
+	}
+
+	@Override
+	public User findByUsername(String username) {
+		return userDao.findByUsername(username);
 	}
 
 	
