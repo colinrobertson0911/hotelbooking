@@ -22,13 +22,11 @@ public class RoomService implements GeneralServiceRepository<Room> {
 
 	@Override
 	public Room findByUsernameAndPassword(String username, String password) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Room findByUsername(String username) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
