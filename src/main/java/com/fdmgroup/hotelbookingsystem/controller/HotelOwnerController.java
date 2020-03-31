@@ -28,21 +28,7 @@ public final static String SESSION_ATTRIBUTE_HOTELOWNER = "HOTELOWNER";
 	HotelService hotelService;
 	
 
-	@PostMapping("LoginSubmit")
-	public ModelAndView loginSubmit(@ModelAttribute("HotelOwner")HotelOwner hotelOwner, 
-			ModelMap model, HttpSession session) { 
-		HotelOwner hotelownerfromdatabase = hotelOwnerService.findByUsernameAndPassword(hotelOwner.getUsername(),
-				hotelOwner.getPassword());
-		
-		if (hotelownerfromdatabase == null) {
-			model.addAttribute("errorMessage", "Incorrect username or password");
-			return new ModelAndView("loginOwner.jsp");
-		}
-		
-		session.setAttribute(SESSION_ATTRIBUTE_HOTELOWNER, hotelownerfromdatabase);
-		return new ModelAndView("WEB-INF/OwnerHotels.jsp");
-		
-	}
+
 	
 	@RequestMapping("OwnerHotels")
 	public ModelAndView ownerHotels() {
