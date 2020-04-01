@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fdmgroup.hotelbookingsystem.model.Hotel;
 import com.fdmgroup.hotelbookingsystem.services.HotelOwnerService;
 import com.fdmgroup.hotelbookingsystem.services.HotelService;
+import com.fdmgroup.hotelbookingsystem.services.RoomService;
 
 @Controller
 public class HotelOwnerController {	
@@ -24,6 +25,9 @@ public class HotelOwnerController {
 
 	@Autowired
 	HotelService hotelService;
+	
+	@Autowired
+	RoomService roomService;
 
 	@RequestMapping("OwnerHotels")
 	public ModelAndView ownerHotels() {
@@ -34,6 +38,7 @@ public class HotelOwnerController {
 	public ModelAndView addHotels(@RequestParam("hotelOwnerId") Long hotelOwnerId) {
 		ModelAndView modelAndView = new ModelAndView("WEB-INF/addHotel.jsp");
 		modelAndView.addObject("hotel", new Hotel());
+		modelAndView.addObject("allRooms", roomService.findAll());
 		modelAndView.addObject("hotelOwner", hotelOwnerService.retrieveOne(hotelOwnerId));
 		return modelAndView;
 	}

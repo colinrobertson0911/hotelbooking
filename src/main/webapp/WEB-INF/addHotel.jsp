@@ -46,6 +46,11 @@
 			<f:input path="starRating" type="text" required="required" />
 		</div>
 		<div>
+			<f:label path="room">Type of Rooms</f:label>
+			<f:select path="room" items="${allRooms}" itemLabel="roomType" 
+			required="required" multiple="multiple" />
+		</div>
+		<div>
 			<f:hidden path="verified"/>
 		</div>
 		<button type="submit">Add Hotel</button>
