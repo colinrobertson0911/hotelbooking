@@ -40,22 +40,23 @@ public class Hotel {
 	private String ammenities;
 	
 	@Column
-	private int starRating;
+	private int starRating;	
 	
 	@ManyToMany
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinColumn(name = "roomId")
 	private List<Room> room;
 	
+	@Column
+	private boolean verified;
 	
 	public Hotel() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-
-	public Hotel(String hotelName, int numOfRooms, String address, String postcode, String city, String ammenities,
-			int starRating, List<Room> room) {
+	public Hotel(String hotelName, int numOfRooms, String address, String postcode, String city,
+			String ammenities, int starRating, List<Room> room, boolean verified) {
 		super();
 		this.hotelName = hotelName;
 		this.numOfRooms = numOfRooms;
@@ -65,98 +66,88 @@ public class Hotel {
 		this.ammenities = ammenities;
 		this.starRating = starRating;
 		this.room = room;
+		this.verified = verified;
 	}
-
 
 	public long getHotelId() {
 		return hotelId;
 	}
 
-
 	public void setHotelId(long hotelId) {
 		this.hotelId = hotelId;
 	}
-
 
 	public String getHotelName() {
 		return hotelName;
 	}
 
-
 	public void setHotelName(String hotelName) {
 		this.hotelName = hotelName;
 	}
-
 
 	public int getNumOfRooms() {
 		return numOfRooms;
 	}
 
-
 	public void setNumOfRooms(int numOfRooms) {
 		this.numOfRooms = numOfRooms;
 	}
-
 
 	public String getAddress() {
 		return address;
 	}
 
-
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
 
 	public String getPostcode() {
 		return postcode;
 	}
 
-
 	public void setPostcode(String postcode) {
 		this.postcode = postcode;
 	}
-
 
 	public String getCity() {
 		return city;
 	}
 
-
 	public void setCity(String city) {
 		this.city = city;
 	}
-
 
 	public String getAmmenities() {
 		return ammenities;
 	}
 
-
 	public void setAmmenities(String ammenities) {
 		this.ammenities = ammenities;
 	}
-
 
 	public int getStarRating() {
 		return starRating;
 	}
 
-
 	public void setStarRating(int starRating) {
 		this.starRating = starRating;
 	}
-
 
 	public List<Room> getRoom() {
 		return room;
 	}
 
-
 	public void setRoom(List<Room> room) {
 		this.room = room;
 	}
 
+	public boolean isVerified() {
+		return verified;
+	}
+
+	public void setVerified(boolean verified) {
+		this.verified = verified;
+	}
 
 	@Override
 	public int hashCode() {
@@ -171,9 +162,9 @@ public class Hotel {
 		result = prime * result + ((postcode == null) ? 0 : postcode.hashCode());
 		result = prime * result + ((room == null) ? 0 : room.hashCode());
 		result = prime * result + starRating;
+		result = prime * result + (verified ? 1231 : 1237);
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -220,16 +211,21 @@ public class Hotel {
 			return false;
 		if (starRating != other.starRating)
 			return false;
+		if (verified != other.verified)
+			return false;
 		return true;
 	}
-
 
 	@Override
 	public String toString() {
 		return "Hotel [hotelId=" + hotelId + ", hotelName=" + hotelName + ", numOfRooms=" + numOfRooms + ", address="
 				+ address + ", postcode=" + postcode + ", city=" + city + ", ammenities=" + ammenities + ", starRating="
-				+ starRating + ", room=" + room + "]";
+				+ starRating + ", room=" + room + ", verified=" + verified + "]";
 	}
+	
+	
 
+
+	
 	
 }
