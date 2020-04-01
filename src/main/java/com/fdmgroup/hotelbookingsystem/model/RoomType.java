@@ -1,7 +1,10 @@
 package com.fdmgroup.hotelbookingsystem.model;
 
 public enum RoomType {
-	STANDARD("Standard"), DELUXE("Deluxe"), MASTER("Master"), PRESIDENTIAL("Presidential");
+	STANDARD("Standard"), 
+	LUXURY ("Luxury"),
+	DELUXE("Deluxe"), 
+	SUITE("Suite");
 
 	private String name;
 	

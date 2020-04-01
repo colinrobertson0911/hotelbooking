@@ -34,11 +34,6 @@ public class RoomService {
 	}
 
 
-	public Room findByRoomNumber(int roomNumber) {
-		return roomDao.findByRoomNumber(roomNumber);
-	}
-
-
 	public List<Room> findByPrice(BigDecimal price) {
 		
 		return roomDao.findByPrice(price);

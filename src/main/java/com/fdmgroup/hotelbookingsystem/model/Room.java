@@ -19,60 +19,29 @@ public class Room {
 	@SequenceGenerator(name = "room_gen", sequenceName = "ROOM_SEQ", allocationSize = 1)
 	private long roomId;
 
-	@Column
-	private int roomNumber;
-
-	@Column
-	private int beds;
-
 	@Enumerated(EnumType.STRING)
 	private RoomType roomType;
 
 	@Column
 	private BigDecimal price;
 
-	@Column
-	private String amenities;
-
-	@Column
-	private boolean availability;
-
-	public Room(int roomNumber, int beds, RoomType roomType, BigDecimal price, String amenities, boolean availability) {
+	public Room(RoomType roomType, BigDecimal price) {
 		super();
-		this.roomNumber = roomNumber;
-		this.beds = beds;
 		this.roomType = roomType;
 		this.price = price;
-		this.amenities = amenities;
-		this.availability = availability;
 	}
 
 	public Room() {
 		super();
+		
 	}
-
+	
 	public long getRoomId() {
 		return roomId;
 	}
 
 	public void setRoomId(long roomId) {
 		this.roomId = roomId;
-	}
-
-	public int getRoomNumber() {
-		return roomNumber;
-	}
-
-	public void setRoomNumber(int roomNumber) {
-		this.roomNumber = roomNumber;
-	}
-
-	public int getBeds() {
-		return beds;
-	}
-
-	public void setBeds(int beds) {
-		this.beds = beds;
 	}
 
 	public RoomType getRoomType() {
@@ -91,32 +60,12 @@ public class Room {
 		this.price = price;
 	}
 
-	public String getAmenities() {
-		return amenities;
-	}
-
-	public void setAmenities(String amenities) {
-		this.amenities = amenities;
-	}
-
-	public boolean isAvailability() {
-		return availability;
-	}
-
-	public void setAvailability(boolean availability) {
-		this.availability = availability;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((amenities == null) ? 0 : amenities.hashCode());
-		result = prime * result + (availability ? 1231 : 1237);
-		result = prime * result + beds;
 		result = prime * result + ((price == null) ? 0 : price.hashCode());
 		result = prime * result + (int) (roomId ^ (roomId >>> 32));
-		result = prime * result + roomNumber;
 		result = prime * result + ((roomType == null) ? 0 : roomType.hashCode());
 		return result;
 	}
@@ -130,23 +79,12 @@ public class Room {
 		if (getClass() != obj.getClass())
 			return false;
 		Room other = (Room) obj;
-		if (amenities == null) {
-			if (other.amenities != null)
-				return false;
-		} else if (!amenities.equals(other.amenities))
-			return false;
-		if (availability != other.availability)
-			return false;
-		if (beds != other.beds)
-			return false;
 		if (price == null) {
 			if (other.price != null)
 				return false;
 		} else if (!price.equals(other.price))
 			return false;
 		if (roomId != other.roomId)
-			return false;
-		if (roomNumber != other.roomNumber)
 			return false;
 		if (roomType != other.roomType)
 			return false;
@@ -155,8 +93,7 @@ public class Room {
 
 	@Override
 	public String toString() {
-		return "Room [roomId=" + roomId + ", roomNumber=" + roomNumber + ", beds=" + beds + ", roomType=" + roomType
-				+ ", price=" + price + ", amenities=" + amenities + ", availability=" + availability + "]";
+		return "Room [roomId=" + roomId + ", roomType=" + roomType + ", price=" + price + "]";
 	}
 
 }

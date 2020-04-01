@@ -47,7 +47,7 @@
 		</div>
 		<div>
 			<f:label path="room">Type of Rooms</f:label>
-			<f:select path="room" items="${allRooms}" itemLabel="roomType" 
+			<f:select path="room" items="${allRooms}" itemLabel="getTypeAndPrice"
 			required="required" multiple="multiple" />
 		</div>
 		<div>

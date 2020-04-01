@@ -28,12 +28,8 @@ class RoomTest {
 	@Test
 	public void test_ThatANewRoomCanBeAdded() {
 		Room room = new Room();
-		room.setRoomNumber(101);
-		room.setBeds(2);
 		room.setRoomType(RoomType.STANDARD);
-		room.setPrice(new BigDecimal("80.00"));
-		room.setAmenities("TV, WiFi");
-		room.setAvailability(true);
+		room.setPrice(new BigDecimal("70.00"));
 		int numBeforeAdding = roomService.findAll().size();
 		roomService.save(room);
 		int numAfterAdding = roomService.findAll().size();
@@ -57,19 +53,10 @@ class RoomTest {
 	}
 
 	@Test
-	public void test_ThatPriceCanBeChanged() {
-		Room room = roomService.findByRoomNumber(2);
-		BigDecimal roomPrice = room.getPrice();
-		room.setPrice(new BigDecimal("99"));
-		assertNotEquals(roomPrice, room.getPrice());
-	}
-
-	@Test
 	public void test_ThatRoomsCanBefoundByExactPrice() {
 		List<Room> allRooms = roomService.findByPrice(new BigDecimal("120"));
 		int numOfRooms = allRooms.size();
 		assert (numOfRooms > 0);
 	}
-	
 
 }

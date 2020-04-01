@@ -13,8 +13,6 @@ public interface RoomDao extends JpaRepository<Room, Long>{
 
 	List<Room> findByRoomType(@Param("roomType")RoomType roomType);
 
-	Room findByRoomNumber(@Param("roomNumber")int roomNumber);
-
 	List<Room> findByPrice(@Param("price")BigDecimal price);
 
 	
