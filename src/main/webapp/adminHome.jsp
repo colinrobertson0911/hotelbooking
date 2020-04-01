@@ -10,7 +10,10 @@
 <h2>Administrator Home Page</h2>
 
 <div>
-<a href = "AllOwners"> See List of All Hotel Owners</a>
+<a href = "AllOwners"> See A List Of All Hotel Owners</a>
+</div>
+<div>
+<a href = "AllHotels"> See A List Of All Hotels</a>
 </div>
 
 </body>

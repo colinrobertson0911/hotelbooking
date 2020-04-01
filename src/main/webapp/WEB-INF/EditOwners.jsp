@@ -20,6 +20,10 @@
 			<f:input path="email" type="text" required="required" size="30" />
 		</div>
 		<div>
+			<f:label path="hotel"> Owned Hotels:</f:label>
+			<f:select path="hotel" items="${allHotels}" itemLabel="hotelName" multiple="multiple" required="required" />
+		</div>
+		<div>
 			<input type="submit" value="update" />
 		</div>
 		<f:hidden path="hotelOwnerId"/>

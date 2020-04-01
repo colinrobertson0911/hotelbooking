@@ -36,7 +36,7 @@ public class Hotel {
 	@Column
 	private String city;
 	
-	@Column(nullable = false, length = 8000)
+	@Column(length = 8000)
 	private String ammenities;
 	
 	@Column

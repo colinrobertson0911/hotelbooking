@@ -11,7 +11,7 @@
 
 <h2>A List of All Owners</h2>
 
-
+	<p>${successMessage}</p>
 	<c:forEach items="${hotelOwners}" var="hotelOwner">
 		<h3>
 			<a href="SeeHotelOwner?hotelOwnerId=${hotelOwner.hotelOwnerId}">${hotelOwner.name}</a>
