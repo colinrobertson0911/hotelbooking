@@ -10,7 +10,12 @@
 </head>
 <body>
 	<h2>Add your hotel</h2>
+	<div>
+	<p>${errorMessage}</p>
+	<p>${successMessage}</p>
+	</div>
 	<f:form method="post" action="AddHotelSubmit" modelAttribute="hotel">
+		
 		<div>
 			<f:label path="hotelName">Hotel Name:</f:label>
 			<f:input path="hotelName" type="text" required="required" />
@@ -32,7 +37,7 @@
 			<f:input path="city" type="text" required="required" />
 		</div>
 		<div>
-			<f:label path="ammenities">Ammenities:</f:label>
+			<f:label path="ammenities">Amenities:</f:label>
 			<f:input path="ammenities" type="text" required="required"
 				length="8000" />
 		</div>
@@ -40,7 +45,6 @@
 			<f:label path="starRating">Star Rating</f:label>
 			<f:input path="starRating" type="text" required="required" />
 		</div>
-
 		<button type="submit">Add Hotel</button>
 	</f:form>
 </body>

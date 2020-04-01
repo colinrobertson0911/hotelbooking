@@ -1,7 +1,10 @@
 package com.fdmgroup.hotelbookingsystem.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,9 +17,7 @@ import com.fdmgroup.hotelbookingsystem.services.HotelOwnerService;
 import com.fdmgroup.hotelbookingsystem.services.HotelService;
 
 @Controller
-public class HotelOwnerController {
-
-	public final static String SESSION_ATTRIBUTE_HOTELOWNER = "HOTELOWNER";
+public class HotelOwnerController {	
 
 	@Autowired
 	HotelOwnerService hotelOwnerService;
@@ -38,9 +39,15 @@ public class HotelOwnerController {
 	}
 
 	@PostMapping("AddHotelSubmit")
-	public ModelAndView addHotelSubmit(@ModelAttribute("hotel") Hotel hotel) {
+	public String addHotelSubmit(@ModelAttribute("hotel") Hotel hotel, ModelMap model) {
+		Optional<Hotel> hotelFromDB = hotelService.findByAddress(hotel.getAddress());
+		if(hotelFromDB.isPresent()) {
+			model.addAttribute("errorMessage", "Hotel at that address already exists");
+			return "WEB-INF/addHotel.jsp";  
+		}
 		hotelService.save(hotel);
-		return new ModelAndView("WEB-INF/OwnerHotels.jsp", "hotel", hotelService.findAll());
+		model.addAttribute("successMessage", "Hotel has been added to system, Hotel will be available once processed by an Administrator");
+		 return "WEB-INF/addHotel.jsp";
 	}
 
 }

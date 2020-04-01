@@ -27,7 +27,7 @@ public class Hotel {
 	@Column
 	private int numOfRooms;
 	
-	@Column
+	@Column(unique = true)
 	private String address;
 	
 	@Column

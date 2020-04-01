@@ -18,6 +18,11 @@ insert into hotel(hotelId, hotelName, numOfRooms, address, postcode, city, ammen
 insert into hotel(hotelId, hotelName, numOfRooms, address, postcode, city, ammenities, starRating) values (HOTEL_SEQ.nextval, 'Stirling Highland hotel', 25,'12 King Street', 'FK8 2RE', 'Stirling','Spa, Carpark, Restaurant', 4);
 
 insert into hotelOwner_hotel(hotelOwner_hotelOwnerId, hotel_hotelId) values (1,1);
+insert into hotelOwner_hotel(hotelOwner_hotelOwnerId, hotel_hotelId) values (1,2);
+insert into hotelOwner_hotel(hotelOwner_hotelOwnerId, hotel_hotelId) values (2,3);
+insert into hotelOwner_hotel(hotelOwner_hotelOwnerId, hotel_hotelId) values (3,4);
+insert into hotelOwner_hotel(hotelOwner_hotelOwnerId, hotel_hotelId) values (3,5);
+
 
 
 insert into room(roomId, roomNumber, beds, roomType, price, amenities, availability) values (ROOM_SEQ.nextval, '1', '2', 'STANDARD', '80.00', 'tv, fridge', true);

@@ -18,6 +18,10 @@ public class HotelService {
 	public List<Hotel> findAll() {
 		return hotelDao.findAll();
 	}
+	
+	public Optional<Hotel> findByAddress(String address){
+		return hotelDao.findByAddress(address);
+	}
 
 	public Hotel save(Hotel hotel) {
 		return hotelDao.save(hotel);
