@@ -16,37 +16,31 @@ import com.fdmgroup.hotelbookingsystem.services.HotelService;
 @Controller
 public class HotelOwnerController {
 
-public final static String SESSION_ATTRIBUTE_HOTELOWNER = "HOTELOWNER";
-	
+	public final static String SESSION_ATTRIBUTE_HOTELOWNER = "HOTELOWNER";
+
 	@Autowired
 	HotelOwnerService hotelOwnerService;
-	
+
 	@Autowired
 	HotelService hotelService;
-	
 
-
-	
 	@RequestMapping("OwnerHotels")
 	public ModelAndView ownerHotels() {
 		return new ModelAndView("WEB-INF/OwnerHotels.jsp", "hotels", hotelService.findAll());
 	}
-	
+
 	@GetMapping("AddHotel")
-	public ModelAndView addHotels(@RequestParam("hotelOwnerId")Long hotelOwnerId) {
-		ModelAndView modelAndView = new ModelAndView ("WEB-INF/addHotel.jsp");
+	public ModelAndView addHotels(@RequestParam("hotelOwnerId") Long hotelOwnerId) {
+		ModelAndView modelAndView = new ModelAndView("WEB-INF/addHotel.jsp");
 		modelAndView.addObject("hotel", new Hotel());
 		modelAndView.addObject("hotelOwner", hotelOwnerService.retrieveOne(hotelOwnerId));
 		return modelAndView;
 	}
-	
+
 	@PostMapping("AddHotelSubmit")
-	public ModelAndView addHotelSubmit(@ModelAttribute("hotel")Hotel hotel) {
+	public ModelAndView addHotelSubmit(@ModelAttribute("hotel") Hotel hotel) {
 		hotelService.save(hotel);
 		return new ModelAndView("WEB-INF/OwnerHotels.jsp", "hotel", hotelService.findAll());
 	}
-	
-	
-}
-	
 
+}

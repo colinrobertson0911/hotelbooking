@@ -1,5 +1,6 @@
 package com.fdmgroup.hotelbookingsystem.model;
 
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 public class Hotel {
@@ -38,13 +42,20 @@ public class Hotel {
 	@Column
 	private int starRating;
 	
+	@ManyToMany
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@JoinColumn(name = "roomId")
+	private List<Room> room;
+	
+	
 	public Hotel() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+
 	public Hotel(String hotelName, int numOfRooms, String address, String postcode, String city, String ammenities,
-			int starRating) {
+			int starRating, List<Room> room) {
 		super();
 		this.hotelName = hotelName;
 		this.numOfRooms = numOfRooms;
@@ -53,71 +64,99 @@ public class Hotel {
 		this.city = city;
 		this.ammenities = ammenities;
 		this.starRating = starRating;
+		this.room = room;
 	}
+
 
 	public long getHotelId() {
 		return hotelId;
 	}
 
+
 	public void setHotelId(long hotelId) {
 		this.hotelId = hotelId;
 	}
+
 
 	public String getHotelName() {
 		return hotelName;
 	}
 
+
 	public void setHotelName(String hotelName) {
 		this.hotelName = hotelName;
 	}
+
 
 	public int getNumOfRooms() {
 		return numOfRooms;
 	}
 
+
 	public void setNumOfRooms(int numOfRooms) {
 		this.numOfRooms = numOfRooms;
 	}
+
 
 	public String getAddress() {
 		return address;
 	}
 
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
 
 	public String getPostcode() {
 		return postcode;
 	}
 
+
 	public void setPostcode(String postcode) {
 		this.postcode = postcode;
 	}
+
 
 	public String getCity() {
 		return city;
 	}
 
+
 	public void setCity(String city) {
 		this.city = city;
 	}
+
 
 	public String getAmmenities() {
 		return ammenities;
 	}
 
+
 	public void setAmmenities(String ammenities) {
 		this.ammenities = ammenities;
 	}
+
 
 	public int getStarRating() {
 		return starRating;
 	}
 
+
 	public void setStarRating(int starRating) {
 		this.starRating = starRating;
 	}
+
+
+	public List<Room> getRoom() {
+		return room;
+	}
+
+
+	public void setRoom(List<Room> room) {
+		this.room = room;
+	}
+
 
 	@Override
 	public int hashCode() {
@@ -130,9 +169,11 @@ public class Hotel {
 		result = prime * result + ((hotelName == null) ? 0 : hotelName.hashCode());
 		result = prime * result + numOfRooms;
 		result = prime * result + ((postcode == null) ? 0 : postcode.hashCode());
+		result = prime * result + ((room == null) ? 0 : room.hashCode());
 		result = prime * result + starRating;
 		return result;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -172,16 +213,22 @@ public class Hotel {
 				return false;
 		} else if (!postcode.equals(other.postcode))
 			return false;
+		if (room == null) {
+			if (other.room != null)
+				return false;
+		} else if (!room.equals(other.room))
+			return false;
 		if (starRating != other.starRating)
 			return false;
 		return true;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Hotel [hotelId=" + hotelId + ", hotelName=" + hotelName + ", numOfRooms=" + numOfRooms + ", address="
 				+ address + ", postcode=" + postcode + ", city=" + city + ", ammenities=" + ammenities + ", starRating="
-				+ starRating + "]";
+				+ starRating + ", room=" + room + "]";
 	}
 
 	

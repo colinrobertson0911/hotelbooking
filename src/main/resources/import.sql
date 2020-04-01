@@ -32,3 +32,10 @@ insert into room(roomId, roomNumber, beds, roomType, price, amenities, availabil
 insert into room(roomId, roomNumber, beds, roomType, price, amenities, availability) values (ROOM_SEQ.nextval, '10', '4', 'PRESIDENTIAL', '150.00', 'tv, fridge, balcony, WIFI', true);
 insert into room(roomId, roomNumber, beds, roomType, price, amenities, availability) values (ROOM_SEQ.nextval, '11', '4', 'PRESIDENTIAL', '150.00', 'tv, fridge, balcony, WIFI', true);
 insert into room(roomId, roomNumber, beds, roomType, price, amenities, availability) values (ROOM_SEQ.nextval, '12', '4', 'PRESIDENTIAL', '150.00', 'tv, fridge, balcony, WIFI', true);
+
+insert into hotel_room(hotel_hotelId, room_roomId) values (1,1);
+insert into hotel_room(hotel_hotelId, room_roomId) values (1,4);
+
+insert into hotel_room(hotel_hotelId, room_roomId) values (2,2);
+insert into hotel_room(hotel_hotelId, room_roomId) values (2,5);
+insert into hotel_room(hotel_hotelId, room_roomId) values (2,7);
