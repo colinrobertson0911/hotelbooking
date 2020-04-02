@@ -10,7 +10,7 @@
 <h2>Login as a Hotel Owner Below</h2>
 
 	<div>
-		<form action="LoginSubmit" method="post">
+		<form action="LoginOwnerSubmit" method="post">
 		${errorMessage}
 			<div>
 				<label>User Name:</label>

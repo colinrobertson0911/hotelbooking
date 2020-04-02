@@ -13,19 +13,24 @@
 	<div>
 		<a href="LoginAsOwner">Log In as a Hotel Owner</a>
 	</div>
-	
-	<form action="SearchByCity" method="post">
-	${errorMessage}
+
 	<div>
-	<label>Search by city:</label>
-	<input type="city" name="city"/>
+		<a href="LoginAsAdmin">Log in as an administrator</a>
 	</div>
-	<button type="submit">Search</button>
+
+	<form action="SearchByCity" method="post">
+		${errorMessage}
+		<div>
+			<label>Search by city:</label> <input type="city" name="city" />
+		</div>
+		<button type="submit">Search</button>
 	</form>
-	
+
 
 	<c:forEach items="${hotel}" var="hotel">
-		<h3><a href="SeeHotel?hotelId=${hotel.hotelId}">${hotel.hotelName}</a></h3>
+		<h3>
+			<a href="SeeHotel?hotelId=${hotel.hotelId}">${hotel.hotelName}</a>
+		</h3>
 		<div>
 			<p>Number of rooms: ${hotel.numOfRooms}</p>
 			<p>City: ${hotel.city}</p>
