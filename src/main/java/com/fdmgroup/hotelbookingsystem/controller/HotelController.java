@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fdmgroup.hotelbookingsystem.model.Hotel;
+import com.fdmgroup.hotelbookingsystem.model.Room;
 import com.fdmgroup.hotelbookingsystem.services.HotelService;
 
 @Controller
@@ -48,6 +49,16 @@ public class HotelController {
 	@GetMapping("SeeHotel")
 	public ModelAndView seeHotel(@RequestParam("hotelId")Long hotelId) {
 		return new ModelAndView("WEB-INF/seeHotel.jsp", "hotel", hotelService.retrieveOne(hotelId));
+	}
+	
+	@PostMapping("SearchByRoomType")
+	public ModelAndView searchByRoomType(@ModelAttribute("room")Room room, ModelMap model) {
+		List<Hotel> hotelList = hotelService.findByRoomType(room.getRoomType());
+		if(hotelList.isEmpty()) {
+			model.addAttribute("errorRoomTypeMessage", "No Rooms of that type");
+			return new ModelAndView("MainScreen.jsp", "hotel", hotelService.findAll());
+		}
+		return new ModelAndView("MainScreen.jsp", "hotel", hotelList);
 	}
 	
 	

@@ -27,6 +27,14 @@
 		</div>
 		<button type="submit">Search</button>
 	</form>
+	
+	<form action="SearchByRoomType" method="post">
+		${errorRoomTypeMessage}
+		<div>
+			<label>Search by Room Type: </label> <input type="room" name="roomType" />
+		</div>
+		<button type="submit">Search</button>	
+	</form>
 
 
 	<c:forEach items="${hotel}" var="hotel">
