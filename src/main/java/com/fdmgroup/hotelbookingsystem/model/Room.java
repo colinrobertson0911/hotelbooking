@@ -19,23 +19,23 @@ public class Room {
 	@SequenceGenerator(name = "room_gen", sequenceName = "ROOM_SEQ", allocationSize = 1)
 	private long roomId;
 
-	@Enumerated(EnumType.STRING)
-	private RoomType roomType;
+	@Column
+	private String roomType;
 
 	@Column
 	private BigDecimal price;
 
-	public Room(RoomType roomType, BigDecimal price) {
+	public Room() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Room(String roomType, BigDecimal price) {
 		super();
 		this.roomType = roomType;
 		this.price = price;
 	}
 
-	public Room() {
-		super();
-		
-	}
-	
 	public long getRoomId() {
 		return roomId;
 	}
@@ -44,11 +44,11 @@ public class Room {
 		this.roomId = roomId;
 	}
 
-	public RoomType getRoomType() {
+	public String getRoomType() {
 		return roomType;
 	}
 
-	public void setRoomType(RoomType roomType) {
+	public void setRoomType(String roomType) {
 		this.roomType = roomType;
 	}
 
@@ -86,7 +86,10 @@ public class Room {
 			return false;
 		if (roomId != other.roomId)
 			return false;
-		if (roomType != other.roomType)
+		if (roomType == null) {
+			if (other.roomType != null)
+				return false;
+		} else if (!roomType.equals(other.roomType))
 			return false;
 		return true;
 	}
@@ -96,4 +99,5 @@ public class Room {
 		return "Room [roomId=" + roomId + ", roomType=" + roomType + ", price=" + price + "]";
 	}
 
+	
 }

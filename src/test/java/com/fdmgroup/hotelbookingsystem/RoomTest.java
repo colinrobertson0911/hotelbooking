@@ -1,9 +1,11 @@
 package com.fdmgroup.hotelbookingsystem;
 
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +13,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 
 import com.fdmgroup.hotelbookingsystem.model.Room;
-import com.fdmgroup.hotelbookingsystem.model.RoomType;
 import com.fdmgroup.hotelbookingsystem.services.HotelService;
 import com.fdmgroup.hotelbookingsystem.services.RoomService;
 
@@ -28,7 +29,7 @@ class RoomTest {
 	@Test
 	public void test_ThatANewRoomCanBeAdded() {
 		Room room = new Room();
-		room.setRoomType(RoomType.STANDARD);
+		room.setRoomType("STANDARD");
 		room.setPrice(new BigDecimal("70.00"));
 		int numBeforeAdding = roomService.findAll().size();
 		roomService.save(room);
@@ -46,10 +47,9 @@ class RoomTest {
 
 	@Test
 	public void test_FindByRoomType() {
-		List<Room> allRooms = roomService.findByRoomType(RoomType.DELUXE);
+		List<Room> allRooms = roomService.findByRoomType("STANDARD");
 		int numOfRooms = allRooms.size();
 		assert (numOfRooms > 0);
-
 	}
 
 	@Test
@@ -57,6 +57,13 @@ class RoomTest {
 		List<Room> allRooms = roomService.findByPrice(new BigDecimal("120"));
 		int numOfRooms = allRooms.size();
 		assert (numOfRooms > 0);
+	}
+	
+	@Test
+	public void test_RoomCanBeObtainedByTypeAndPrice() {
+		Room knownRoom = roomService.retrieveOne(1L);
+		Optional<Room> room = roomService.findByRoomTypeAndPrice(knownRoom.getRoomType(), knownRoom.getPrice());
+		assertTrue(room.isPresent());
 	}
 
 }

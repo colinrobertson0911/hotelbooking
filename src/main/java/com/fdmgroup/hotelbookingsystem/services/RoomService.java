@@ -2,12 +2,12 @@ package com.fdmgroup.hotelbookingsystem.services;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fdmgroup.hotelbookingsystem.model.Room;
-import com.fdmgroup.hotelbookingsystem.model.RoomType;
 import com.fdmgroup.hotelbookingsystem.repository.RoomDao;
 
 @Service
@@ -29,7 +29,7 @@ public class RoomService {
 	}
 
 
-	public List<Room> findByRoomType(RoomType roomType) {
+	public List<Room> findByRoomType(String roomType) {
 		return roomDao.findByRoomType(roomType);
 	}
 
@@ -37,6 +37,18 @@ public class RoomService {
 	public List<Room> findByPrice(BigDecimal price) {
 		
 		return roomDao.findByPrice(price);
+	}
+
+
+	public Room retrieveOne(Long roomId) {
+		// TODO Auto-generated method stub
+		return roomDao.findByRoomId(roomId);
+	}
+
+
+	public Optional<Room> findByRoomTypeAndPrice(String roomType, BigDecimal price) {
+		// TODO Auto-generated method stub
+		return roomDao.findByRoomTypeAndPrice(roomType, price);
 	}
 
 

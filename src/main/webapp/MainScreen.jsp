@@ -9,7 +9,9 @@
 </head>
 <body>
 	<h2>Main Page</h2>
-
+	<div>
+	<p>${ownerMessage}</p>
+	</div>
 	<div>
 		<a href="LoginAsOwner">Log In as a Hotel Owner</a>
 	</div>
