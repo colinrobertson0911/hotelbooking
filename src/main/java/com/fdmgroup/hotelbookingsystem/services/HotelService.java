@@ -37,4 +37,8 @@ public class HotelService {
 		return hotelDao.findByCity(city);
 	}
 
+	public List<Hotel> findByRoomType(String roomType) {
+		return hotelDao.findByRoomType(roomType);
+	}
+
 }

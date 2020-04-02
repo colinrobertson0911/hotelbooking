@@ -70,4 +70,12 @@ class HotelTest {
 		int numberOfHotels = hotel.size();
 		assert (numberOfHotels > 0);
 	}
+	
+	@Test
+	public void test_ThatHotelsCanBeFoundSearchedByRoomType() {
+		List<Hotel> hotel = hotelService.findByRoomType("STANDARD");
+		int listSizeFromHotel = hotel.size();		
+		assertEquals(listSizeFromHotel, 2);
+	}
+	
 }
