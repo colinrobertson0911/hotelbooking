@@ -1,6 +1,8 @@
 package com.fdmgroup.hotelbookingsystem.services;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,8 +32,12 @@ public class HotelOwnerService {
 		return hotelOwnerDao.findByEmail(email);
 	}
 
-	public HotelOwner findByUsernameAndPassword(String username, String password) {
+	public Optional<HotelOwner> findByUsernameAndPassword(String username, String password) {
 		return hotelOwnerDao.findByUsernameAndPassword(username, password);
+	}
+	
+	public Optional<HotelOwner> findByUsername(String username) {
+		return hotelOwnerDao.findByUsername(username);
 	}
 	
 

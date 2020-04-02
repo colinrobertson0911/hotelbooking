@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,8 +59,8 @@ class HotelOwnerTest {
 	
 	@Test
 	void test_RetrieveByUsernameAndPassword() {
-		HotelOwner hotelOwner = hotelOwnerService.findByUsernameAndPassword("user1", "password");
-		assertEquals(1, hotelOwner.getHotelOwnerId());
+		Optional<HotelOwner> hotelOwner = hotelOwnerService.findByUsernameAndPassword("user1", "password");
+		assertEquals("user one", hotelOwner.get().getName());
 	}
 
 }

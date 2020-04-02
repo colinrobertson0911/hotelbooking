@@ -40,7 +40,7 @@ public class HotelOwnerController {
 	}
 
 	@GetMapping("AddHotel")
-	public ModelAndView addHotels(@RequestParam("hotelOwnerId")Long hotelOwnerId) {
+	public ModelAndView addHotels(@RequestParam("hotelOwnerId")Long hotelOwnerId, HttpSession session) {
 		ModelAndView modelAndView = new ModelAndView("WEB-INF/addHotel.jsp");
 		modelAndView.addObject("hotel", new Hotel());
 		modelAndView.addObject("allRooms", roomService.findAll());
@@ -50,7 +50,7 @@ public class HotelOwnerController {
 
 	@PostMapping("AddHotelSubmit")
 	public String addHotelSubmit(@ModelAttribute("hotel") Hotel hotel, ModelMap model,HttpSession session) {
-		HotelOwner hotelOwner = (HotelOwner)session.getAttribute("HOTELOWNER");
+		HotelOwner hotelOwner = (HotelOwner)session.getAttribute("hotelOwnerId");
 				System.out.println("SYSOUT: " + hotelOwner);
 		Optional<Hotel> hotelFromDB = hotelService.findByAddress(hotel.getAddress());
 		//ModelAndView modelAndView = new ModelAndView();

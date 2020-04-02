@@ -1,5 +1,7 @@
 package com.fdmgroup.hotelbookingsystem.controller;
 
+import java.util.Optional;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,7 @@ public class LoginController {
 
 	public static final String SESSION_ATTRIBUTE_ADMIN = "ADMIN";
 	public final static String SESSION_ATTRIBUTE_HOTELOWNER = "HOTELOWNER";
+	public final static String SESSION_ATTRIBUTE_HOTELOWNERID = "HOTELOWNERID";
 
 	@Autowired
 	AdminService adminService;
@@ -39,16 +42,20 @@ public class LoginController {
 	@PostMapping("LoginOwnerSubmit")
 	public ModelAndView loginSubmit(@ModelAttribute("HotelOwner") HotelOwner hotelOwner, ModelMap model,
 			HttpSession session) {
-		HotelOwner hotelOwnerFromDB = hotelOwnerService.findByUsernameAndPassword(hotelOwner.getUsername(),
+		Optional<HotelOwner> hotelOwnerFromDB = hotelOwnerService.findByUsernameAndPassword(hotelOwner.getUsername(),
 				hotelOwner.getPassword());
 
-		if (hotelOwnerFromDB == null) {
+		if (hotelOwnerFromDB.isEmpty()) {
 			model.addAttribute("errorMessage", "Incorrect username or password");
 			return new ModelAndView("loginOwner.jsp");
 		}
 		
-		session.setAttribute(SESSION_ATTRIBUTE_HOTELOWNER, hotelOwnerFromDB);
-		return new ModelAndView("WEB-INF/OwnerHotels.jsp", "hotelOwner", hotelOwnerFromDB);
+		session.setAttribute(SESSION_ATTRIBUTE_HOTELOWNER, hotelOwnerFromDB.get());
+		HotelOwner hotelOwnerForId = hotelOwnerService.findByUsername(hotelOwner.getUsername()).get();
+		Long hotelOwnerId = hotelOwnerForId.getHotelOwnerId();
+		session.setAttribute(SESSION_ATTRIBUTE_HOTELOWNERID, hotelOwnerId);
+		hotelOwner.setHotelOwnerId(hotelOwnerId);
+		return new ModelAndView("WEB-INF/OwnerHotels.jsp", "hotelOwner", hotelOwnerForId);
 
 	}
 
