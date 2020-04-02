@@ -25,6 +25,7 @@ HotelService hotelService;
 @GetMapping("AllOwners")
 public ModelAndView hotelOwners() {
 	return new ModelAndView("WEB-INF/AllOwners.jsp", "hotelOwners", hotelOwnerService.findAll());
+	
 }
 
 @GetMapping("SeeHotelOwner")
