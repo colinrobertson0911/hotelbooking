@@ -49,5 +49,7 @@ public class HotelController {
 	public ModelAndView seeHotel(@RequestParam("hotelId")Long hotelId) {
 		return new ModelAndView("WEB-INF/seeHotel.jsp", "hotel", hotelService.retrieveOne(hotelId));
 	}
+	
+	
 
 }

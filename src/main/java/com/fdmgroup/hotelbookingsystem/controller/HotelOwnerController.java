@@ -72,6 +72,20 @@ public class HotelOwnerController {
 		return "WEB-INF/addHotel.jsp";
 	}
 	
+	@GetMapping("EditHotel")
+	public ModelAndView editHotel(@RequestParam("hotelId") long hotelId) {
+		ModelAndView modelAndView = new ModelAndView("WEB-INF/EditHotel.jsp"); 
+		modelAndView.addObject("allRooms", roomService.findAll());
+		modelAndView.addObject("hotel", hotelService.retrieveOne(hotelId));
+		return modelAndView;
+		}
+	
+	@PostMapping("EditHotelSubmit")
+	public ModelAndView editHotelSubmit(@ModelAttribute("hotel") Hotel hotel) {
+		hotelService.save(hotel);
+		return new ModelAndView("MainScreen.jsp", "hotel", hotelService.findAll());
+	}
+	
 	@GetMapping("ReturnToMain")
 	public ModelAndView returnToMain() {
 		ModelAndView modelAndView = new ModelAndView("MainScreen.jsp");
