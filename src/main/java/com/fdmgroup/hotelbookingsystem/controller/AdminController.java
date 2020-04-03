@@ -24,14 +24,14 @@ HotelService hotelService;
 
 @GetMapping("AllOwners")
 public ModelAndView hotelOwners() {
-	return new ModelAndView("WEB-INF/AllOwners.jsp", "hotelOwners", hotelOwnerService.findAll());
+	return new ModelAndView("WEB-INF/allOwners.jsp", "hotelOwners", hotelOwnerService.findAll());
 	
 }
 
 @GetMapping("SeeHotelOwner")
 public ModelAndView editHotelOwners(@RequestParam("hotelOwnerId")long hotelOwnerId) {
 	ModelAndView modelAndView = new ModelAndView();
-	modelAndView.setViewName("WEB-INF/EditOwners.jsp");
+	modelAndView.setViewName("WEB-INF/editOwners.jsp");
 	modelAndView.addObject("hotelOwner", hotelOwnerService.retrieveOne(hotelOwnerId));
 	modelAndView.addObject("allHotels", hotelService.findAll());
 	return modelAndView;
@@ -41,7 +41,7 @@ public ModelAndView editHotelOwners(@RequestParam("hotelOwnerId")long hotelOwner
 public ModelAndView hotelOwnersUpdated(@ModelAttribute("hotelOwner")HotelOwner hotelOwner) {
 	hotelOwnerService.save(hotelOwner);
 	ModelAndView modelAndView = new ModelAndView();
-	modelAndView.setViewName("WEB-INF/AllOwners.jsp");
+	modelAndView.setViewName("WEB-INF/allOwners.jsp");
 	modelAndView.addObject("hotelOwners", hotelOwnerService.findAll());
 	modelAndView.addObject("successMessage", "Owner Successfully Updated");	
 	return modelAndView;

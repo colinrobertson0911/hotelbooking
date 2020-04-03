@@ -36,7 +36,7 @@ public class HotelOwnerController {
 
 	@RequestMapping("OwnerHotels")
 	public ModelAndView ownerHotels() {
-		return new ModelAndView("WEB-INF/OwnerHotels.jsp", "hotels", hotelService.findAll());
+		return new ModelAndView("WEB-INF/ownerHotels.jsp", "hotels", hotelService.findAll());
 	}
 
 	@GetMapping("AddHotel")
@@ -51,7 +51,6 @@ public class HotelOwnerController {
 	@PostMapping("AddHotelSubmit")
 	public String addHotelSubmit(@ModelAttribute("hotel") Hotel hotel, ModelMap model,HttpSession session) {
 		HotelOwner hotelOwner = (HotelOwner)session.getAttribute("hotelOwnerId");
-				System.out.println("SYSOUT: " + hotelOwner);
 		Optional<Hotel> hotelFromDB = hotelService.findByAddress(hotel.getAddress());
 		//ModelAndView modelAndView = new ModelAndView();
 		if(hotelFromDB.isPresent()) {
@@ -74,7 +73,7 @@ public class HotelOwnerController {
 	
 	@GetMapping("EditHotel")
 	public ModelAndView editHotel(@RequestParam("hotelId") long hotelId) {
-		ModelAndView modelAndView = new ModelAndView("WEB-INF/EditHotel.jsp"); 
+		ModelAndView modelAndView = new ModelAndView("WEB-INF/editHotel.jsp"); 
 		modelAndView.addObject("allRooms", roomService.findAll());
 		modelAndView.addObject("hotel", hotelService.retrieveOne(hotelId));
 		return modelAndView;
@@ -83,13 +82,13 @@ public class HotelOwnerController {
 	@PostMapping("EditHotelSubmit")
 	public ModelAndView editHotelSubmit(@ModelAttribute("hotel") Hotel hotel) {
 		hotelService.save(hotel);
-		return new ModelAndView("MainScreen.jsp", "hotel", hotelService.findByVerifiedEqualsTrue());
+		return new ModelAndView("mainScreen.jsp", "hotel", hotelService.findByVerifiedEqualsTrue());
 	}
 	
 	@GetMapping("ReturnToMain")
 	public ModelAndView returnToMain() {
-		ModelAndView modelAndView = new ModelAndView("MainScreen.jsp");
-		modelAndView.addObject("hotel", hotelService.findAll());
+		ModelAndView modelAndView = new ModelAndView("mainScreen.jsp");
+		modelAndView.addObject("hotel", hotelService.findByVerifiedEqualsTrue());
 		modelAndView.addObject("ownerMessage", "Hotels need to be verified by Administration before customers can view them");
 		//modelAndView.addObject("hotelOwner", hotelOwnerService.retrieveOne(hotelOwnerId));
 		return modelAndView;

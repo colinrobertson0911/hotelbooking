@@ -23,12 +23,12 @@ public class HotelController {
 
 	@GetMapping("")
 	public ModelAndView home() {
-		return new ModelAndView("MainScreen.jsp", "hotel", hotelService.findByVerifiedEqualsTrue());
+		return new ModelAndView("mainScreen.jsp", "hotel", hotelService.findByVerifiedEqualsTrue());
 	}
 
 	@GetMapping("/Home")
 	public ModelAndView homeScreen() {
-		return new ModelAndView("MainScreen.jsp", "hotel", hotelService.findByVerifiedEqualsTrue());
+		return new ModelAndView("mainScreen.jsp", "hotel", hotelService.findByVerifiedEqualsTrue());
 	}
 
 	@GetMapping("LoginAsOwner")
@@ -41,9 +41,9 @@ public class HotelController {
 		List<Hotel> hotelList = hotelService.findByCityAndVerifiedIsTrue(hotel.getCity());
 		if (hotelList.isEmpty()) {
 			model.addAttribute("errorMessage", "Not Hotels in that city");
-			return new ModelAndView("MainScreen.jsp", "hotel", hotelService.findByVerifiedEqualsTrue());
+			return new ModelAndView("mainScreen.jsp", "hotel", hotelService.findByVerifiedEqualsTrue());
 		}
-		return new ModelAndView("MainScreen.jsp", "hotel", hotelList);
+		return new ModelAndView("mainScreen.jsp", "hotel", hotelList);
 	}
 	
 	@GetMapping("SeeHotel")
@@ -63,9 +63,9 @@ public class HotelController {
 		List<Hotel> hotelList = hotelService.findByVerifiedAndRoomType(room.getRoomType());
 		if(hotelList.isEmpty()) {
 			model.addAttribute("errorRoomTypeMessage", "No Rooms of that type");
-			return new ModelAndView("MainScreen.jsp", "hotel", hotelService.findByVerifiedEqualsTrue());
+			return new ModelAndView("mainScreen.jsp", "hotel", hotelService.findByVerifiedEqualsTrue());
 		}
-		return new ModelAndView("MainScreen.jsp", "hotel", hotelList);
+		return new ModelAndView("mainScreen.jsp", "hotel", hotelList);
 	}
 	
 	

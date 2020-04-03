@@ -55,7 +55,7 @@ public class LoginController {
 		Long hotelOwnerId = hotelOwnerForId.getHotelOwnerId();
 		session.setAttribute(SESSION_ATTRIBUTE_HOTELOWNERID, hotelOwnerId);
 		hotelOwner.setHotelOwnerId(hotelOwnerId);
-		return new ModelAndView("WEB-INF/OwnerHotels.jsp", "hotelOwner", hotelOwnerForId);
+		return new ModelAndView("WEB-INF/ownerHotels.jsp", "hotelOwner", hotelOwnerForId);
 
 	}
 
@@ -68,7 +68,7 @@ public class LoginController {
 			return new ModelAndView("adminLogin.jsp");
 		}
 
-		session.setAttribute(SESSION_ATTRIBUTE_HOTELOWNER, userfromdatabase);
+		session.setAttribute(SESSION_ATTRIBUTE_ADMIN, userfromdatabase);
 		return new ModelAndView("adminHome.jsp");
 
 	}
