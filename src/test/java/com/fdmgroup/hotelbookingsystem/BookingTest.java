@@ -2,13 +2,48 @@ package com.fdmgroup.hotelbookingsystem;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Test;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
+
+import com.fdmgroup.hotelbookingsystem.model.Booking;
+import com.fdmgroup.hotelbookingsystem.model.Hotel;
+import com.fdmgroup.hotelbookingsystem.services.BookingService;
+import com.fdmgroup.hotelbookingsystem.services.HotelService;
+
+@SpringBootTest
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 class BookingTest {
 
+	@Autowired
+	HotelService hotelService;
+	
+	@Autowired
+	BookingService bookingService;
+	
 	@Test
 	public void test_ThatABookingCanBeMAde() {
+		Hotel hotel = hotelService.retrieveOne(1L);
+		System.out.println(hotel);
 		
+		LocalDate checkInDate = LocalDate.of(2020, 04, 20);
+		LocalDate checkOutDate = LocalDate.of(2020, 04, 27);
+		
+		Booking booking = new Booking();
+		booking.setHotel(hotel);
+		booking.setRoom(hotel.getRoom().get(0));
+		booking.setCheckInDate(checkInDate);
+		booking.setCheckOutDate(checkOutDate);
+		
+		int numberBeforeAdding = bookingService.findAll().size();
+		bookingService.save(booking);
+		int numberAfterAdding = bookingService.findAll().size();
+		assertNotEquals(numberBeforeAdding, numberAfterAdding);
 	}
 
 }

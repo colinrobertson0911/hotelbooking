@@ -1,5 +1,6 @@
 package com.fdmgroup.hotelbookingsystem.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
@@ -21,12 +23,12 @@ public class Booking {
 	private long bookingId;
 
 	@Column
-	private Date checkInDate;
+	private LocalDate checkInDate;
 
 	@Column
-	private Date checkOutDate;
+	private LocalDate checkOutDate;
 
-	@ManyToMany
+	@ManyToOne
 	@JoinColumn(name = "hotelId")
 	private Hotel hotel;
 
@@ -39,7 +41,7 @@ public class Booking {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Booking(Date checkInDate, Date checkOutDate, Hotel hotel, Room room) {
+	public Booking(LocalDate checkInDate, LocalDate checkOutDate, Hotel hotel, Room room) {
 		super();
 		this.checkInDate = checkInDate;
 		this.checkOutDate = checkOutDate;
@@ -55,19 +57,19 @@ public class Booking {
 		this.bookingId = bookingId;
 	}
 
-	public Date getCheckInDate() {
+	public LocalDate getCheckInDate() {
 		return checkInDate;
 	}
 
-	public void setCheckInDate(Date checkInDate) {
+	public void setCheckInDate(LocalDate checkInDate) {
 		this.checkInDate = checkInDate;
 	}
 
-	public Date getCheckOutDate() {
+	public LocalDate getCheckOutDate() {
 		return checkOutDate;
 	}
 
-	public void setCheckOutDate(Date checkOutDate) {
+	public void setCheckOutDate(LocalDate checkOutDate) {
 		this.checkOutDate = checkOutDate;
 	}
 
