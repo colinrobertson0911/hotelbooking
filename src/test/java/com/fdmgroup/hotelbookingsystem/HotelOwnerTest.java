@@ -11,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 
+import com.fdmgroup.hotelbookingsystem.model.Hotel;
 import com.fdmgroup.hotelbookingsystem.model.HotelOwner;
 import com.fdmgroup.hotelbookingsystem.services.HotelOwnerService;
+import com.fdmgroup.hotelbookingsystem.services.HotelService;
 @SpringBootTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 class HotelOwnerTest {
@@ -20,16 +22,18 @@ class HotelOwnerTest {
 	@Autowired
 	HotelOwnerService hotelOwnerService;
 	
-	
+	@Autowired
+	HotelService hotelService;
 	
 	@Test
 	void test_ThatANewOwnerCanBeAdded () {
-	
+		List<Hotel> hotels = hotelService.findAll();
 		HotelOwner hotelOwner = new HotelOwner();
-		hotelOwner.setUsername("user2");
+		hotelOwner.setUsername("user4");
 		hotelOwner.setEmail("Use21@email.com");
 		hotelOwner.setName("user two");
 		hotelOwner.setPassword("password");
+		hotelOwner.setHotel(hotels);
 		int numberBeforeAdding = hotelOwnerService.findAll().size();
 		hotelOwnerService.save(hotelOwner);
 		int numberAfterAdding = hotelOwnerService.findAll().size();
@@ -48,7 +52,7 @@ class HotelOwnerTest {
 		HotelOwner hotelOwner = hotelOwnerService.retrieveOne(1L);
 		long hotelOwnerId = hotelOwner.getHotelOwnerId();
 		HotelOwner hotelOwnerFromDB = hotelOwnerService.retrieveOne(hotelOwnerId);
-		assertEquals(hotelOwnerFromDB,hotelOwner);
+		assertEquals(hotelOwnerFromDB.getEmail(),hotelOwner.getEmail());
 	}
 	
 	@Test

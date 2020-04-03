@@ -10,7 +10,6 @@
 <body>
 <p>${errorMessage}</p>
 <f:form method="post" action="AddNewRoomTypeSubmit" modelAttribute="room">
- ${hotelOwner}
 
 		<div>
 			<f:label path="roomType">Type of Room:</f:label>
