@@ -83,7 +83,7 @@ public class HotelOwnerController {
 	@PostMapping("EditHotelSubmit")
 	public ModelAndView editHotelSubmit(@ModelAttribute("hotel") Hotel hotel) {
 		hotelService.save(hotel);
-		return new ModelAndView("MainScreen.jsp", "hotel", hotelService.findAll());
+		return new ModelAndView("MainScreen.jsp", "hotel", hotelService.findByVerifiedEqualsTrue());
 	}
 	
 	@GetMapping("ReturnToMain")

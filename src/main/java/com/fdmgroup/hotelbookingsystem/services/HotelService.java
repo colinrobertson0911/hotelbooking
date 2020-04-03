@@ -41,4 +41,12 @@ public class HotelService {
 		return hotelDao.findByRoomType(roomType);
 	}
 
+	public List<Hotel> findByVerifiedEqualsTrue() {
+		return hotelDao.findByVerifiedIsTrue();
+	}
+
+	public List<Hotel> findByCityAndVerifiedIsTrue(String city) {
+		return hotelDao.findByCityAndVerifiedIsTrue(city);
+	}
+
 }

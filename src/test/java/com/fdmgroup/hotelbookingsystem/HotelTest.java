@@ -78,4 +78,17 @@ class HotelTest {
 		assertEquals(listSizeFromHotel, 2);
 	}
 	
+	@Test
+	public void test_RetrieveAllVerifiedHotels() {
+		List<Hotel> hotel = hotelService.findByVerifiedEqualsTrue();
+		int listSizeFromHotel = hotel.size();
+		assertEquals(3, listSizeFromHotel);
+	}
+	
+	@Test
+	public void test_RetrieveByCityAndVerifiedIsTrue() {
+		List<Hotel> hotel = hotelService.findByCityAndVerifiedIsTrue("Glasgow");
+		assertEquals(hotel.size(), 2);
+	}
+	
 }
