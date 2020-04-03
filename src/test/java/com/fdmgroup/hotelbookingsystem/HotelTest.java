@@ -91,4 +91,11 @@ class HotelTest {
 		assertEquals(hotel.size(), 2);
 	}
 	
+	@Test 
+	public void test_ThatVerifiedHotelsCanBeFoundByRoomType() {
+		List<Hotel> hotel = hotelService.findByVerifiedAndRoomType("STANDARD");
+		int listSizeFromHotel = hotel.size();
+		assertEquals(listSizeFromHotel, 2);
+	}
+	
 }

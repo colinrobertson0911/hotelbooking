@@ -53,7 +53,7 @@ public class HotelController {
 	
 	@PostMapping("SearchByRoomType")
 	public ModelAndView searchByRoomType(@ModelAttribute("room")Room room, ModelMap model) {
-		List<Hotel> hotelList = hotelService.findByRoomType(room.getRoomType());
+		List<Hotel> hotelList = hotelService.findByVerifiedAndRoomType(room.getRoomType());
 		if(hotelList.isEmpty()) {
 			model.addAttribute("errorRoomTypeMessage", "No Rooms of that type");
 			return new ModelAndView("MainScreen.jsp", "hotel", hotelService.findByVerifiedEqualsTrue());

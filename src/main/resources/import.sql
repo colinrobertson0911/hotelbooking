@@ -26,3 +26,4 @@ insert into hotel_room(hotel_hotelId, room_roomId) values (1,4);
 insert into hotel_room(hotel_hotelId, room_roomId) values (2,2);
 insert into hotel_room(hotel_hotelId, room_roomId) values (2,3);
 insert into hotel_room(hotel_hotelId, room_roomId) values (3,1);
+insert into hotel_room(hotel_hotelId, room_roomId) values (4,1);
