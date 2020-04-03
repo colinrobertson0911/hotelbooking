@@ -14,7 +14,9 @@
 		<div>
 			<p>Number of rooms: ${hotel.numOfRooms}</p>
 			<c:forEach items="${hotel.room}" var="room">
-				<div>Type of rooms: ${room.roomType} Price: £ ${room.price}</div>
+				<div>
+				<p>Type of rooms: ${room.roomType} Price: £ ${room.price}</p>
+				</div>
 			</c:forEach>
 			<p>Address:${hotel.address}</p>
 			<p>Postcode:${hotel.postcode}</p>

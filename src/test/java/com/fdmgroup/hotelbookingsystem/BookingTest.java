@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Test;
 class BookingTest {
 
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	public void test_ThatABookingCanBeMAde() {
+		
 	}
 
 }

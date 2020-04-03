@@ -51,6 +51,13 @@ public class HotelController {
 		return new ModelAndView("WEB-INF/seeHotel.jsp", "hotel", hotelService.retrieveOne(hotelId));
 	}
 	
+	@PostMapping("bookingPage")
+	public ModelAndView bookingPage(@ModelAttribute("hotel") Hotel hotel, ModelMap model) {
+		Hotel hotel2 = hotelService.retrieveOne(hotel.getHotelId());
+		return new ModelAndView("WEB-INF/bookingPage.jsp", "hotel", hotelService.retrieveOne(hotel2.getHotelId()));
+		
+	}
+	
 	@PostMapping("SearchByRoomType")
 	public ModelAndView searchByRoomType(@ModelAttribute("room")Room room, ModelMap model) {
 		List<Hotel> hotelList = hotelService.findByVerifiedAndRoomType(room.getRoomType());
