@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 
-import com.fdmgroup.hotelbookingsystem.model.Booking;
+import com.fdmgroup.hotelbookingsystem.model.Bookings;
 import com.fdmgroup.hotelbookingsystem.model.Hotel;
 import com.fdmgroup.hotelbookingsystem.services.BookingService;
 import com.fdmgroup.hotelbookingsystem.services.HotelService;
@@ -31,7 +31,7 @@ class BookingTest {
 		LocalDate checkInDate = LocalDate.of(2020, 04, 20);
 		LocalDate checkOutDate = LocalDate.of(2020, 04, 27);
 		
-		Booking booking = new Booking();
+		Bookings booking = new Bookings();
 		booking.setCheckInDate(checkInDate);
 		booking.setCheckOutDate(checkOutDate);
 		
@@ -44,7 +44,7 @@ class BookingTest {
 	@Test
 	public void test_ThatABookingCanBeRetrieved() {
 		Hotel hotel = hotelService.retrieveOne(1L);
-		List<Booking> bookings = hotel.getBookings();
+		List<Bookings> bookings = hotel.getBookings();
 		assert(bookings.size() > 0);
 	}
 	

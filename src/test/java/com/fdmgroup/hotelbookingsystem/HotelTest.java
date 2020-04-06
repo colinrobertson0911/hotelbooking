@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -72,47 +72,63 @@ class HotelTest {
 		int numberOfHotels = hotel.size();
 		assert (numberOfHotels > 0);
 	}
-	
+
 	@Test
 	public void test_ThatHotelsCanBeFoundSearchedByRoomType() {
 		List<Hotel> hotel = hotelService.findByRoomType("STANDARD");
-		int listSizeFromHotel = hotel.size();		
+		int listSizeFromHotel = hotel.size();
 		assertTrue(listSizeFromHotel > 0);
 	}
-	
+
 	@Test
 	public void test_RetrieveAllVerifiedHotels() {
 		List<Hotel> hotel = hotelService.findByVerifiedEqualsTrue();
 		int listSizeFromHotel = hotel.size();
 		assertEquals(3, listSizeFromHotel);
 	}
-	
+
 	@Test
 	public void test_RetrieveByCityAndVerifiedIsTrue() {
 		List<Hotel> hotel = hotelService.findByCityAndVerifiedIsTrue("Glasgow");
 		assertEquals(hotel.size(), 2);
 	}
-	
-	@Test 
+
+	@Test
 	public void test_ThatVerifiedHotelsCanBeFoundByRoomType() {
 		List<Hotel> hotel = hotelService.findByVerifiedAndRoomType("STANDARD");
 		int listSizeFromHotel = hotel.size();
 		assertEquals(listSizeFromHotel, 2);
 	}
-	
+
 	@Test
 	public void test_ToSeeIfListOfAvailableHotelsIsReturned() {
 		List<Hotel> hotels = hotelService.findByAvailability();
 		int hotelSize = hotels.size();
-		assertEquals(hotelSize , 4);
+		assertEquals(hotelSize, 4);
 	}
-	
+
 	@Test
 	public void test_ToSeeIfListOfAvailableAndVerifiedHotelsIsReturned() {
 		List<Hotel> hotels = hotelService.findByAvailabilityAndVerified();
 		int hotelSize = hotels.size();
-		assertEquals(hotelSize , 3);
+		assertEquals(hotelSize, 3);
 	}
-	
-	
+
+	@Test
+	public void test_ToSeeIfListOfAvailableCurrentlyAndVerifiedHotelsIsReturned() {
+		List<Hotel> hotels = hotelService.findByAvailabilityAndVerifiedWithCurrentDate();
+		int hotelSize = hotels.size();
+		assertEquals(hotelSize, 3);
+	}
+
+	@Test
+	// 2020/04/05, 2020/04/12
+	public void test_SeeAvailabilityOfHotelsDuringSearchedDates() {
+		LocalDate checkInDate = LocalDate.of(2020, 04, 10);
+		LocalDate checkOutDate = LocalDate.of(2020, 04, 13);
+		List<Hotel> hotels = hotelService.findByAvailabilityAndVerifiedWithSpecifiedDates(checkInDate, checkOutDate);
+		int hotelSize = hotels.size();
+		assertEquals(hotelSize, 3);
+	}
+
 }

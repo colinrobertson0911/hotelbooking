@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-public class Booking {
+public class Bookings {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "booking_gen")
@@ -23,12 +23,12 @@ public class Booking {
 	@Column
 	private LocalDate checkOutDate;
 
-	public Booking() {
+	public Bookings() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Booking(LocalDate checkInDate, LocalDate checkOutDate) {
+	public Bookings(LocalDate checkInDate, LocalDate checkOutDate) {
 		super();
 		this.checkInDate = checkInDate;
 		this.checkOutDate = checkOutDate;
@@ -76,7 +76,7 @@ public class Booking {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Booking other = (Booking) obj;
+		Bookings other = (Bookings) obj;
 		if (bookingId != other.bookingId)
 			return false;
 		if (checkInDate == null) {

@@ -43,7 +43,7 @@ public class Hotel {
 	@ManyToMany
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinColumn(name = "bookingId")
-	private List<Booking> bookings;
+	private List<Bookings> bookings;
 
 	@Column
 	private int starRating;
@@ -65,7 +65,7 @@ public class Hotel {
 	}
 
 	public Hotel(String hotelName, int numOfRooms, String address, String postcode, String city, String ammenities,
-			List<Booking> bookings, int starRating, List<Room> room, boolean airportTransfers, boolean verified) {
+			List<Bookings> bookings, int starRating, List<Room> room, boolean airportTransfers, boolean verified) {
 		super();
 		this.hotelName = hotelName;
 		this.numOfRooms = numOfRooms;
@@ -136,11 +136,11 @@ public class Hotel {
 		this.ammenities = ammenities;
 	}
 
-	public List<Booking> getBookings() {
+	public List<Bookings> getBookings() {
 		return bookings;
 	}
 
-	public void setBookings(List<Booking> bookings) {
+	public void setBookings(List<Bookings> bookings) {
 		this.bookings = bookings;
 	}
 
