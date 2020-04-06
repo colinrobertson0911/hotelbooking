@@ -51,6 +51,10 @@
 			required="required" multiple="multiple" />			
 		</div>
 		<div>
+			<f:label path="airportTransfers">Airport Transfers available?</f:label>
+			<f:checkbox path="airportTransfers"/>
+		</div>
+		<div>
 			<f:hidden path="verified"/>
 		</div>
 		<div>

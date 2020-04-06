@@ -23,6 +23,7 @@
 			<p>City: ${hotel.city}</p>
 			<p>Ammenities: ${hotel.ammenities}
 			<p>Star Rating: ${hotel.starRating}/5</p>
+			<p>Offers Airport Transfers: ${hotel.airportTransfers}</p>
 
 		</div>
 		<div>
