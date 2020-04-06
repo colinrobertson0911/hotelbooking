@@ -175,6 +175,10 @@ public class Hotel {
 	public void setVerified(boolean verified) {
 		this.verified = verified;
 	}
+	
+	public int roomsAvailable() {
+		return this.numOfRooms - this.bookings.size();
+	}
 
 	@Override
 	public int hashCode() {

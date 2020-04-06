@@ -13,11 +13,13 @@
 		<h3>${hotel.hotelName}</h3>
 		<div>
 			<p>Number of rooms: ${hotel.numOfRooms}</p>
+			<p>Rooms available: ${hotel.numOfRooms - hotel.bookings.size()}</p>
 			<c:forEach items="${hotel.room}" var="room">
 				<div>
 				<p>Type of rooms: ${room.roomType} Price: £ ${room.price}</p>
 				</div>
 			</c:forEach>
+			
 			<p>Address:${hotel.address}</p>
 			<p>Postcode:${hotel.postcode}</p>
 			<p>City: ${hotel.city}</p>
