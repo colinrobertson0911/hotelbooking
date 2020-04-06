@@ -1,5 +1,7 @@
 package com.fdmgroup.hotelbookingsystem.controller;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,8 +71,11 @@ public class HotelController {
 	}
 	
 	@PostMapping("SearchByAvailability")
-	public ModelAndView searchbyAvailability(@ModelAttribute("hotel") Hotel hotel, ModelMap model) {
-		List<Hotel> hotelList = hotelService.findByAvailabilityAndVerified();
+	public ModelAndView searchbyAvailability(@RequestParam(name= "checkInDate", defaultValue="")String checkInDateString, 
+			@RequestParam(name= "checkOutDate", defaultValue="")String checkOutDateString,ModelMap model) { 
+		LocalDate checkInDate = LocalDate.parse(checkInDateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		LocalDate checkOutDate = LocalDate.parse(checkOutDateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		List<Hotel> hotelList = hotelService.findByAvailabilityAndVerifiedWithSpecifiedDates(checkInDate, checkOutDate);
 		if (hotelList.isEmpty()) {
 			model.addAttribute("errorAvailabilityMessage", "No Rooms available");
 			return new ModelAndView("mainScreen.jsp", "hotel", hotelService.findByVerifiedEqualsTrue());

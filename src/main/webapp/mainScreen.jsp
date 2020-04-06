@@ -23,7 +23,7 @@
 	<form action="SearchByCity" method="post">
 		${errorMessage}
 		<div>
-			<label>Search by city:</label> <input type="city" name="city" />
+			<label>Search by city:</label> <input type="text" name="city" />
 		</div>
 		<button type="submit">Search</button>
 	</form>
@@ -31,7 +31,7 @@
 	<form action="SearchByRoomType" method="post">
 		${errorRoomTypeMessage}
 		<div>
-			<label>Search by Room Type: </label> <input type="room"
+			<label>Search by Room Type: </label> <input type="text"
 				name="roomType" />
 		</div>
 		<button type="submit">Search</button>
@@ -41,6 +41,8 @@
 		${errorAvailabilityMessage}
 		<div>
 			<label>Search for Availability</label>
+			<input type="date" name="checkInDate" /> to
+			<input type="date" name="checkOutDate" />
 		</div>
 		<button type="submit">Search</button>
 
