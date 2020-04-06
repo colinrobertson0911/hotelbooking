@@ -68,6 +68,11 @@ public class HotelController {
 		return new ModelAndView("mainScreen.jsp", "hotel", hotelList);
 	}
 	
+//	@PostMapping("SearchByAvailability")
+//	public ModelAndView searchbyAvailability(@ModelAttribute("hotel") Hotel hotel, ModelMap model) {
+//		List<Hotel> hotelList = hotelService.findByAvailability();
+//	}
+	
 	
 
 }

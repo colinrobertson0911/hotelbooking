@@ -10,7 +10,7 @@
 <body>
 	<h2>Main Page</h2>
 	<div>
-	<p>${ownerMessage}</p>
+		<p>${ownerMessage}</p>
 	</div>
 	<div>
 		<a href="LoginAsOwner">Log In as a Hotel Owner</a>
@@ -27,13 +27,23 @@
 		</div>
 		<button type="submit">Search</button>
 	</form>
-	
+
 	<form action="SearchByRoomType" method="post">
 		${errorRoomTypeMessage}
 		<div>
-			<label>Search by Room Type: </label> <input type="room" name="roomType" />
+			<label>Search by Room Type: </label> <input type="room"
+				name="roomType" />
 		</div>
-		<button type="submit">Search</button>	
+		<button type="submit">Search</button>
+	</form>
+
+	<form action="SearchByAvailability" method="post">
+		${errorAvailabilityMessage}
+		<div>
+			<label>Search for Availability</label>
+		</div>
+		<button type="submit">Search</button>
+
 	</form>
 
 

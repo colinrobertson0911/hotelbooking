@@ -1,5 +1,6 @@
 package com.fdmgroup.hotelbookingsystem.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,5 +54,17 @@ public class HotelService {
 		
 		return hotelDao.findByVerifiedAndRoomType(roomType);
 	}
+
+	public List<Hotel> findByAvailability() {
+		List<Hotel> availableHotels= new ArrayList<Hotel>();
+		List<Hotel> hotels = findAll();
+		for (Hotel hotel : hotels) {
+			if (hotel.getNumOfRooms() > hotel.getBookings().size()) {
+				availableHotels.add(hotel);
+			}
+		}
+		return availableHotels;
+	}
+
 
 }

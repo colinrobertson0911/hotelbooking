@@ -55,5 +55,7 @@ class BookingTest {
 		assertEquals(booking, true);
 		
 	}
+	
+
 
 }

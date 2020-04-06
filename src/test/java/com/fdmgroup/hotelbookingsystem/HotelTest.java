@@ -100,7 +100,12 @@ class HotelTest {
 		assertEquals(listSizeFromHotel, 2);
 	}
 	
-	
+	@Test
+	public void test_ToSeeIfListOfAvailableHotelsIsReturned() {
+		List<Hotel> hotels = hotelService.findByAvailability();
+		int hotelSize = hotels.size();
+		assertEquals(hotelSize , 4);
+	}
 	
 	
 }
