@@ -104,28 +104,58 @@ class HotelTest {
 	public void test_ToSeeIfListOfAvailableHotelsIsReturned() {
 		List<Hotel> hotels = hotelService.findByAvailability();
 		int hotelSize = hotels.size();
-		assertEquals(hotelSize, 4);
+		assertEquals(hotelSize, 3);
 	}
 
 	@Test
 	public void test_ToSeeIfListOfAvailableAndVerifiedHotelsIsReturned() {
 		List<Hotel> hotels = hotelService.findByAvailabilityAndVerified();
 		int hotelSize = hotels.size();
-		assertEquals(hotelSize, 3);
+		assertEquals(hotelSize, 2);
 	}
 
 	@Test
 	public void test_ToSeeIfListOfAvailableCurrentlyAndVerifiedHotelsIsReturned() {
 		List<Hotel> hotels = hotelService.findByAvailabilityAndVerifiedWithCurrentDate();
 		int hotelSize = hotels.size();
-		assertEquals(hotelSize, 3);
+		assertEquals(hotelSize, 2);
 	}
 
 	@Test
 	// 2020/04/05, 2020/04/12
 	public void test_SeeAvailabilityOfHotelsDuringSearchedDates() {
-		LocalDate checkInDate = LocalDate.of(2020, 04, 10);
-		LocalDate checkOutDate = LocalDate.of(2020, 04, 13);
+		LocalDate checkInDate = LocalDate.of(2020, 04, 8);
+		LocalDate checkOutDate = LocalDate.of(2020, 04, 12);
+		List<Hotel> hotels = hotelService.findByAvailabilityAndVerifiedWithSpecifiedDates(checkInDate, checkOutDate);
+		int hotelSize = hotels.size();
+		assertEquals(hotelSize, 2);
+	}
+	
+	@Test
+	// 2020/04/05, 2020/04/12
+	public void test_SeeAvailabilityOfHotelsDuringSearchedDates2() {
+		LocalDate checkInDate = LocalDate.of(2020, 04, 01);
+		LocalDate checkOutDate = LocalDate.of(2020, 04, 8);
+		List<Hotel> hotels = hotelService.findByAvailabilityAndVerifiedWithSpecifiedDates(checkInDate, checkOutDate);
+		int hotelSize = hotels.size();
+		assertEquals(hotelSize, 2);
+	}
+	
+	@Test
+	// 2020/04/05, 2020/04/12
+	public void test_SeeAvailabilityOfHotelsDuringSearchedDates3() {
+		LocalDate checkInDate = LocalDate.of(2020, 04, 8);
+		LocalDate checkOutDate = LocalDate.of(2020, 04, 14);
+		List<Hotel> hotels = hotelService.findByAvailabilityAndVerifiedWithSpecifiedDates(checkInDate, checkOutDate);
+		int hotelSize = hotels.size();
+		assertEquals(hotelSize, 2);
+	}
+	
+	@Test
+	// 2020/04/05, 2020/04/12
+	public void test_SeeAvailabilityOfHotelsDuringSearchedDates4() {
+		LocalDate checkInDate = LocalDate.of(2020, 04, 20);
+		LocalDate checkOutDate = LocalDate.of(2020, 04, 27);
 		List<Hotel> hotels = hotelService.findByAvailabilityAndVerifiedWithSpecifiedDates(checkInDate, checkOutDate);
 		int hotelSize = hotels.size();
 		assertEquals(hotelSize, 3);
