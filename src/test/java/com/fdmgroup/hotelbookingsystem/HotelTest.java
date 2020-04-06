@@ -34,6 +34,7 @@ class HotelTest {
 		hotel.setCity("Place");
 		hotel.setNumOfRooms(10);
 		hotel.setStarRating(5);
+		hotel.setAirportTransfers(true);
 		int numberBeforeAdding = hotelService.findAll().size();
 		hotelService.save(hotel);
 		int numberAfterAdding = hotelService.findAll().size();
@@ -59,7 +60,7 @@ class HotelTest {
 	void test_thatTheNumberOfRoomsIsCalledFromAHotel() {
 		Hotel hotel = hotelService.retrieveOne(1L);
 		int roomNumber = hotel.getNumOfRooms();
-		assertEquals(roomNumber, 53);
+		assertEquals(roomNumber, 5);
 		// TODO second half where if hotel is fully booked, an error is called.
 	}
 
@@ -98,5 +99,8 @@ class HotelTest {
 		int listSizeFromHotel = hotel.size();
 		assertEquals(listSizeFromHotel, 2);
 	}
+	
+	
+	
 	
 }

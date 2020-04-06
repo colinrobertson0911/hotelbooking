@@ -24,6 +24,9 @@ public class Room {
 
 	@Column
 	private BigDecimal price;
+	
+//	@Column
+//	private Boolean available; 
 
 	public Room() {
 		super();

@@ -48,6 +48,9 @@ public class Hotel {
 	private List<Room> room;
 	
 	@Column
+	private boolean airportTransfers;
+	
+	@Column
 	private boolean verified;
 	
 	public Hotel() {
@@ -55,8 +58,8 @@ public class Hotel {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Hotel(String hotelName, int numOfRooms, String address, String postcode, String city,
-			String ammenities, int starRating, List<Room> room, boolean verified) {
+	public Hotel(String hotelName, int numOfRooms, String address, String postcode, String city, String ammenities,
+			int starRating, List<Room> room, boolean airportTransfers, boolean verified) {
 		super();
 		this.hotelName = hotelName;
 		this.numOfRooms = numOfRooms;
@@ -66,6 +69,7 @@ public class Hotel {
 		this.ammenities = ammenities;
 		this.starRating = starRating;
 		this.room = room;
+		this.airportTransfers = airportTransfers;
 		this.verified = verified;
 	}
 
@@ -141,6 +145,14 @@ public class Hotel {
 		this.room = room;
 	}
 
+	public boolean isAirportTransfers() {
+		return airportTransfers;
+	}
+
+	public void setAirportTransfers(boolean airportTransfers) {
+		this.airportTransfers = airportTransfers;
+	}
+
 	public boolean isVerified() {
 		return verified;
 	}
@@ -154,6 +166,7 @@ public class Hotel {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
+		result = prime * result + (airportTransfers ? 1231 : 1237);
 		result = prime * result + ((ammenities == null) ? 0 : ammenities.hashCode());
 		result = prime * result + ((city == null) ? 0 : city.hashCode());
 		result = prime * result + (int) (hotelId ^ (hotelId >>> 32));
@@ -179,6 +192,8 @@ public class Hotel {
 			if (other.address != null)
 				return false;
 		} else if (!address.equals(other.address))
+			return false;
+		if (airportTransfers != other.airportTransfers)
 			return false;
 		if (ammenities == null) {
 			if (other.ammenities != null)
@@ -220,12 +235,9 @@ public class Hotel {
 	public String toString() {
 		return "Hotel [hotelId=" + hotelId + ", hotelName=" + hotelName + ", numOfRooms=" + numOfRooms + ", address="
 				+ address + ", postcode=" + postcode + ", city=" + city + ", ammenities=" + ammenities + ", starRating="
-				+ starRating + ", room=" + room + ", verified=" + verified + "]";
+				+ starRating + ", room=" + room + ", airportTransfers=" + airportTransfers + ", verified=" + verified
+				+ "]";
 	}
-	
-	
 
-
-	
 	
 }
