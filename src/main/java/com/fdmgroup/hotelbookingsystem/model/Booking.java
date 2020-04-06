@@ -1,17 +1,12 @@
 package com.fdmgroup.hotelbookingsystem.model;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -28,25 +23,15 @@ public class Booking {
 	@Column
 	private LocalDate checkOutDate;
 
-	@ManyToOne
-	@JoinColumn(name = "hotelId")
-	private Hotel hotel;
-
-	@OneToOne
-	@JoinColumn(name = "roomId")
-	private Room room;
-
 	public Booking() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Booking(LocalDate checkInDate, LocalDate checkOutDate, Hotel hotel, Room room) {
+	public Booking(LocalDate checkInDate, LocalDate checkOutDate) {
 		super();
 		this.checkInDate = checkInDate;
 		this.checkOutDate = checkOutDate;
-		this.hotel = hotel;
-		this.room = room;
 	}
 
 	public long getBookingId() {
@@ -73,22 +58,6 @@ public class Booking {
 		this.checkOutDate = checkOutDate;
 	}
 
-	public Hotel getHotel() {
-		return hotel;
-	}
-
-	public void setHotel(Hotel hotel) {
-		this.hotel = hotel;
-	}
-
-	public Room getRoom() {
-		return room;
-	}
-
-	public void setRoom(Room room) {
-		this.room = room;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -96,8 +65,6 @@ public class Booking {
 		result = prime * result + (int) (bookingId ^ (bookingId >>> 32));
 		result = prime * result + ((checkInDate == null) ? 0 : checkInDate.hashCode());
 		result = prime * result + ((checkOutDate == null) ? 0 : checkOutDate.hashCode());
-		result = prime * result + ((hotel == null) ? 0 : hotel.hashCode());
-		result = prime * result + ((room == null) ? 0 : room.hashCode());
 		return result;
 	}
 
@@ -122,23 +89,13 @@ public class Booking {
 				return false;
 		} else if (!checkOutDate.equals(other.checkOutDate))
 			return false;
-		if (hotel == null) {
-			if (other.hotel != null)
-				return false;
-		} else if (!hotel.equals(other.hotel))
-			return false;
-		if (room == null) {
-			if (other.room != null)
-				return false;
-		} else if (!room.equals(other.room))
-			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
 		return "Booking [bookingId=" + bookingId + ", checkInDate=" + checkInDate + ", checkOutDate=" + checkOutDate
-				+ ", hotel=" + hotel + ", room=" + room + "]";
+				+ "]";
 	}
 
 }

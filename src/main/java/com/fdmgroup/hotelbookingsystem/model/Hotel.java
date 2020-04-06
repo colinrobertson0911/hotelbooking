@@ -1,6 +1,7 @@
 package com.fdmgroup.hotelbookingsystem.model;
 
 import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,40 +27,45 @@ public class Hotel {
 
 	@Column
 	private int numOfRooms;
-	
+
 	@Column(unique = true)
 	private String address;
-	
+
 	@Column
-	private  String postcode;
+	private String postcode;
 
 	@Column
 	private String city;
-	
+
 	@Column(length = 8000)
 	private String ammenities;
-	
+
+	@ManyToMany
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@JoinColumn(name = "bookingId")
+	private List<Booking> bookings;
+
 	@Column
-	private int starRating;	
-	
+	private int starRating;
+
 	@ManyToMany
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinColumn(name = "roomId")
 	private List<Room> room;
-	
+
 	@Column
 	private boolean airportTransfers;
-	
+
 	@Column
 	private boolean verified;
-	
+
 	public Hotel() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	public Hotel(String hotelName, int numOfRooms, String address, String postcode, String city, String ammenities,
-			int starRating, List<Room> room, boolean airportTransfers, boolean verified) {
+			List<Booking> bookings, int starRating, List<Room> room, boolean airportTransfers, boolean verified) {
 		super();
 		this.hotelName = hotelName;
 		this.numOfRooms = numOfRooms;
@@ -67,6 +73,7 @@ public class Hotel {
 		this.postcode = postcode;
 		this.city = city;
 		this.ammenities = ammenities;
+		this.bookings = bookings;
 		this.starRating = starRating;
 		this.room = room;
 		this.airportTransfers = airportTransfers;
@@ -129,6 +136,14 @@ public class Hotel {
 		this.ammenities = ammenities;
 	}
 
+	public List<Booking> getBookings() {
+		return bookings;
+	}
+
+	public void setBookings(List<Booking> bookings) {
+		this.bookings = bookings;
+	}
+
 	public int getStarRating() {
 		return starRating;
 	}
@@ -168,6 +183,7 @@ public class Hotel {
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
 		result = prime * result + (airportTransfers ? 1231 : 1237);
 		result = prime * result + ((ammenities == null) ? 0 : ammenities.hashCode());
+		result = prime * result + ((bookings == null) ? 0 : bookings.hashCode());
 		result = prime * result + ((city == null) ? 0 : city.hashCode());
 		result = prime * result + (int) (hotelId ^ (hotelId >>> 32));
 		result = prime * result + ((hotelName == null) ? 0 : hotelName.hashCode());
@@ -199,6 +215,11 @@ public class Hotel {
 			if (other.ammenities != null)
 				return false;
 		} else if (!ammenities.equals(other.ammenities))
+			return false;
+		if (bookings == null) {
+			if (other.bookings != null)
+				return false;
+		} else if (!bookings.equals(other.bookings))
 			return false;
 		if (city == null) {
 			if (other.city != null)
@@ -234,10 +255,9 @@ public class Hotel {
 	@Override
 	public String toString() {
 		return "Hotel [hotelId=" + hotelId + ", hotelName=" + hotelName + ", numOfRooms=" + numOfRooms + ", address="
-				+ address + ", postcode=" + postcode + ", city=" + city + ", ammenities=" + ammenities + ", starRating="
-				+ starRating + ", room=" + room + ", airportTransfers=" + airportTransfers + ", verified=" + verified
-				+ "]";
+				+ address + ", postcode=" + postcode + ", city=" + city + ", ammenities=" + ammenities + ", bookings="
+				+ bookings + ", starRating=" + starRating + ", room=" + room + ", airportTransfers=" + airportTransfers
+				+ ", verified=" + verified + "]";
 	}
 
-	
 }

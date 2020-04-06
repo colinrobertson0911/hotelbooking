@@ -4,8 +4,6 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,9 +22,6 @@ public class Room {
 
 	@Column
 	private BigDecimal price;
-	
-//	@Column
-//	private Boolean available; 
 
 	public Room() {
 		super();
@@ -102,5 +97,4 @@ public class Room {
 		return "Room [roomId=" + roomId + ", roomType=" + roomType + ", price=" + price + "]";
 	}
 
-	
 }

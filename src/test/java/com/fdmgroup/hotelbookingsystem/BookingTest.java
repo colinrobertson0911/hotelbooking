@@ -1,10 +1,10 @@
 package com.fdmgroup.hotelbookingsystem;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,16 +27,11 @@ class BookingTest {
 	BookingService bookingService;
 	
 	@Test
-	public void test_ThatABookingCanBeMAde() {
-		Hotel hotel = hotelService.retrieveOne(1L);
-		System.out.println(hotel);
-		
+	public void test_ThatABookingCanBeMAde() {		
 		LocalDate checkInDate = LocalDate.of(2020, 04, 20);
 		LocalDate checkOutDate = LocalDate.of(2020, 04, 27);
 		
 		Booking booking = new Booking();
-		booking.setHotel(hotel);
-		booking.setRoom(hotel.getRoom().get(0));
 		booking.setCheckInDate(checkInDate);
 		booking.setCheckOutDate(checkOutDate);
 		
@@ -44,6 +39,21 @@ class BookingTest {
 		bookingService.save(booking);
 		int numberAfterAdding = bookingService.findAll().size();
 		assertNotEquals(numberBeforeAdding, numberAfterAdding);
+	}
+	
+	@Test
+	public void test_ThatABookingCanBeRetrieved() {
+		Hotel hotel = hotelService.retrieveOne(1L);
+		List<Booking> bookings = hotel.getBookings();
+		assert(bookings.size() > 0);
+	}
+	
+	@Test
+	public void test_ToSeeAvailability() {
+		Hotel hotel = hotelService.retrieveOne(1L);
+		boolean booking = bookingService.findRoomAvailability(hotel);
+		assertEquals(booking, true);
+		
 	}
 
 }
