@@ -29,5 +29,18 @@ insert into hotel_room(hotel_hotelId, room_roomId) values (3,1);
 insert into hotel_room(hotel_hotelId, room_roomId) values (4,1);
 
 insert into booking(bookingId, checkInDate, checkOutDate) values (BOOKING_SEQ.nextval, TO_DATE('2021/07/23', 'yyyy/mm/dd'), TO_DATE('2021/07/30', 'yyyy/mm/dd'));
+insert into booking(bookingId, checkInDate, checkOutDate) values (BOOKING_SEQ.nextval, TO_DATE('2021/07/23', 'yyyy/mm/dd'), TO_DATE('2021/07/30', 'yyyy/mm/dd'));
+insert into booking(bookingId, checkInDate, checkOutDate) values (BOOKING_SEQ.nextval, TO_DATE('2021/07/23', 'yyyy/mm/dd'), TO_DATE('2021/07/30', 'yyyy/mm/dd'));
+insert into booking(bookingId, checkInDate, checkOutDate) values (BOOKING_SEQ.nextval, TO_DATE('2021/07/23', 'yyyy/mm/dd'), TO_DATE('2021/07/30', 'yyyy/mm/dd'));
+insert into booking(bookingId, checkInDate, checkOutDate) values (BOOKING_SEQ.nextval, TO_DATE('2021/07/23', 'yyyy/mm/dd'), TO_DATE('2021/07/30', 'yyyy/mm/dd'));
+
 
 insert into hotel_bookings(hotel_hotelId, bookings_bookingId) values (1, 1);
+insert into hotel_bookings(hotel_hotelId, bookings_bookingId) values (1, 2);
+insert into hotel_bookings(hotel_hotelId, bookings_bookingId) values (1, 3);
+insert into hotel_bookings(hotel_hotelId, bookings_bookingId) values (1, 4);
+insert into hotel_bookings(hotel_hotelId, bookings_bookingId) values (1, 5);
+
+
+
+

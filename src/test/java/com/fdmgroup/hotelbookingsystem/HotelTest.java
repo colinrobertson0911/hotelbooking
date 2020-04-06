@@ -107,5 +107,12 @@ class HotelTest {
 		assertEquals(hotelSize , 4);
 	}
 	
+	@Test
+	public void test_ToSeeIfListOfAvailableAndVerifiedHotelsIsReturned() {
+		List<Hotel> hotels = hotelService.findByAvailabilityAndVerified();
+		int hotelSize = hotels.size();
+		assertEquals(hotelSize , 3);
+	}
+	
 	
 }

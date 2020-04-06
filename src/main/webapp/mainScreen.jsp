@@ -46,13 +46,12 @@
 
 	</form>
 
-
 	<c:forEach items="${hotel}" var="hotel">
 		<h3>
 			<a href="SeeHotel?hotelId=${hotel.hotelId}">${hotel.hotelName}</a>
 		</h3>
 		<div>
-			<p>Number of rooms: ${hotel.numOfRooms}</p>
+			<p>Rooms available: ${hotel.numOfRooms - hotel.bookings.size()}</p>
 			<p>City: ${hotel.city}</p>
 			<p>Star Rating: ${hotel.starRating}/5</p>
 		</div>

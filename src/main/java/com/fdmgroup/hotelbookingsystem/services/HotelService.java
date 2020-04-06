@@ -66,5 +66,16 @@ public class HotelService {
 		return availableHotels;
 	}
 
+	public List<Hotel> findByAvailabilityAndVerified() {
+		List<Hotel> availableHotels= new ArrayList<Hotel>();
+		List<Hotel> hotels = findByVerifiedEqualsTrue();
+		for (Hotel hotel : hotels) {
+			if (hotel.getNumOfRooms() > hotel.getBookings().size()) {
+				availableHotels.add(hotel);
+			}
+		}
+		return availableHotels;
+	}
+
 
 }
