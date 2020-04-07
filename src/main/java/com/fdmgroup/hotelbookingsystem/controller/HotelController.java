@@ -16,18 +16,23 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fdmgroup.hotelbookingsystem.model.Hotel;
 import com.fdmgroup.hotelbookingsystem.model.Room;
 import com.fdmgroup.hotelbookingsystem.services.HotelService;
+import com.fdmgroup.hotelbookingsystem.services.RoomService;
 
 @Controller
 public class HotelController {
 	
 	@Autowired
 	HotelService hotelService;
+	
+	@Autowired
+	RoomService roomService;
 
 	@GetMapping("")
 	public ModelAndView home() {
 		ModelAndView modelAndView = new ModelAndView("mainScreen.jsp");
 		modelAndView.addObject("hotel", hotelService.findByVerifiedEqualsTrue());
 		modelAndView.addObject("visabilityMessage", "All Hotels");
+		modelAndView.addObject("allRooms", roomService.findAll());
 		return modelAndView;
 	}
 
@@ -36,6 +41,7 @@ public class HotelController {
 		ModelAndView modelAndView = new ModelAndView("mainScreen.jsp");
 		modelAndView.addObject("hotel", hotelService.findByVerifiedEqualsTrue());
 		modelAndView.addObject("visabilityMessage", "All Hotels");
+		modelAndView.addObject("allRooms", roomService.findAll());
 		return modelAndView;
 	}
 
@@ -52,12 +58,14 @@ public class HotelController {
 			modelAndView.setViewName("mainScreen.jsp");
 			modelAndView.addObject("errorMessage", "No Hotels in that city");
 			modelAndView.addObject("visabilityMessage", "All Hotels");
+			modelAndView.addObject("allRooms", roomService.findAll());
 			modelAndView.addObject("hotel", hotelService.findByVerifiedEqualsTrue());
 			return modelAndView;
 		}
 		modelAndView.setViewName("mainScreen.jsp");
 		modelAndView.addObject("visabilityMessage", "Hotels in " + hotel.getCity());
 		modelAndView.addObject("hotel", hotelList);
+		modelAndView.addObject("allRooms", roomService.findAll());
 		return modelAndView;
 	}
 	
@@ -82,11 +90,13 @@ public class HotelController {
 			modelAndView.addObject("errorRoomTypeMessage", "No Rooms of that type");
 			modelAndView.addObject("visabilityMessage", "All Hotels");
 			modelAndView.addObject("hotel", hotelService.findByVerifiedEqualsTrue());
+			modelAndView.addObject("allRooms", roomService.findAll());
 			return modelAndView;
 		}
 		modelAndView.setViewName("mainScreen.jsp");
 		modelAndView.addObject("hotel", hotelList);
 		modelAndView.addObject("visabilityMessage", "Hotels With " + room.getRoomType() + " rooms");
+		modelAndView.addObject("allRooms", roomService.findAll());
 		return modelAndView;
 	}
 	
@@ -102,12 +112,14 @@ public class HotelController {
 			modelAndView.addObject("errorAvailabilityMessage", "No Rooms available");
 			modelAndView.addObject("visabilityMessage", "All Hotels");
 			modelAndView.addObject("hotel", hotelService.findByVerifiedEqualsTrue());
+			modelAndView.addObject("allRooms", roomService.findAll());
 			return modelAndView;
 		}	
 				
 		modelAndView.setViewName("mainScreen.jsp");		
 		modelAndView.addObject("visabilityMessage", "Hotels available between " + checkInDate + " and " + checkOutDate);
 		modelAndView.addObject("hotel", hotelList);
+		modelAndView.addObject("allRooms", roomService.findAll());
 		return modelAndView;
 
 	}

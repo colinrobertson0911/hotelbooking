@@ -19,34 +19,39 @@
 	<div>
 		<a href="LoginAsAdmin">Log in as an administrator</a>
 	</div>
-
+	<p>
+	
+	${errorMessage}
 	<form action="SearchByCity" method="post">
-		${errorMessage}
 		<div>
 			<label>Search by city:</label> <input type="text" name="city" />
+			<button type="submit">Search</button>
 		</div>
-		<button type="submit">Search</button>
 	</form>
-
+	
+	<p>${errorRoomTypeMessage}
 	<form action="SearchByRoomType" method="post">
-		${errorRoomTypeMessage}
-		<div>
-			<label>Search by Room Type: </label> <input type="text"
-				name="roomType" />
-		</div>
-		<button type="submit">Search</button>
+		<label>Search by Room Type: </label> <input type="text"
+			list="roomTypes" name="roomType">
+		<datalist id="roomType">
+			<c:forEach items="${allRooms}" var="allRooms">
+				<option value="${allRooms.roomType}">
+			</c:forEach>
+		</datalist>
+		<input type="submit" value="search" />
 	</form>
-
+	
+	<p>
+	
 	<form action="SearchByAvailability" method="post">
 		${errorAvailabilityMessage}
 		<div>
-			<label>Search for Availability</label>
-			<input type="date" name="checkInDate" /> to
-			<input type="date" name="checkOutDate" />
+			<label>Search for Availability</label> <input type="date"
+				name="checkInDate" /> to <input type="date" name="checkOutDate" />
+			<button type="submit">Search</button>
 		</div>
-		<button type="submit">Search</button>
 	</form>
-	
+
 	<h3>${visabilityMessage}</h3>
 
 	<c:forEach items="${hotel}" var="hotel">
