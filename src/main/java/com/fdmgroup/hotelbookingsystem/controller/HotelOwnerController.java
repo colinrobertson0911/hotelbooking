@@ -87,6 +87,7 @@ public class HotelOwnerController {
 		return modelAndView;
 	}
 	
+	
 	@GetMapping("NewRoomType")
 	public ModelAndView newRoomType(@RequestParam("hotelOwnerId")Long hotelOwnerId) {
 		ModelAndView modelAndView = new ModelAndView("WEB-INF/newRoomType.jsp");
