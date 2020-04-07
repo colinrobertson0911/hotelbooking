@@ -58,13 +58,19 @@ class HotelOwnerTest {
 	@Test
 	void test_RetreieveByUserEmail() {
 		HotelOwner hotelOwner = hotelOwnerService.findByEmail("user1@email.com");
-		equals(hotelOwner.getEmail());
+		assertEquals("user1@email.com", hotelOwner.getEmail());
 	}
 	
 	@Test
 	void test_RetrieveByUsernameAndPassword() {
 		Optional<HotelOwner> hotelOwner = hotelOwnerService.findByUsernameAndPassword("user1", "password");
 		assertEquals("user one", hotelOwner.get().getName());
+	}
+	
+	@Test
+	void test_ThatHotelOwnerCanBeRetreivedByUsername() {
+		Optional<HotelOwner> hotelOwner = hotelOwnerService.findByUsername("user1");
+		assertEquals("user1", hotelOwner.get().getUsername());
 	}
 
 }

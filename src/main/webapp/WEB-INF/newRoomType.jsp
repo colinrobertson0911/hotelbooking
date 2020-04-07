@@ -11,10 +11,6 @@
 <p>${errorMessage}</p>
 <f:form method="post" action="AddNewRoomTypeSubmit" modelAttribute="room">
 		<div>
-			<f:label path="roomNum">Room numbers: </f:label>
-			<f:input path="roomNum" type="number" multiple="multiple" required="required"/>
-		</div>
-		<div>
 			<f:label path="roomType">Type of Room:</f:label>
 			<f:input path="roomType" type="text" required="required"/>	
 		</div>

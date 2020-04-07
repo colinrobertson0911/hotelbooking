@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +62,6 @@ class HotelTest {
 		Hotel hotel = hotelService.retrieveOne(1L);
 		int roomNumber = hotel.getNumOfRooms();
 		assertEquals(roomNumber, 5);
-		// TODO second half where if hotel is fully booked, an error is called.
 	}
 
 	@Test
@@ -122,7 +122,16 @@ class HotelTest {
 	}
 
 	@Test
-	// 2020/04/05, 2020/04/12
+	public void test_ToSeeIfHotelCanBeRetrievedByAddress() {
+		Optional<Hotel> hotels = hotelService.findByAddress("1 main street");
+		assertEquals("1 main street", hotels.get().getAddress());
+	}
+
+	@Test
+	/**
+	 * Dates from importSQL 2020/04/05, 2020/04/12
+	 * 
+	 */
 	public void test_SeeAvailabilityOfHotelsDuringSearchedDates() {
 		LocalDate checkInDate = LocalDate.of(2020, 04, 8);
 		LocalDate checkOutDate = LocalDate.of(2020, 04, 12);
@@ -130,9 +139,9 @@ class HotelTest {
 		int hotelSize = hotels.size();
 		assertEquals(hotelSize, 2);
 	}
-	
+
 	@Test
-	// 2020/04/05, 2020/04/12
+
 	public void test_SeeAvailabilityOfHotelsDuringSearchedDates2() {
 		LocalDate checkInDate = LocalDate.of(2020, 04, 01);
 		LocalDate checkOutDate = LocalDate.of(2020, 04, 8);
@@ -140,9 +149,8 @@ class HotelTest {
 		int hotelSize = hotels.size();
 		assertEquals(hotelSize, 2);
 	}
-	
+
 	@Test
-	// 2020/04/05, 2020/04/12
 	public void test_SeeAvailabilityOfHotelsDuringSearchedDates3() {
 		LocalDate checkInDate = LocalDate.of(2020, 04, 8);
 		LocalDate checkOutDate = LocalDate.of(2020, 04, 14);
@@ -150,9 +158,8 @@ class HotelTest {
 		int hotelSize = hotels.size();
 		assertEquals(hotelSize, 2);
 	}
-	
+
 	@Test
-	// 2020/04/05, 2020/04/12
 	public void test_SeeAvailabilityOfHotelsDuringSearchedDates4() {
 		LocalDate checkInDate = LocalDate.of(2020, 04, 20);
 		LocalDate checkOutDate = LocalDate.of(2020, 04, 27);

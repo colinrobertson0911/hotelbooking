@@ -52,9 +52,19 @@ class BookingTest {
 	public void test_ToSeeAvailability() {
 		Hotel hotel = hotelService.retrieveOne(1L);
 		boolean booking = bookingService.findRoomAvailability(hotel);
+		assertEquals(booking, false);
+		
+	}
+	
+	@Test
+	public void test_ToSeeAvailability2() {
+		Hotel hotel = hotelService.retrieveOne(2L);
+		boolean booking = bookingService.findRoomAvailability(hotel);
 		assertEquals(booking, true);
 		
 	}
+	
+	
 	
 
 
