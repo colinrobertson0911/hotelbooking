@@ -41,13 +41,11 @@ public class RoomService {
 
 
 	public Room retrieveOne(Long roomId) {
-		// TODO Auto-generated method stub
 		return roomDao.findByRoomId(roomId);
 	}
 
 
 	public Optional<Room> findByRoomTypeAndPrice(String roomType, BigDecimal price) {
-		// TODO Auto-generated method stub
 		return roomDao.findByRoomTypeAndPrice(roomType, price);
 	}
 
