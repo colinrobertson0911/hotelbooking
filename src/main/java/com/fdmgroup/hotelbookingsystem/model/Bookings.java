@@ -25,7 +25,6 @@ public class Bookings {
 
 	public Bookings() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Bookings(LocalDate checkInDate, LocalDate checkOutDate) {

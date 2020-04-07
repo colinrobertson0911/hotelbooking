@@ -25,7 +25,6 @@ public class Room {
 
 	public Room() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Room(String roomType, BigDecimal price) {

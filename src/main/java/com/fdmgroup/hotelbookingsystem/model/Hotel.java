@@ -61,7 +61,6 @@ public class Hotel {
 
 	public Hotel() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Hotel(String hotelName, int numOfRooms, String address, String postcode, String city, String ammenities,
