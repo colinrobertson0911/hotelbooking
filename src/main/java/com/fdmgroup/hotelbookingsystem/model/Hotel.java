@@ -59,16 +59,12 @@ public class Hotel {
 	@Column
 	private boolean verified;
 	
-	@Column
-	private long ownerId;
-
 	public Hotel() {
 		super();
 	}
 
 	public Hotel(String hotelName, int numOfRooms, String address, String postcode, String city, String ammenities,
-			List<Bookings> bookings, int starRating, List<Room> room, boolean airportTransfers, boolean verified,
-			long ownerId) {
+			List<Bookings> bookings, int starRating, List<Room> room, boolean airportTransfers, boolean verified) {
 		super();
 		this.hotelName = hotelName;
 		this.numOfRooms = numOfRooms;
@@ -81,7 +77,6 @@ public class Hotel {
 		this.room = room;
 		this.airportTransfers = airportTransfers;
 		this.verified = verified;
-		this.ownerId = ownerId;
 	}
 
 	public long getHotelId() {
@@ -180,14 +175,6 @@ public class Hotel {
 		this.verified = verified;
 	}
 
-	public long getOwnerId() {
-		return ownerId;
-	}
-
-	public void setOwnerId(long ownerId) {
-		this.ownerId = ownerId;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -200,7 +187,6 @@ public class Hotel {
 		result = prime * result + (int) (hotelId ^ (hotelId >>> 32));
 		result = prime * result + ((hotelName == null) ? 0 : hotelName.hashCode());
 		result = prime * result + numOfRooms;
-		result = prime * result + (int) (ownerId ^ (ownerId >>> 32));
 		result = prime * result + ((postcode == null) ? 0 : postcode.hashCode());
 		result = prime * result + ((room == null) ? 0 : room.hashCode());
 		result = prime * result + starRating;
@@ -248,8 +234,6 @@ public class Hotel {
 			return false;
 		if (numOfRooms != other.numOfRooms)
 			return false;
-		if (ownerId != other.ownerId)
-			return false;
 		if (postcode == null) {
 			if (other.postcode != null)
 				return false;
@@ -272,7 +256,8 @@ public class Hotel {
 		return "Hotel [hotelId=" + hotelId + ", hotelName=" + hotelName + ", numOfRooms=" + numOfRooms + ", address="
 				+ address + ", postcode=" + postcode + ", city=" + city + ", ammenities=" + ammenities + ", bookings="
 				+ bookings + ", starRating=" + starRating + ", room=" + room + ", airportTransfers=" + airportTransfers
-				+ ", verified=" + verified + ", ownerId=" + ownerId + "]";
+				+ ", verified=" + verified + "]";
 	}
-	 
+
+	
 }

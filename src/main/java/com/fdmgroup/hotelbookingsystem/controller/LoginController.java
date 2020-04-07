@@ -55,6 +55,7 @@ public class LoginController {
 		Long hotelOwnerId = hotelOwnerForId.getHotelOwnerId();
 		session.setAttribute(SESSION_ATTRIBUTE_HOTELOWNERID, hotelOwnerId);
 		hotelOwner.setHotelOwnerId(hotelOwnerId);
+		
 		return new ModelAndView("WEB-INF/ownerHotels.jsp", "hotelOwner", hotelOwnerForId);
 
 	}

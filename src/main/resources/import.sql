@@ -6,10 +6,10 @@ insert into hotelowner(hotelOwnerId, username, password, email, name) values (HO
 insert into users(userId, username, password, email, userType) values (USER_SEQ.nextval, 'admin1', 'password', 'admin@email.com', 'ADMIN');
 
 
-insert into hotel(hotelId, hotelName, numOfRooms, address, postcode, city, ammenities, starRating, airportTransfers, verified, ownerId) values (HOTEL_SEQ.nextval, 'Travelodge Glasgow', 5,'1 main street', 'g43 6pq', 'Glasgow','none', 3, true, true, 1);
-insert into hotel(hotelId, hotelName, numOfRooms, address, postcode, city, ammenities, starRating, airportTransfers, verified, ownerId) values (HOTEL_SEQ.nextval, 'Yotel', 50,'some street','EH71 7FA', 'Edinburgh','bowling alley', 4, true, true, 1);
-insert into hotel(hotelId, hotelName, numOfRooms, address, postcode, city, ammenities, starRating, airportTransfers, verified, ownerId) values (HOTEL_SEQ.nextval, 'Radisson Blue', 43,'123 argyle street','G3 6OP', 'Glasgow','Conference Rooms, Bars, Near Central Station', 4, false, true, 2);
-insert into hotel(hotelId, hotelName, numOfRooms, address, postcode, city, ammenities, starRating, airportTransfers, verified, ownerId) values (HOTEL_SEQ.nextval, 'Radisson Red', 43,'456 argyle street','G3 6RP', 'Glasgow','Conference Rooms, Bars, Near Central Station', 4, false, false, 0);
+insert into hotel(hotelId, hotelName, numOfRooms, address, postcode, city, ammenities, starRating, airportTransfers, verified) values (HOTEL_SEQ.nextval, 'Travelodge Glasgow', 5,'1 main street', 'g43 6pq', 'Glasgow','none', 3, true, true);
+insert into hotel(hotelId, hotelName, numOfRooms, address, postcode, city, ammenities, starRating, airportTransfers, verified) values (HOTEL_SEQ.nextval, 'Yotel', 50,'some street','EH71 7FA', 'Edinburgh','bowling alley', 4, true, true);
+insert into hotel(hotelId, hotelName, numOfRooms, address, postcode, city, ammenities, starRating, airportTransfers, verified) values (HOTEL_SEQ.nextval, 'Radisson Blue', 43,'123 argyle street','G3 6OP', 'Glasgow','Conference Rooms, Bars, Near Central Station', 4, false, true);
+insert into hotel(hotelId, hotelName, numOfRooms, address, postcode, city, ammenities, starRating, airportTransfers, verified) values (HOTEL_SEQ.nextval, 'Radisson Red', 43,'456 argyle street','G3 6RP', 'Glasgow','Conference Rooms, Bars, Near Central Station', 4, false, false);
 
 
 insert into hotelOwner_hotel(hotelOwner_hotelOwnerId, hotel_hotelId) values (1,1);

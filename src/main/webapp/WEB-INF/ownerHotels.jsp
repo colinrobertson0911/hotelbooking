@@ -10,20 +10,25 @@
 </head>
 <body>
 	<h2>${hotelOwner.name} Hotels</h2>
-	<p>
-		<a href="AddHotel?hotelOwnerId=${hotelOwner.hotelOwnerId}">Add a new hotel</a>
-	</p>
+	<div>	
+		<a href="AddHotel">Add a new hotel</a>	
+	</div>
+	<div>
+		<a href="NewRoomType">Click here to add a new room type</a>
+	</div>
+	
 	<div>
 		<p>${successMessage}</p>
 	</div> 
 	<div>
+		<a href="Refresh">Refresh hotel list</a>
+		<p></p>
+	</div>
+	<div>
 		<c:forEach items="${hotelOwner.hotel}" var="hotel">
 			<div>
 				<a href="EditHotel?hotelId=${hotel.hotelId}&hotelOwnerId=${hotelOwner.hotelOwnerId}">${hotel.hotelName}</a>
-			</div>
-			<div>
-			<p>Hotel Name: ${hotel.hotelName} </p>
-			</div>
+			</div>		
 			<div>
 			<p>Number of rooms: ${hotel.numOfRooms}
 			</div>

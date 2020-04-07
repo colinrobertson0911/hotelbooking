@@ -53,6 +53,7 @@
 <div>
 <f:hidden path="verified"/>
 <f:hidden path="hotelId"/>
+<f:hidden path="ownerId"/>
 </div>
 
 

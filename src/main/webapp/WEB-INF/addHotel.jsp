@@ -46,7 +46,7 @@
 		</div>
 		<div>
 			<f:label path="room">Type of Rooms</f:label>
-			<f:select path="room" items="${allRooms}" itemLabel="roomType"
+			<f:select path="room" items="${allRooms}" itemLabel="roomTypeAndPrice"
 			required="required" multiple="multiple" />			
 		</div>
 		<div>
@@ -55,17 +55,12 @@
 		</div>
 		<div>
 			<f:hidden path="verified"/>
-			<f:hidden path="ownerId" value="${hotelOwner.hotelOwnerId}"/>
 		</div>
 		<div>
 		<button type="submit">Add Hotel</button>
 		</div>	
 	</f:form>
 	<div>
-		<a href="ReturnToOwnerScreen?hotelOwnerId=${hotelOwner.hotelOwnerId}">Return to your hotels</a>
-	</div>
-	<div>
-		<a href="NewRoomType?hotelOwnerId=${hotelOwner.hotelOwnerId}">Click here to add a new room type</a>
-	</div>
+		<a href="ReturnToOwnerScreen">Return to your hotels</a>
 </body>
 </html>

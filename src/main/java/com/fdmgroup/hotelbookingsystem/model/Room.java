@@ -32,6 +32,10 @@ public class Room {
 		this.roomType = roomType;
 		this.price = price;
 	}
+	
+	public String getRoomTypeAndPrice() {
+		return this.roomType + " " + this.price;
+	}
 
 	public long getRoomId() {
 		return roomId;

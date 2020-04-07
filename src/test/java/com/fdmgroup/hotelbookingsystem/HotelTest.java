@@ -36,7 +36,6 @@ class HotelTest {
 		hotel.setNumOfRooms(10);
 		hotel.setStarRating(5);
 		hotel.setAirportTransfers(true);
-		hotel.setOwnerId(0);
 		int numberBeforeAdding = hotelService.findAll().size();
 		hotelService.save(hotel);
 		int numberAfterAdding = hotelService.findAll().size();
