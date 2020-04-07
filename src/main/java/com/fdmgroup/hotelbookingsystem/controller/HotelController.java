@@ -19,18 +19,24 @@ import com.fdmgroup.hotelbookingsystem.services.HotelService;
 
 @Controller
 public class HotelController {
-
+	
 	@Autowired
 	HotelService hotelService;
 
 	@GetMapping("")
 	public ModelAndView home() {
-		return new ModelAndView("mainScreen.jsp", "hotel", hotelService.findByVerifiedEqualsTrue());
+		ModelAndView modelAndView = new ModelAndView("mainScreen.jsp");
+		modelAndView.addObject("hotel", hotelService.findByVerifiedEqualsTrue());
+		modelAndView.addObject("visabilityMessage", "All Hotels");
+		return modelAndView;
 	}
 
 	@GetMapping("/Home")
 	public ModelAndView homeScreen() {
-		return new ModelAndView("mainScreen.jsp", "hotel", hotelService.findByVerifiedEqualsTrue());
+		ModelAndView modelAndView = new ModelAndView("mainScreen.jsp");
+		modelAndView.addObject("hotel", hotelService.findByVerifiedEqualsTrue());
+		modelAndView.addObject("visabilityMessage", "All Hotels");
+		return modelAndView;
 	}
 
 	@GetMapping("LoginAsOwner")
@@ -41,11 +47,18 @@ public class HotelController {
 	@PostMapping("SearchByCity")
 	public ModelAndView searchByCity(@ModelAttribute("hotel") Hotel hotel, ModelMap model) {
 		List<Hotel> hotelList = hotelService.findByCityAndVerifiedIsTrue(hotel.getCity());
+		ModelAndView modelAndView = new ModelAndView();
 		if (hotelList.isEmpty()) {
-			model.addAttribute("errorMessage", "Not Hotels in that city");
-			return new ModelAndView("mainScreen.jsp", "hotel", hotelService.findByVerifiedEqualsTrue());
+			modelAndView.setViewName("mainScreen.jsp");
+			modelAndView.addObject("errorMessage", "No Hotels in that city");
+			modelAndView.addObject("visabilityMessage", "All Hotels");
+			modelAndView.addObject("hotel", hotelService.findByVerifiedEqualsTrue());
+			return modelAndView;
 		}
-		return new ModelAndView("mainScreen.jsp", "hotel", hotelList);
+		modelAndView.setViewName("mainScreen.jsp");
+		modelAndView.addObject("visabilityMessage", "Hotels in " + hotel.getCity());
+		modelAndView.addObject("hotel", hotelList);
+		return modelAndView;
 	}
 	
 	@GetMapping("SeeHotel")
@@ -63,11 +76,18 @@ public class HotelController {
 	@PostMapping("SearchByRoomType")
 	public ModelAndView searchByRoomType(@ModelAttribute("room")Room room, ModelMap model) {
 		List<Hotel> hotelList = hotelService.findByVerifiedAndRoomType(room.getRoomType());
+		ModelAndView modelAndView = new ModelAndView();
 		if(hotelList.isEmpty()) {
-			model.addAttribute("errorRoomTypeMessage", "No Rooms of that type");
-			return new ModelAndView("mainScreen.jsp", "hotel", hotelService.findByVerifiedEqualsTrue());
+			modelAndView.setViewName("mainScreen.jsp");
+			modelAndView.addObject("errorRoomTypeMessage", "No Rooms of that type");
+			modelAndView.addObject("visabilityMessage", "All Hotels");
+			modelAndView.addObject("hotel", hotelService.findByVerifiedEqualsTrue());
+			return modelAndView;
 		}
-		return new ModelAndView("mainScreen.jsp", "hotel", hotelList);
+		modelAndView.setViewName("mainScreen.jsp");
+		modelAndView.addObject("hotel", hotelList);
+		modelAndView.addObject("visabilityMessage", "Hotels With " + room.getRoomType() + " rooms");
+		return modelAndView;
 	}
 	
 	@PostMapping("SearchByAvailability")
@@ -76,11 +96,20 @@ public class HotelController {
 		LocalDate checkInDate = LocalDate.parse(checkInDateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		LocalDate checkOutDate = LocalDate.parse(checkOutDateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		List<Hotel> hotelList = hotelService.findByAvailabilityAndVerifiedWithSpecifiedDates(checkInDate, checkOutDate);
+		ModelAndView modelAndView = new ModelAndView();
 		if (hotelList.isEmpty()) {
-			model.addAttribute("errorAvailabilityMessage", "No Rooms available");
-			return new ModelAndView("mainScreen.jsp", "hotel", hotelService.findByVerifiedEqualsTrue());
-		}
-		return new ModelAndView("mainScreen.jsp", "hotel", hotelList);
+			modelAndView.setViewName("mainScreen.jsp");
+			modelAndView.addObject("errorAvailabilityMessage", "No Rooms available");
+			modelAndView.addObject("visabilityMessage", "All Hotels");
+			modelAndView.addObject("hotel", hotelService.findByVerifiedEqualsTrue());
+			return modelAndView;
+		}	
+				
+		modelAndView.setViewName("mainScreen.jsp");		
+		modelAndView.addObject("visabilityMessage", "Hotels available between " + checkInDate + " and " + checkOutDate);
+		modelAndView.addObject("hotel", hotelList);
+		return modelAndView;
+
 	}
 	
 	

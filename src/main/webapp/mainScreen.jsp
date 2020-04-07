@@ -45,13 +45,14 @@
 			<input type="date" name="checkOutDate" />
 		</div>
 		<button type="submit">Search</button>
-
 	</form>
+	
+	<h3>${visabilityMessage}</h3>
 
 	<c:forEach items="${hotel}" var="hotel">
-		<h3>
+		<h4>
 			<a href="SeeHotel?hotelId=${hotel.hotelId}">${hotel.hotelName}</a>
-		</h3>
+		</h4>
 		<div>
 			<p>City: ${hotel.city}</p>
 			<p>Star Rating: ${hotel.starRating}/5</p>
