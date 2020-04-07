@@ -2,8 +2,6 @@ package com.fdmgroup.hotelbookingsystem.controller;
 
 import java.util.Optional;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fdmgroup.hotelbookingsystem.model.Hotel;
-import com.fdmgroup.hotelbookingsystem.model.HotelOwner;
 import com.fdmgroup.hotelbookingsystem.model.Room;
 import com.fdmgroup.hotelbookingsystem.services.HotelOwnerService;
 import com.fdmgroup.hotelbookingsystem.services.HotelService;
@@ -40,7 +37,7 @@ public class HotelOwnerController {
 	}
 
 	@GetMapping("AddHotel")
-	public ModelAndView addHotels(@RequestParam("hotelOwnerId")Long hotelOwnerId, HttpSession session) {
+	public ModelAndView addHotels(@RequestParam("hotelOwnerId")Long hotelOwnerId) {
 		ModelAndView modelAndView = new ModelAndView("WEB-INF/addHotel.jsp");
 		modelAndView.addObject("hotel", new Hotel());
 		modelAndView.addObject("allRooms", roomService.findAll());
@@ -49,26 +46,24 @@ public class HotelOwnerController {
 	}
 
 	@PostMapping("AddHotelSubmit")
-	public String addHotelSubmit(@ModelAttribute("hotel") Hotel hotel, ModelMap model,HttpSession session) {
-		HotelOwner hotelOwner = (HotelOwner)session.getAttribute("hotelOwnerId");
+	public ModelAndView addHotelSubmit(@ModelAttribute("hotel") Hotel hotel, ModelMap model) {		
 		Optional<Hotel> hotelFromDB = hotelService.findByAddress(hotel.getAddress());
-		//ModelAndView modelAndView = new ModelAndView();
+		Long hotelOwnerId = hotel.getOwnerId();
+		ModelAndView modelAndView = new ModelAndView();
 		if(hotelFromDB.isPresent()) {
-			model.addAttribute("errorMessage", "Hotel at that address already exists");
-			//modelAndView.setViewName("WEB-INF/addHotel.jsp");
+			modelAndView.addObject("errorMessage", "Hotel at that address already exists");
+			modelAndView.addObject("hotelOwner", hotelOwnerService.retrieveOne(hotelOwnerId));
+			modelAndView.setViewName("WEB-INF/addHotel.jsp");
 			//modelAndView.addObject("hotel", new Hotel());
 			//modelAndView.addObject("allRooms", roomService.findAll());
-			//modelAndView.addObject("hotelOwner", hotelOwnerService.retrieveOne(hotelOwnerId));
-			return "WEB-INF/addHotel.jsp";  
+			//modelAndView.addObject("hotelOwner", hotelOwnerService.retrieveOne(hotelOwnerId));			
+			return modelAndView;  
 		}
 		hotelService.save(hotel);
-		model.addAttribute("successMessage", "Hotel has been added to system, Hotel will be available once processed by an Administrator");
-		//model.addAttribute("hotelOwner", hotelOwnerService.retrieveOne(hotelOwnerId));
-		//modelAndView.setViewName("WEB-INF/addHotel.jsp");
-		//modelAndView.addObject("hotel", new Hotel());
-		//modelAndView.addObject("allRooms", roomService.findAll());
-		//.addObject("hotelOwner", hotelOwnerService.retrieveOne(hotelOwnerId));
-		return "WEB-INF/addHotel.jsp";
+		modelAndView.addObject("successMessage", "Hotel has been added to system, Hotel will be visible once processed by an Administrator");
+		modelAndView.setViewName("WEB-INF/ownerHotels.jsp");
+		modelAndView.addObject("hotelOwner", hotelOwnerService.retrieveOne(hotelOwnerId));
+		return modelAndView;
 	}
 	
 	@GetMapping("EditHotel")
@@ -85,12 +80,10 @@ public class HotelOwnerController {
 		return new ModelAndView("mainScreen.jsp", "hotel", hotelService.findByVerifiedEqualsTrue());
 	}
 	
-	@GetMapping("ReturnToMain")
-	public ModelAndView returnToMain() {
-		ModelAndView modelAndView = new ModelAndView("mainScreen.jsp");
-		modelAndView.addObject("hotel", hotelService.findByVerifiedEqualsTrue());
-		modelAndView.addObject("ownerMessage", "Hotels need to be verified by Administration before customers can view them");
-		//modelAndView.addObject("hotelOwner", hotelOwnerService.retrieveOne(hotelOwnerId));
+	@GetMapping("ReturnToOwnerScreen")
+	public ModelAndView returnToOwnerScreen(@RequestParam("hotelOwnerId")Long hotelOwnerId) {
+		ModelAndView modelAndView = new ModelAndView("WEB-INF/ownerHotels.jsp");
+		modelAndView.addObject("hotelOwner", hotelOwnerService.retrieveOne(hotelOwnerId));
 		return modelAndView;
 	}
 	

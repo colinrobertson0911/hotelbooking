@@ -12,7 +12,10 @@
 	<h2>${hotelOwner.name} Hotels</h2>
 	<p>
 		<a href="AddHotel?hotelOwnerId=${hotelOwner.hotelOwnerId}">Add a new hotel</a>
-	</p> 
+	</p>
+	<div>
+		<p>${successMessage}</p>
+	</div> 
 	<div>
 		<c:forEach items="${hotelOwner.hotel}" var="hotel">
 			<div>

@@ -12,7 +12,6 @@
 	<h2>Add your hotel</h2>
 	<div>
 	<p>${errorMessage}</p>
-	<p>${successMessage}</p>
 	</div>
 	<f:form method="post" action="AddHotelSubmit" modelAttribute="hotel">
 		
@@ -56,13 +55,14 @@
 		</div>
 		<div>
 			<f:hidden path="verified"/>
+			<f:hidden path="ownerId" value="${hotelOwner.hotelOwnerId}"/>
 		</div>
 		<div>
 		<button type="submit">Add Hotel</button>
 		</div>	
 	</f:form>
 	<div>
-		<a href="ReturnToMain">Return to your hotels</a>
+		<a href="ReturnToOwnerScreen?hotelOwnerId=${hotelOwner.hotelOwnerId}">Return to your hotels</a>
 	</div>
 	<div>
 		<a href="NewRoomType?hotelOwnerId=${hotelOwner.hotelOwnerId}">Click here to add a new room type</a>
