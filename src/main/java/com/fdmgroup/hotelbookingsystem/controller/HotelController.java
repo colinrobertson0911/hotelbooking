@@ -118,24 +118,8 @@ public class HotelController {
 		modelAndView.addObject("hotel", hotelService.findByVerifiedEqualsTrue());
 		modelAndView.addObject("allRooms", roomService.findAll());
 		return modelAndView;
-	}
-	
-	/*
-	 * @PostMapping("BookingConfirmationSubmit") public ModelAndView
-	 * bookingConfirmationSubmit(@RequestParam("bookings")Bookings bookings) {
-	 * String hotelName = bookings.getHotel();
-	 * 
-	 * Hotel hotel = hotelService.findByHotelName(hotelName);
-	 * hotel.getBookings().add(bookings); ModelAndView modelAndView = new
-	 * ModelAndView(); modelAndView.setViewName("mainScreen.jsp");
-	 * modelAndView.addObject("ownerMessage", "Booking Confirmed");
-	 * modelAndView.addObject("visabilityMessage", "All Hotels");
-	 * modelAndView.addObject("hotel", hotelService.findByVerifiedEqualsTrue());
-	 * modelAndView.addObject("allRooms", roomService.findAll()); return
-	 * modelAndView;
-	 * 
-	 * }
-	 */
+	}	
+
 	
 	
 
