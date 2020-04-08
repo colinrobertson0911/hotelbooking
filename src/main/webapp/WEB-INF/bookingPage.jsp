@@ -13,20 +13,25 @@
 		<f:form method="post" action="BookingSubmit" modelAttribute="bookings">
 			<p>Please enter your booking details</p>
 			<div>
-				<h3><f:label path="hotel">${hotel.hotelName}</f:label></h3>
-				<h3><f:label path="roomType">${room.roomType} - </f:label>
-				<f:label path="roomPrice">£${room.price} per night</f:label></h3>
+				<h3>
+					<f:label path="hotel">${hotel.hotelName}</f:label>
+				</h3>
+				<h3>
+					<f:label path="roomType">${room.roomType} - </f:label>
+					<f:label path="roomPrice">£${room.price} per night</f:label>
+				</h3>
 			</div>
-			
+
 			<div>
 				<label>Length of stay</label> <input type="date" name="checkInDate" />
 				to <input type="date" name="checkOutDate" />
 			</div>
-			
+
 			<div>
-				
+				<f:label path="extras">Extras</f:label>
+				<f:select path="extras" items="${Extras}" itemLabel="name"
+					required="required" />
 			</div>
-			
 			<div>
 				<button type="Submit">Create booking</button>
 			</div>

@@ -2,6 +2,7 @@ package com.fdmgroup.hotelbookingsystem.controller;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.EnumSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fdmgroup.hotelbookingsystem.model.Bookings;
+import com.fdmgroup.hotelbookingsystem.model.Extras;
 import com.fdmgroup.hotelbookingsystem.model.Hotel;
 import com.fdmgroup.hotelbookingsystem.model.Room;
 import com.fdmgroup.hotelbookingsystem.services.HotelService;
@@ -84,6 +86,9 @@ public class HotelController {
 		modelAndView.setViewName("WEB-INF/bookingPage.jsp");
 		modelAndView.addObject("hotel", hotel);
 		modelAndView.addObject("room", room);
+		if (hotel.isAirportTransfers() == true) {
+			modelAndView.addObject("Extras", EnumSet.allOf(Extras.class));
+		}
 		return modelAndView;
 	}
 

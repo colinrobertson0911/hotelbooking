@@ -5,6 +5,8 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -39,12 +41,15 @@ public class Bookings {
 	@Column
 	private BigDecimal totalPrice;
 
+	@Enumerated(EnumType.STRING)
+	private Extras extras;
+
 	public Bookings() {
 		super();
 	}
 
 	public Bookings(String roomType, String hotel, LocalDate checkInDate, LocalDate checkOutDate, BigDecimal roomPrice,
-			BigDecimal extrasPrice, BigDecimal totalPrice) {
+			BigDecimal extrasPrice, BigDecimal totalPrice, Extras extras) {
 		super();
 		this.roomType = roomType;
 		this.hotel = hotel;
@@ -53,6 +58,7 @@ public class Bookings {
 		this.roomPrice = roomPrice;
 		this.extrasPrice = extrasPrice;
 		this.totalPrice = totalPrice;
+		this.extras = extras;
 	}
 
 	public long getBookingId() {
@@ -119,6 +125,14 @@ public class Bookings {
 		this.totalPrice = totalPrice;
 	}
 
+	public Extras getExtras() {
+		return extras;
+	}
+
+	public void setExtras(Extras extras) {
+		this.extras = extras;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -126,6 +140,7 @@ public class Bookings {
 		result = prime * result + (int) (bookingId ^ (bookingId >>> 32));
 		result = prime * result + ((checkInDate == null) ? 0 : checkInDate.hashCode());
 		result = prime * result + ((checkOutDate == null) ? 0 : checkOutDate.hashCode());
+		result = prime * result + ((extras == null) ? 0 : extras.hashCode());
 		result = prime * result + ((extrasPrice == null) ? 0 : extrasPrice.hashCode());
 		result = prime * result + ((hotel == null) ? 0 : hotel.hashCode());
 		result = prime * result + ((roomPrice == null) ? 0 : roomPrice.hashCode());
@@ -154,6 +169,8 @@ public class Bookings {
 			if (other.checkOutDate != null)
 				return false;
 		} else if (!checkOutDate.equals(other.checkOutDate))
+			return false;
+		if (extras != other.extras)
 			return false;
 		if (extrasPrice == null) {
 			if (other.extrasPrice != null)
@@ -187,7 +204,7 @@ public class Bookings {
 	public String toString() {
 		return "Bookings [bookingId=" + bookingId + ", roomType=" + roomType + ", hotel=" + hotel + ", checkInDate="
 				+ checkInDate + ", checkOutDate=" + checkOutDate + ", roomPrice=" + roomPrice + ", extrasPrice="
-				+ extrasPrice + ", totalPrice=" + totalPrice + "]";
+				+ extrasPrice + ", totalPrice=" + totalPrice + ", extras=" + extras + "]";
 	}
 
 }
