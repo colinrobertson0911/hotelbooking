@@ -29,10 +29,10 @@
 
 			<div>
 				<f:label path="extras">Extras</f:label>
-				<f:select path="extras" items="${Extras}" itemLabel="name"
+				<f:select path="extras" items="${Extras}" itemLabel="service"
 					required="required" />
 			</div>
-			<f:hidden path="totalPrice"> value = 0</f:hidden>
+			<f:hidden path="totalPrice" value="0"/>
 			<div>
 				<button type="Submit">Create booking</button>
 			</div>
