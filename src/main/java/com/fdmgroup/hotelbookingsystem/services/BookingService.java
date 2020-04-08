@@ -1,11 +1,16 @@
 package com.fdmgroup.hotelbookingsystem.services;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fdmgroup.hotelbookingsystem.model.Bookings;
+import com.fdmgroup.hotelbookingsystem.model.Extras;
 import com.fdmgroup.hotelbookingsystem.model.Hotel;
 import com.fdmgroup.hotelbookingsystem.repository.BookingDao;
 
@@ -36,5 +41,20 @@ public class BookingService {
 		}
 		
 	}
+
+	public BigDecimal calculateTotalPrice(Bookings booking) {
+		
+		LocalDate checkInDate = booking.getCheckInDate();
+		LocalDate checkOutDate= booking.getCheckOutDate();
+		long stayDuration = ChronoUnit.DAYS.between(checkInDate,checkOutDate);
+		BigDecimal stayDurationBigDec = BigDecimal.valueOf(stayDuration);
+		BigDecimal roomPrice = booking.getRoomPrice();
+		BigDecimal extrasPrice = booking.getExtrasPrice();
+		BigDecimal totalPrice = (roomPrice.multiply(stayDurationBigDec).add(extrasPrice));
+		
+		return totalPrice;
+	}
+	
+	
 
 }

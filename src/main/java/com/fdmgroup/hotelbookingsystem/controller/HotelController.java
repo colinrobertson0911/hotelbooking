@@ -91,6 +91,21 @@ public class HotelController {
 		}
 		return modelAndView;
 	}
+	
+	@PostMapping("BookingSubmit")
+	public ModelAndView bookingSubmit(
+			@RequestParam(name = "checkInDate", defaultValue = "") String checkInDateString,
+			@RequestParam(name = "checkOutDate", defaultValue = "") String checkOutDateString, 
+			@RequestParam(name = "extras", defaultValue ="") Extras extras, ModelMap model) {
+			LocalDate checkInDate = LocalDate.parse(checkInDateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+			LocalDate checkOutDate = LocalDate.parse(checkOutDateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+			
+			
+			
+			return null;
+			}
+			
+			
 
 	@PostMapping("SearchByRoomType")
 	public ModelAndView searchByRoomType(@ModelAttribute("room") Room room, ModelMap model) {

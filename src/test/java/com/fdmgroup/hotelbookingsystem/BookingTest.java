@@ -3,6 +3,7 @@ package com.fdmgroup.hotelbookingsystem;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 
 import com.fdmgroup.hotelbookingsystem.model.Bookings;
+import com.fdmgroup.hotelbookingsystem.model.Extras;
 import com.fdmgroup.hotelbookingsystem.model.Hotel;
 import com.fdmgroup.hotelbookingsystem.model.Room;
 import com.fdmgroup.hotelbookingsystem.services.BookingService;
@@ -67,23 +69,20 @@ class BookingTest {
 	
 	
 	@Test
-	public void test_ThatABookingPriceCanBeCreated() {
-		List<Hotel> allHotels = hotelService.findAll();
-		Hotel aHotel = allHotels.get(0);
-		Room room = aHotel.getRoom().get(0);
-		
+	public void test_ThatPriceTotalCanBeCalculated() {
 		LocalDate checkInDate = LocalDate.of(2020, 04, 20);
-		LocalDate checkOutDate = LocalDate.of(2020, 04, 25);
-		
+		LocalDate checkOutDate = LocalDate.of(2020, 04, 27);
+		Hotel hotel = hotelService.retrieveOne(1L);
 		Bookings booking = new Bookings();
+		booking.setRoomType("STANDARD");
+		booking.setHotel(hotel.getHotelName());
 		booking.setCheckInDate(checkInDate);
 		booking.setCheckOutDate(checkOutDate);
-		bookingService.save(booking);
-		
-		
-		
-		
-		
+		booking.setRoomPrice(new BigDecimal("15.00"));
+		booking.setExtras(Extras.AIRPORTTRANSFER);
+		booking.setExtrasPrice(new BigDecimal("15.00"));
+		BigDecimal totalPrice = bookingService.calculateTotalPrice(booking);
+		assertEquals(totalPrice, new BigDecimal("120.00"));
 	}
 	
 	
