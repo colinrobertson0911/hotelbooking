@@ -32,6 +32,7 @@
 				<f:select path="extras" items="${Extras}" itemLabel="name"
 					required="required" />
 			</div>
+			<f:hidden path="totalPrice"> value = 0</f:hidden>
 			<div>
 				<button type="Submit">Create booking</button>
 			</div>
