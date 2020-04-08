@@ -18,6 +18,7 @@ import com.fdmgroup.hotelbookingsystem.model.Bookings;
 import com.fdmgroup.hotelbookingsystem.model.Extras;
 import com.fdmgroup.hotelbookingsystem.model.Hotel;
 import com.fdmgroup.hotelbookingsystem.model.Room;
+import com.fdmgroup.hotelbookingsystem.services.BookingService;
 import com.fdmgroup.hotelbookingsystem.services.HotelService;
 import com.fdmgroup.hotelbookingsystem.services.RoomService;
 
@@ -29,6 +30,9 @@ public class HotelController {
 
 	@Autowired
 	RoomService roomService;
+
+	@Autowired
+	BookingService bookingService;
 
 	@GetMapping("")
 	public ModelAndView home() {
@@ -78,35 +82,30 @@ public class HotelController {
 	}
 
 	@GetMapping("bookingPage")
-	public ModelAndView bookingPage(@ModelAttribute("bookings") Bookings bookings, ModelMap model,
-			@RequestParam("hotelId") long hotelId, @RequestParam("roomId") long roomId) {
+	public ModelAndView bookingPage(ModelMap model, @RequestParam("hotelId") long hotelId,
+			@RequestParam("roomId") long roomId) {
 		ModelAndView modelAndView = new ModelAndView();
 		Hotel hotel = hotelService.retrieveOne(hotelId);
 		Room room = roomService.retrieveOne(roomId);
 		modelAndView.setViewName("WEB-INF/bookingPage.jsp");
 		modelAndView.addObject("hotel", hotel);
 		modelAndView.addObject("room", room);
+		modelAndView.addObject("bookings", new Bookings());
 		if (hotel.isAirportTransfers() == true) {
 			modelAndView.addObject("Extras", EnumSet.allOf(Extras.class));
 		}
 		return modelAndView;
 	}
-	
+
 	@PostMapping("BookingSubmit")
-	public ModelAndView bookingSubmit(
-			@RequestParam(name = "checkInDate", defaultValue = "") String checkInDateString,
-			@RequestParam(name = "checkOutDate", defaultValue = "") String checkOutDateString, 
-			@RequestParam(name = "extras", defaultValue ="") Extras extras, ModelMap model) {
-			LocalDate checkInDate = LocalDate.parse(checkInDateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-			LocalDate checkOutDate = LocalDate.parse(checkOutDateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-			
-			
-			
-			
-			return null;
-			}
-			
-			
+	public ModelAndView bookingSubmit(@ModelAttribute("bookings") Bookings bookings, ModelMap model) {
+
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("WEB-INF/bookingConfirmation.jsp");
+		modelAndView.addObject(bookings);
+		bookingService.save(bookings);
+		return modelAndView;
+	}
 
 	@PostMapping("SearchByRoomType")
 	public ModelAndView searchByRoomType(@ModelAttribute("room") Room room, ModelMap model) {
