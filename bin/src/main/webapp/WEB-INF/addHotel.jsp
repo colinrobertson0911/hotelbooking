@@ -12,7 +12,6 @@
 	<h2>Add your hotel</h2>
 	<div>
 	<p>${errorMessage}</p>
-	<p>${successMessage}</p>
 	</div>
 	<f:form method="post" action="AddHotelSubmit" modelAttribute="hotel">
 		
@@ -47,13 +46,26 @@
 		</div>
 		<div>
 			<f:label path="room">Type of Rooms</f:label>
-			<f:select path="room" items="${allRooms}" itemLabel="getTypeAndPrice"
-			required="required" multiple="multiple" />
+			<f:select path="room" items="${allRooms}" itemLabel="roomType"
+			required="required" multiple="multiple" />			
+		</div>
+		<div>
+			<f:label path="airportTransfers">Airport Transfers available?</f:label>
+			<f:checkbox path="airportTransfers"/>
 		</div>
 		<div>
 			<f:hidden path="verified"/>
+			<f:hidden path="ownerId" value="${hotelOwner.hotelOwnerId}"/>
 		</div>
+		<div>
 		<button type="submit">Add Hotel</button>
+		</div>	
 	</f:form>
+	<div>
+		<a href="ReturnToOwnerScreen?hotelOwnerId=${hotelOwner.hotelOwnerId}">Return to your hotels</a>
+	</div>
+	<div>
+		<a href="NewRoomType?hotelOwnerId=${hotelOwner.hotelOwnerId}">Click here to add a new room type</a>
+	</div>
 </body>
 </html>

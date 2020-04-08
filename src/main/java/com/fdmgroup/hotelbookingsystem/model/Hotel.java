@@ -57,14 +57,18 @@ public class Hotel {
 	private boolean airportTransfers;
 
 	@Column
+	private int transferPrice;
+
+	@Column
 	private boolean verified;
-	
+
 	public Hotel() {
 		super();
 	}
 
 	public Hotel(String hotelName, int numOfRooms, String address, String postcode, String city, String ammenities,
-			List<Bookings> bookings, int starRating, List<Room> room, boolean airportTransfers, boolean verified) {
+			List<Bookings> bookings, int starRating, List<Room> room, boolean airportTransfers, int transferPrice,
+			boolean verified) {
 		super();
 		this.hotelName = hotelName;
 		this.numOfRooms = numOfRooms;
@@ -76,6 +80,7 @@ public class Hotel {
 		this.starRating = starRating;
 		this.room = room;
 		this.airportTransfers = airportTransfers;
+		this.transferPrice = transferPrice;
 		this.verified = verified;
 	}
 
@@ -167,6 +172,14 @@ public class Hotel {
 		this.airportTransfers = airportTransfers;
 	}
 
+	public int getTransferPrice() {
+		return transferPrice;
+	}
+
+	public void setTransferPrice(int transferPrice) {
+		this.transferPrice = transferPrice;
+	}
+
 	public boolean isVerified() {
 		return verified;
 	}
@@ -190,6 +203,7 @@ public class Hotel {
 		result = prime * result + ((postcode == null) ? 0 : postcode.hashCode());
 		result = prime * result + ((room == null) ? 0 : room.hashCode());
 		result = prime * result + starRating;
+		result = prime * result + transferPrice;
 		result = prime * result + (verified ? 1231 : 1237);
 		return result;
 	}
@@ -246,6 +260,8 @@ public class Hotel {
 			return false;
 		if (starRating != other.starRating)
 			return false;
+		if (transferPrice != other.transferPrice)
+			return false;
 		if (verified != other.verified)
 			return false;
 		return true;
@@ -256,8 +272,7 @@ public class Hotel {
 		return "Hotel [hotelId=" + hotelId + ", hotelName=" + hotelName + ", numOfRooms=" + numOfRooms + ", address="
 				+ address + ", postcode=" + postcode + ", city=" + city + ", ammenities=" + ammenities + ", bookings="
 				+ bookings + ", starRating=" + starRating + ", room=" + room + ", airportTransfers=" + airportTransfers
-				+ ", verified=" + verified + "]";
+				+ ", transferPrice=" + transferPrice + ", verified=" + verified + "]";
 	}
 
-	
 }

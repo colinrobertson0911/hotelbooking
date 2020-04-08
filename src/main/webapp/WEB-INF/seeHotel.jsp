@@ -16,7 +16,8 @@
 			<p>Rooms available: ${hotel.numOfRooms - hotel.bookings.size()}</p>
 			<c:forEach items="${hotel.room}" var="room">
 				<div>
-				<p>Type of rooms: ${room.roomType} Price: £ ${room.price}</p>
+				<p>Type of rooms: ${room.roomType} Price: £ ${room.price} 
+				<a href="bookingPage?hotelId=${hotel.hotelId}&&roomId=${room.roomId}">Make a booking</a> </p>
 				</div>
 			</c:forEach>
 			

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fdmgroup.hotelbookingsystem.model.Bookings;
 import com.fdmgroup.hotelbookingsystem.model.Hotel;
 import com.fdmgroup.hotelbookingsystem.model.Room;
 import com.fdmgroup.hotelbookingsystem.services.HotelService;
@@ -20,10 +21,10 @@ import com.fdmgroup.hotelbookingsystem.services.RoomService;
 
 @Controller
 public class HotelController {
-	
+
 	@Autowired
 	HotelService hotelService;
-	
+
 	@Autowired
 	RoomService roomService;
 
@@ -68,24 +69,29 @@ public class HotelController {
 		modelAndView.addObject("allRooms", roomService.findAll());
 		return modelAndView;
 	}
-	
+
 	@GetMapping("SeeHotel")
-	public ModelAndView seeHotel(@RequestParam("hotelId")Long hotelId) {
+	public ModelAndView seeHotel(@RequestParam("hotelId") Long hotelId) {
 		return new ModelAndView("WEB-INF/seeHotel.jsp", "hotel", hotelService.retrieveOne(hotelId));
 	}
-	
-	@PostMapping("bookingPage")
-	public ModelAndView bookingPage(@ModelAttribute("hotel") Hotel hotel, ModelMap model) {
-		Hotel hotel2 = hotelService.retrieveOne(hotel.getHotelId());
-		return new ModelAndView("WEB-INF/bookingPage.jsp", "hotel", hotelService.retrieveOne(hotel2.getHotelId()));
-		
+
+	@GetMapping("bookingPage")
+	public ModelAndView bookingPage(@ModelAttribute("bookings") Bookings bookings, ModelMap model,
+			@RequestParam("hotelId") long hotelId, @RequestParam("roomId") long roomId) {
+		ModelAndView modelAndView = new ModelAndView();
+		Hotel hotel = hotelService.retrieveOne(hotelId);
+		Room room = roomService.retrieveOne(roomId);
+		modelAndView.setViewName("WEB-INF/bookingPage.jsp");
+		modelAndView.addObject("hotel", hotel);
+		modelAndView.addObject("room", room);
+		return modelAndView;
 	}
-	
+
 	@PostMapping("SearchByRoomType")
-	public ModelAndView searchByRoomType(@ModelAttribute("room")Room room, ModelMap model) {
+	public ModelAndView searchByRoomType(@ModelAttribute("room") Room room, ModelMap model) {
 		List<Hotel> hotelList = hotelService.findByVerifiedAndRoomType(room.getRoomType());
 		ModelAndView modelAndView = new ModelAndView();
-		if(hotelList.isEmpty()) {
+		if (hotelList.isEmpty()) {
 			modelAndView.setViewName("mainScreen.jsp");
 			modelAndView.addObject("errorRoomTypeMessage", "No Rooms of that type");
 			modelAndView.addObject("visabilityMessage", "All Hotels");
@@ -99,10 +105,11 @@ public class HotelController {
 		modelAndView.addObject("allRooms", roomService.findAll());
 		return modelAndView;
 	}
-	
+
 	@PostMapping("SearchByAvailability")
-	public ModelAndView searchbyAvailability(@RequestParam(name= "checkInDate", defaultValue="")String checkInDateString, 
-			@RequestParam(name= "checkOutDate", defaultValue="")String checkOutDateString,ModelMap model) { 
+	public ModelAndView searchbyAvailability(
+			@RequestParam(name = "checkInDate", defaultValue = "") String checkInDateString,
+			@RequestParam(name = "checkOutDate", defaultValue = "") String checkOutDateString, ModelMap model) {
 		LocalDate checkInDate = LocalDate.parse(checkInDateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		LocalDate checkOutDate = LocalDate.parse(checkOutDateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		List<Hotel> hotelList = hotelService.findByAvailabilityAndVerifiedWithSpecifiedDates(checkInDate, checkOutDate);
@@ -114,16 +121,14 @@ public class HotelController {
 			modelAndView.addObject("hotel", hotelService.findByVerifiedEqualsTrue());
 			modelAndView.addObject("allRooms", roomService.findAll());
 			return modelAndView;
-		}	
-				
-		modelAndView.setViewName("mainScreen.jsp");		
+		}
+
+		modelAndView.setViewName("mainScreen.jsp");
 		modelAndView.addObject("visabilityMessage", "Hotels available between " + checkInDate + " and " + checkOutDate);
 		modelAndView.addObject("hotel", hotelList);
 		modelAndView.addObject("allRooms", roomService.findAll());
 		return modelAndView;
 
 	}
-	
-	
 
 }

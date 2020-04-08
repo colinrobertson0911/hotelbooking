@@ -13,6 +13,7 @@ import org.springframework.test.annotation.DirtiesContext;
 
 import com.fdmgroup.hotelbookingsystem.model.Bookings;
 import com.fdmgroup.hotelbookingsystem.model.Hotel;
+import com.fdmgroup.hotelbookingsystem.model.Room;
 import com.fdmgroup.hotelbookingsystem.services.BookingService;
 import com.fdmgroup.hotelbookingsystem.services.HotelService;
 
@@ -64,6 +65,26 @@ class BookingTest {
 		
 	}
 	
+	
+	@Test
+	public void test_ThatABookingPriceCanBeCreated() {
+		List<Hotel> allHotels = hotelService.findAll();
+		Hotel aHotel = allHotels.get(0);
+		Room room = aHotel.getRoom().get(0);
+		
+		LocalDate checkInDate = LocalDate.of(2020, 04, 20);
+		LocalDate checkOutDate = LocalDate.of(2020, 04, 25);
+		
+		Bookings booking = new Bookings();
+		booking.setCheckInDate(checkInDate);
+		booking.setCheckOutDate(checkOutDate);
+		bookingService.save(booking);
+		
+		
+		
+		
+		
+	}
 	
 	
 

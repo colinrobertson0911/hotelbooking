@@ -65,6 +65,9 @@ public class HotelOwnerController {
 			modelAndView.setViewName("WEB-INF/addHotel.jsp");
 			return modelAndView;
 		}
+		if (hotel.isAirportTransfers() != true) {
+			hotel.setTransferPrice(0);
+		}
 		hotelService.save(hotel);
 		modelAndView.addObject("successMessage",
 				"Hotel has been added to system, Hotel will be visible once processed by an Administrator");
