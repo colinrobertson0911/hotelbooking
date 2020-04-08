@@ -12,6 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fdmgroup.hotelbookingsystem.controller.utility.FormatWithLocale;
+
 @Entity
 public class Bookings {
 
@@ -27,9 +31,11 @@ public class Bookings {
 	private String hotel;
 
 	@Column
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate checkInDate;
 
 	@Column
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate checkOutDate;
 
 	@Column
@@ -59,6 +65,14 @@ public class Bookings {
 		this.extrasPrice = extrasPrice;
 		this.totalPrice = totalPrice;
 		this.extras = extras;
+	}
+	
+	public String getCheckInDateFormatted() {
+		return this.getCheckInDate().format(FormatWithLocale.DATE_FORMATTER);
+	}
+	
+	public String getCheckOutDateFormatted() {
+		return this.getCheckOutDate().format(FormatWithLocale.DATE_FORMATTER);
 	}
 
 	public long getBookingId() {

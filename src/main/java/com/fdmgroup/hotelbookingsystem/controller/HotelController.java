@@ -99,13 +99,14 @@ public class HotelController {
 
 	@PostMapping("BookingSubmit")
 	public ModelAndView bookingSubmit(@ModelAttribute("bookings") Bookings bookings, ModelMap model) {
-
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("WEB-INF/bookingConfirmation.jsp");
 		modelAndView.addObject(bookings);
 		bookingService.save(bookings);
 		return modelAndView;
 	}
+	
+	
 
 	@PostMapping("SearchByRoomType")
 	public ModelAndView searchByRoomType(@ModelAttribute("room") Room room, ModelMap model) {
