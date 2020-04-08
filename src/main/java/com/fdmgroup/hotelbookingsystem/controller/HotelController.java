@@ -1,5 +1,6 @@
 package com.fdmgroup.hotelbookingsystem.controller;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.EnumSet;
@@ -100,11 +101,41 @@ public class HotelController {
 	@PostMapping("BookingSubmit")
 	public ModelAndView bookingSubmit(@ModelAttribute("bookings") Bookings bookings, ModelMap model) {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("WEB-INF/bookingConfirmation.jsp");
-		modelAndView.addObject(bookings);
+		BigDecimal extraCosts = bookings.getExtras().getPrice();
+		bookings.setExtrasPrice(extraCosts);
+		BigDecimal finaltotal = bookingService.calculateTotalPrice(bookings);
+		bookings.setTotalPrice(finaltotal);
 		bookingService.save(bookings);
+		modelAndView.addObject("bookings", bookings);
+		String hotelName = bookings.getHotel();		
+		Hotel hotel = hotelService.findByHotelName(hotelName);
+		hotel.getBookings().add(bookings);
+		hotelService.save(hotel);
+		
+		modelAndView.setViewName("mainScreen.jsp");
+		modelAndView.addObject("ownerMessage", "Booking Confirmed");
+		modelAndView.addObject("visabilityMessage", "All Hotels");
+		modelAndView.addObject("hotel", hotelService.findByVerifiedEqualsTrue());
+		modelAndView.addObject("allRooms", roomService.findAll());
 		return modelAndView;
 	}
+	
+	/*
+	 * @PostMapping("BookingConfirmationSubmit") public ModelAndView
+	 * bookingConfirmationSubmit(@RequestParam("bookings")Bookings bookings) {
+	 * String hotelName = bookings.getHotel();
+	 * 
+	 * Hotel hotel = hotelService.findByHotelName(hotelName);
+	 * hotel.getBookings().add(bookings); ModelAndView modelAndView = new
+	 * ModelAndView(); modelAndView.setViewName("mainScreen.jsp");
+	 * modelAndView.addObject("ownerMessage", "Booking Confirmed");
+	 * modelAndView.addObject("visabilityMessage", "All Hotels");
+	 * modelAndView.addObject("hotel", hotelService.findByVerifiedEqualsTrue());
+	 * modelAndView.addObject("allRooms", roomService.findAll()); return
+	 * modelAndView;
+	 * 
+	 * }
+	 */
 	
 	
 

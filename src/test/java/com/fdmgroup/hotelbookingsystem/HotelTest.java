@@ -167,5 +167,15 @@ class HotelTest {
 		int hotelSize = hotels.size();
 		assertEquals(hotelSize, 3);
 	}
+	
+	@Test
+	public void test_FindHotelByName() {
+		Hotel hotel = hotelService.findByHotelName("Travelodge Glasgow");
+		Hotel hotelById = hotelService.retrieveOne(1L);
+		long hotelId = hotel.getHotelId();
+		assertEquals(hotelId, hotelById.getHotelId());
+		
+	}
+	
 
 }

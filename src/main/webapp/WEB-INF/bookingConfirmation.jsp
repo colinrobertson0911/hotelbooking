@@ -10,7 +10,7 @@
 <body>
 <h2>Confirm your booking details</h2>
 	<div>
-		<f:form method="post" action="bookingConfirmationSubmit" modelAttribute="bookings">
+		<f:form method="post" action="BookingConfirmationSubmit" modelAttribute="bookings">
 		<div>
 			<f:label path="hotel">${bookings.hotel}</f:label>
 		</div>
@@ -22,13 +22,16 @@
 			<f:label path="checkOutDate">Check Out Date: ${bookings.checkOutDate}</f:label>
 		</div>
 		<div>
-			<f:label path="roomPrice">Cost of Room Per Night: ${bookings.roomPrice}</f:label>
+			<f:label path="roomPrice">Cost of Room Per Night: £${bookings.roomPrice}</f:label>
 		</div>
 		<div>
-			<f:label path="extrasPrice">Cost of Extras: ${bookings.extrasPrice}</f:label>
+			<f:label path="extrasPrice">Cost of Extras: £${bookings.extrasPrice}</f:label>
 		</div>
 		<div>
-			<f:label path="totalPrice">Total Price: ${bookings.totalPrice}</f:label>
+			<f:label path="totalPrice">Total Price: £${bookings.totalPrice}</f:label>
+		</div>
+		<div>
+			<button type="Submit">Go To payment And Confirmation</button>
 		</div>
 		</f:form>
 	</div>

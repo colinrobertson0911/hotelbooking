@@ -15,10 +15,13 @@
 			<div>
 				<h3>
 					<f:label path="hotel">${hotel.hotelName}</f:label>
+					<f:hidden path="hotel" value="${hotel.hotelName}"/>
 				</h3>
 				<h3>
 					<f:label path="roomType">${room.roomType} - </f:label>
+					<f:hidden path="roomType" value="${room.roomType}"/>
 					<f:label path="roomPrice">£${room.price} per night</f:label>
+					<f:hidden path="roomPrice" value="${room.price}"/>
 				</h3>
 			</div>
 
@@ -33,6 +36,7 @@
 					required="required" />
 			</div>
 			<f:hidden path="totalPrice" value="0"/>
+			<f:hidden path="bookingId"/>
 			<div>
 				<button type="Submit">Create booking</button>
 			</div>

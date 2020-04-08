@@ -116,6 +116,10 @@ public class HotelService {
 		}
 		return availableHotelsByDate;
 	}
+
+	public Hotel findByHotelName(String hotelName) {
+		return hotelDao.findByHotelName(hotelName);
+	}
 	
 	
 }

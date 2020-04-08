@@ -16,8 +16,12 @@ public enum Extras {
 	
 	public String getService() {
 		return service +" £" + price;
+	}	
+
+
+	public BigDecimal getPrice() {
+		return price;
 	}
-	
 
 	public static String getExtra(int index) {
 		return Extras.values()[index].toString();
