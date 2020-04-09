@@ -1,7 +1,7 @@
 package com.fdmgroup.hotelbookingsystem;
 
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -15,7 +15,6 @@ import org.springframework.test.annotation.DirtiesContext;
 import com.fdmgroup.hotelbookingsystem.model.Bookings;
 import com.fdmgroup.hotelbookingsystem.model.Extras;
 import com.fdmgroup.hotelbookingsystem.model.Hotel;
-import com.fdmgroup.hotelbookingsystem.model.Room;
 import com.fdmgroup.hotelbookingsystem.services.BookingService;
 import com.fdmgroup.hotelbookingsystem.services.HotelService;
 
@@ -25,49 +24,48 @@ class BookingTest {
 
 	@Autowired
 	HotelService hotelService;
-	
+
 	@Autowired
 	BookingService bookingService;
-	
+
 	@Test
-	public void test_ThatABookingCanBeMAde() {		
+	public void test_ThatABookingCanBeMAde() {
 		LocalDate checkInDate = LocalDate.of(2020, 04, 20);
 		LocalDate checkOutDate = LocalDate.of(2020, 04, 27);
-		
+
 		Bookings booking = new Bookings();
 		booking.setCheckInDate(checkInDate);
 		booking.setCheckOutDate(checkOutDate);
-		
+
 		int numberBeforeAdding = bookingService.findAll().size();
 		bookingService.save(booking);
 		int numberAfterAdding = bookingService.findAll().size();
 		assertNotEquals(numberBeforeAdding, numberAfterAdding);
 	}
-	
+
 	@Test
 	public void test_ThatABookingCanBeRetrieved() {
 		Hotel hotel = hotelService.retrieveOne(1L);
 		List<Bookings> bookings = hotel.getBookings();
-		assert(bookings.size() > 0);
+		assert (bookings.size() > 0);
 	}
-	
+
 	@Test
 	public void test_ToSeeAvailability() {
 		Hotel hotel = hotelService.retrieveOne(1L);
 		boolean booking = bookingService.findRoomAvailability(hotel);
 		assertEquals(booking, false);
-		
+
 	}
-	
+
 	@Test
 	public void test_ToSeeAvailability2() {
 		Hotel hotel = hotelService.retrieveOne(2L);
 		boolean booking = bookingService.findRoomAvailability(hotel);
 		assertEquals(booking, true);
-		
+
 	}
-	
-	
+
 	@Test
 	public void test_ThatPriceTotalCanBeCalculated() {
 		LocalDate checkInDate = LocalDate.of(2020, 04, 20);
@@ -84,8 +82,5 @@ class BookingTest {
 		BigDecimal totalPrice = bookingService.calculateTotalPrice(booking);
 		assertEquals(totalPrice, new BigDecimal("120.00"));
 	}
-	
-	
-
 
 }
