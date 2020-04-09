@@ -40,6 +40,9 @@
 <f:label path="starRating">Star Rating out of Five: </f:label>
 <f:input path="starRating" type="number" required="required"/>
 </div>
+<div>
+<f:label path="bookings">Bookings: ${hotel.bookings	}</f:label>
+</div>
 
 <div>
 <f:label path="room">Types of Rooms: </f:label>
@@ -53,7 +56,6 @@
 <div>
 <f:hidden path="verified"/>
 <f:hidden path="hotelId"/>
-<f:hidden path="ownerId"/>
 </div>
 
 

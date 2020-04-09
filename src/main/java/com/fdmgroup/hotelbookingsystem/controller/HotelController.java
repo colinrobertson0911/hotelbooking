@@ -140,6 +140,25 @@ public class HotelController {
 		return modelAndView;
 	}
 	
+	@GetMapping("CancelBackToMain")
+	public ModelAndView cancelBackToMain(HttpSession session) {
+		Object idFromSession = session.getAttribute("BOOKINGID");
+		String bookingIdString = idFromSession.toString();
+		Long bookingId = Long.parseLong(bookingIdString);
+		
+		bookingService.deleteById(bookingId);
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("mainScreen.jsp");
+		modelAndView.addObject("ownerMessage", "Booking Cancelled");
+		modelAndView.addObject("visabilityMessage", "All Hotels");
+		modelAndView.addObject("hotel", hotelService.findByVerifiedEqualsTrue());
+		modelAndView.addObject("allRooms", roomService.findAll());
+		
+		return modelAndView;
+		
+		
+	}
+	
 
 	@PostMapping("SearchByRoomType")
 	public ModelAndView searchByRoomType(@ModelAttribute("room") Room room, ModelMap model) {

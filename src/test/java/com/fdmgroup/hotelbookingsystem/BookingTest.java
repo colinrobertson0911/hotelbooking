@@ -91,6 +91,18 @@ class BookingTest {
 		assertEquals(booking.getBookingId(), bookingFromDatabase.getBookingId());
 	}
 	
+	@Test
+	public void test_DeleteABookingById() {
+		Bookings booking = bookingService.retrieveOne(2L);
+		long bookingId = booking.getBookingId();
+		List<Bookings> listBeforeDelete = bookingService.findAll();
+		int listSizeBefore = listBeforeDelete.size();
+		bookingService.deleteById(bookingId);
+		List<Bookings> listAfterDelete = bookingService.findAll();
+		int listSizeAfter = listAfterDelete.size();
+		assert(listSizeBefore > listSizeAfter);
+	}
+	
 	
 
 }

@@ -32,6 +32,7 @@
 		</div>
 		<div>
 			<button type="Submit">Go To payment And Confirmation</button>
+			<a href="CancelBackToMain">Cancel Booking</a>
 		</div>
 		</f:form>
 	</div>

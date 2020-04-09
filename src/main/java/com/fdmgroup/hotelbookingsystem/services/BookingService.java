@@ -45,10 +45,19 @@ public class BookingService {
 		LocalDate checkInDate = booking.getCheckInDate();
 		LocalDate checkOutDate= booking.getCheckOutDate();
 		long stayDuration = ChronoUnit.DAYS.between(checkInDate,checkOutDate);
-		BigDecimal stayDurationBigDec = BigDecimal.valueOf(stayDuration);
-		BigDecimal roomPrice = booking.getRoomPrice();
-		BigDecimal extrasPrice = booking.getExtrasPrice();
-		BigDecimal totalPrice = (roomPrice.multiply(stayDurationBigDec).add(extrasPrice));
+		BigDecimal totalPrice;
+		if (stayDuration > 5) {
+			BigDecimal stayDurationBigDec = BigDecimal.valueOf(stayDuration);
+			BigDecimal roomPrice = booking.getRoomPrice();
+			BigDecimal extrasPrice = booking.getExtrasPrice();
+			totalPrice = (roomPrice.multiply(stayDurationBigDec).add(extrasPrice).subtract(roomPrice));
+		} else {
+			BigDecimal stayDurationBigDec = BigDecimal.valueOf(stayDuration);
+			BigDecimal roomPrice = booking.getRoomPrice();
+			BigDecimal extrasPrice = booking.getExtrasPrice();
+			totalPrice = (roomPrice.multiply(stayDurationBigDec).add(extrasPrice));
+		}
+		
 		
 		return totalPrice;
 	}
@@ -56,7 +65,10 @@ public class BookingService {
 	public Bookings retrieveOne(long bookingId) {
 		return bookingDao.findByBookingId(bookingId);
 	}
-	
+
+	public void deleteById(long bookingId) {
+		bookingDao.deleteById(bookingId);		
+	}
 	
 
 }
