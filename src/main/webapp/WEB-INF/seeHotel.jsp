@@ -10,28 +10,31 @@
 <body>
 
 	<a href="${pageContext.request.contextPath}/Home">Back</a>
-		<h3>${hotel.hotelName}</h3>
-		<div>
-			<p>Number of rooms: ${hotel.numOfRooms}</p>
-			<p>Rooms available: ${hotel.numOfRooms - hotel.bookings.size()}</p>
-			<c:forEach items="${hotel.room}" var="room">
-				<div>
-				<p>Type of rooms: ${room.roomType} Price: £ ${room.price} 
-				<a href="bookingPage?hotelId=${hotel.hotelId}&&roomId=${room.roomId}">Make a booking</a> </p>
-				</div>
-			</c:forEach>
-			
-			<p>Address:${hotel.address}</p>
-			<p>Postcode:${hotel.postcode}</p>
-			<p>City: ${hotel.city}</p>
-			<p>Ammenities: ${hotel.ammenities}
-			<p>Star Rating: ${hotel.starRating}/5</p>
-			<p>Offers Airport Transfers: ${hotel.airportTransfers}</p>
+	<h3>${hotel.hotelName}</h3>
+	<div>
+		<p>Number of rooms: ${hotel.numOfRooms}</p>
+		<p>Rooms available: ${hotel.numOfRooms - hotel.bookings.size()}</p>
+		<c:forEach items="${hotel.room}" var="room">
+			<div>
+				<p>
+					Type of rooms: ${room.roomType} Price: £ ${room.price} <a
+						href="bookingPage?hotelId=${hotel.hotelId}&&roomId=${room.roomId}">Make
+						a booking</a>
+				</p>
+			</div>
+		</c:forEach>
 
-		</div>
-		<div>
-			<p>-------------------------------------------</p>
-		</div>
+		<p>Address:${hotel.address}</p>
+		<p>Postcode:${hotel.postcode}</p>
+		<p>City: ${hotel.city}</p>
+		<p>Ammenities: ${hotel.ammenities}
+		<p>Star Rating: ${hotel.starRating}/5</p>
+		<p>Offers Airport Transfers: ${hotel.airportTransfers}</p>
+
+	</div>
+	<div>
+		<p>-------------------------------------------</p>
+	</div>
 
 </body>
 </html>

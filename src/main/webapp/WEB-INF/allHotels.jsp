@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -8,8 +8,8 @@
 <title>All Hotels</title>
 </head>
 <body>
-<p>${successMessage}</p>
-<c:forEach items="${hotels}" var="hotel">
+	<p>${successMessage}</p>
+	<c:forEach items="${hotels}" var="hotel">
 		<h3>
 			<a href="VerifyHotel?hotelId=${hotel.hotelId}">${hotel.hotelName}</a>
 		</h3>

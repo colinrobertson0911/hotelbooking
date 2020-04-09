@@ -11,10 +11,10 @@
 <body>
 	<h2>Add your hotel</h2>
 	<div>
-	<p>${errorMessage}</p>
+		<p>${errorMessage}</p>
 	</div>
 	<f:form method="post" action="AddHotelSubmit" modelAttribute="hotel">
-		
+
 		<div>
 			<f:label path="hotelName">Hotel Name:</f:label>
 			<f:input path="hotelName" type="text" required="required" />
@@ -46,19 +46,19 @@
 		</div>
 		<div>
 			<f:label path="room">Type of Rooms</f:label>
-			<f:select path="room" items="${allRooms}" itemLabel="roomTypeAndPrice"
-			required="required" multiple="multiple" />			
+			<f:select path="room" items="${allRooms}"
+				itemLabel="roomTypeAndPrice" required="required" multiple="multiple" />
 		</div>
 		<div>
 			<f:label path="airportTransfers">Airport Transfers available?</f:label>
-			<f:checkbox path="airportTransfers"/>
+			<f:checkbox path="airportTransfers" />
 		</div>
 		<div>
-			<f:hidden path="verified"/>
+			<f:hidden path="verified" />
 		</div>
 		<div>
-		<button type="submit">Add Hotel</button>
-		</div>	
+			<button type="submit">Add Hotel</button>
+		</div>
 	</f:form>
 	<div>
 		<a href="ReturnToOwnerScreen">Return to your hotels</a>

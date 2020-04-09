@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fdmgroup.hotelbookingsystem.model.Hotel;
 import com.fdmgroup.hotelbookingsystem.model.Room;
+import com.fdmgroup.hotelbookingsystem.services.BookingService;
 import com.fdmgroup.hotelbookingsystem.services.HotelOwnerService;
 import com.fdmgroup.hotelbookingsystem.services.HotelService;
 import com.fdmgroup.hotelbookingsystem.services.RoomService;
@@ -32,6 +33,9 @@ public class HotelOwnerController {
 	@Autowired
 	RoomService roomService;
 
+	@Autowired
+	BookingService bookingService;
+
 	@RequestMapping("OwnerHotels")
 	public ModelAndView ownerHotels() {
 		return new ModelAndView("WEB-INF/ownerHotels.jsp", "hotels", hotelService.findAll());
@@ -39,10 +43,10 @@ public class HotelOwnerController {
 
 	@GetMapping("AddHotel")
 	public ModelAndView addHotels(HttpSession session) {
-		Object idFromSession = session.getAttribute("HOTELOWNERID");		
+		Object idFromSession = session.getAttribute("HOTELOWNERID");
 		String hotelOwnerIdString = idFromSession.toString();
 		Long hotelOwnerId = Long.parseLong(hotelOwnerIdString);
-		
+
 		ModelAndView modelAndView = new ModelAndView("WEB-INF/addHotel.jsp");
 		modelAndView.addObject("hotel", new Hotel());
 		modelAndView.addObject("allRooms", roomService.findAll());
@@ -75,7 +79,7 @@ public class HotelOwnerController {
 	}
 
 	@GetMapping("EditHotel")
-	public ModelAndView editHotel(@RequestParam("hotelId") long hotelId) {		
+	public ModelAndView editHotel(@RequestParam("hotelId") long hotelId) {
 		ModelAndView modelAndView = new ModelAndView("WEB-INF/editHotel.jsp");
 		modelAndView.addObject("allRooms", roomService.findAll());
 		modelAndView.addObject("hotel", hotelService.retrieveOne(hotelId));
@@ -88,8 +92,16 @@ public class HotelOwnerController {
 		Object idFromSession = session.getAttribute("HOTELOWNERID");
 		String hotelOwnerIdString = idFromSession.toString();
 		Long hotelOwnerId = Long.parseLong(hotelOwnerIdString);
-		
+
 		return new ModelAndView("WEB-INF/ownerHotels.jsp", "hotelOwner", hotelOwnerService.retrieveOne(hotelOwnerId));
+	}
+
+	@GetMapping("AllBookings")
+	public ModelAndView allBookings(@RequestParam("hotelId") Long hotelId) {
+		ModelAndView modelAndView = new ModelAndView("WEB-INF/allBookings.jsp");
+		modelAndView.addObject("bookings", bookingService.findAll());
+		modelAndView.addObject("hotel", hotelService.retrieveOne(hotelId));
+		return modelAndView;
 	}
 
 	@GetMapping("ReturnToOwnerScreen")
@@ -97,7 +109,7 @@ public class HotelOwnerController {
 		Object idFromSession = session.getAttribute("HOTELOWNERID");
 		String hotelOwnerIdString = idFromSession.toString();
 		Long hotelOwnerId = Long.parseLong(hotelOwnerIdString);
-		
+
 		ModelAndView modelAndView = new ModelAndView("WEB-INF/ownerHotels.jsp");
 		modelAndView.addObject("hotelOwner", hotelOwnerService.retrieveOne(hotelOwnerId));
 		return modelAndView;
@@ -129,15 +141,15 @@ public class HotelOwnerController {
 		modelAndView.addObject("successMessage", "Room type successfully created");
 		return modelAndView;
 	}
-	
+
 	@GetMapping("Refresh")
 	public ModelAndView refreshHotelList(HttpSession session) {
-	Object idFromSession = session.getAttribute("HOTELOWNERID");
-	String hotelOwnerIdString = idFromSession.toString();
-	Long hotelOwnerId = Long.parseLong(hotelOwnerIdString);
-	ModelAndView modelAndView = new ModelAndView("WEB-INF/ownerHotels.jsp");
-	modelAndView.addObject("hotelOwner", hotelOwnerService.retrieveOne(hotelOwnerId));
-	return modelAndView;
+		Object idFromSession = session.getAttribute("HOTELOWNERID");
+		String hotelOwnerIdString = idFromSession.toString();
+		Long hotelOwnerId = Long.parseLong(hotelOwnerIdString);
+		ModelAndView modelAndView = new ModelAndView("WEB-INF/ownerHotels.jsp");
+		modelAndView.addObject("hotelOwner", hotelOwnerService.retrieveOne(hotelOwnerId));
+		return modelAndView;
 	}
 
 }

@@ -66,11 +66,11 @@ public class Bookings {
 		this.totalPrice = totalPrice;
 		this.extras = extras;
 	}
-	
+
 	public String getCheckInDateFormatted() {
 		return this.getCheckInDate().format(FormatWithLocale.DATE_FORMATTER);
 	}
-	
+
 	public String getCheckOutDateFormatted() {
 		return this.getCheckOutDate().format(FormatWithLocale.DATE_FORMATTER);
 	}

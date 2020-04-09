@@ -49,13 +49,13 @@ public class LoginController {
 			model.addAttribute("errorMessage", "Incorrect username or password");
 			return new ModelAndView("loginOwner.jsp");
 		}
-		
+
 		session.setAttribute(SESSION_ATTRIBUTE_HOTELOWNER, hotelOwnerFromDB.get());
 		HotelOwner hotelOwnerForId = hotelOwnerService.findByUsername(hotelOwner.getUsername()).get();
 		Long hotelOwnerId = hotelOwnerForId.getHotelOwnerId();
 		session.setAttribute(SESSION_ATTRIBUTE_HOTELOWNERID, hotelOwnerId);
 		hotelOwner.setHotelOwnerId(hotelOwnerId);
-		
+
 		return new ModelAndView("WEB-INF/ownerHotels.jsp", "hotelOwner", hotelOwnerForId);
 
 	}

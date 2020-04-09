@@ -7,6 +7,6 @@ public interface GeneralServiceRepository<E> {
 	E findByUsernameAndPassword(String username, String password);
 
 	E findByUsername(String username);
-	
+
 	List<E> findAll();
 }

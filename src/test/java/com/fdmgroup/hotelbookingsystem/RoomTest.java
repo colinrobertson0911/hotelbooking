@@ -58,7 +58,7 @@ class RoomTest {
 		int numOfRooms = allRooms.size();
 		assert (numOfRooms > 0);
 	}
-	
+
 	@Test
 	public void test_RoomCanBeObtainedByTypeAndPrice() {
 		Room knownRoom = roomService.retrieveOne(1L);

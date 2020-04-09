@@ -12,10 +12,10 @@ import com.fdmgroup.hotelbookingsystem.repository.RoomDao;
 
 @Service
 public class RoomService {
-	
+
 	@Autowired
 	RoomDao roomDao;
-	
+
 	@Autowired
 	RoomService roomService;
 
@@ -23,34 +23,25 @@ public class RoomService {
 		return roomDao.findAll();
 	}
 
-
 	public Room save(Room room) {
 		return roomDao.save(room);
 	}
-
 
 	public List<Room> findByRoomType(String roomType) {
 		return roomDao.findByRoomType(roomType);
 	}
 
-
 	public List<Room> findByPrice(BigDecimal price) {
-		
+
 		return roomDao.findByPrice(price);
 	}
-
 
 	public Room retrieveOne(Long roomId) {
 		return roomDao.findByRoomId(roomId);
 	}
 
-
 	public Optional<Room> findByRoomTypeAndPrice(String roomType, BigDecimal price) {
 		return roomDao.findByRoomTypeAndPrice(roomType, price);
 	}
-
-
-	
-	
 
 }

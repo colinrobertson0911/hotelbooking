@@ -17,4 +17,3 @@ public interface HotelOwnerDao extends JpaRepository<HotelOwner, Long> {
 	Optional<HotelOwner> findByUsername(String username);
 
 }
-

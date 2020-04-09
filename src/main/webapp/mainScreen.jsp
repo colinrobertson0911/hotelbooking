@@ -19,16 +19,14 @@
 	<div>
 		<a href="LoginAsAdmin">Log in as an administrator</a>
 	</div>
-	<p>
-	
-	${errorMessage}
+	<p>${errorMessage}
 	<form action="SearchByCity" method="post">
 		<div>
 			<label>Search by city:</label> <input type="text" name="city" />
 			<button type="submit">Search</button>
 		</div>
 	</form>
-	
+
 	<p>${errorRoomTypeMessage}
 	<form action="SearchByRoomType" method="post">
 		<label>Search by Room Type: </label> <input type="text"
@@ -40,9 +38,8 @@
 		</datalist>
 		<input type="submit" value="search" />
 	</form>
-	
+
 	<p>
-	
 	<form action="SearchByAvailability" method="post">
 		${errorAvailabilityMessage}
 		<div>

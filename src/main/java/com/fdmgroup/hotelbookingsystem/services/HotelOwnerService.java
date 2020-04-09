@@ -14,14 +14,14 @@ public class HotelOwnerService {
 
 	@Autowired
 	HotelOwnerDao hotelOwnerDao;
-	
+
 	public List<HotelOwner> findAll() {
 		return hotelOwnerDao.findAll();
 	}
 
 	public HotelOwner save(HotelOwner hotelOwner) {
 		return hotelOwnerDao.save(hotelOwner);
-		
+
 	}
 
 	public HotelOwner retrieveOne(Long hotelOwnerId) {
@@ -35,10 +35,9 @@ public class HotelOwnerService {
 	public Optional<HotelOwner> findByUsernameAndPassword(String username, String password) {
 		return hotelOwnerDao.findByUsernameAndPassword(username, password);
 	}
-	
+
 	public Optional<HotelOwner> findByUsername(String username) {
 		return hotelOwnerDao.findByUsername(username);
 	}
-	
 
 }

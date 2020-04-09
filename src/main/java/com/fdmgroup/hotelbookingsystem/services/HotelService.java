@@ -105,8 +105,7 @@ public class HotelService {
 		for (Hotel hotel : hotels) {
 			List<Bookings> hotelBookings = hotel.getBookings();
 			for (Bookings booking : hotelBookings) {
-				if (!booking.getCheckInDate().isAfter(endDate)
-						&& !booking.getCheckOutDate().isBefore(startDate)) {
+				if (!booking.getCheckInDate().isAfter(endDate) && !booking.getCheckOutDate().isBefore(startDate)) {
 					bookingsInDateWindow.add(booking);
 				}
 			}
@@ -120,6 +119,5 @@ public class HotelService {
 	public Hotel findByHotelName(String hotelName) {
 		return hotelDao.findByHotelName(hotelName);
 	}
-	
-	
+
 }

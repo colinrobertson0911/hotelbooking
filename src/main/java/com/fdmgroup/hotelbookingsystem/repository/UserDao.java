@@ -8,6 +8,6 @@ import com.fdmgroup.hotelbookingsystem.model.User;
 public interface UserDao extends JpaRepository<User, Long> {
 
 	User findByUsernameAndPassword(@Param("username") String username, @Param("password") String password);
-	
+
 	User findByUsername(@Param("username") String username);
 }

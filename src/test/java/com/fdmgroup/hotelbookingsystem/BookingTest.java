@@ -54,16 +54,7 @@ class BookingTest {
 	public void test_ToSeeAvailability() {
 		Hotel hotel = hotelService.retrieveOne(1L);
 		boolean booking = bookingService.findRoomAvailability(hotel);
-		assertEquals(booking, false);
-
-	}
-
-	@Test
-	public void test_ToSeeAvailability2() {
-		Hotel hotel = hotelService.retrieveOne(2L);
-		boolean booking = bookingService.findRoomAvailability(hotel);
 		assertEquals(booking, true);
-
 	}
 
 	@Test
@@ -80,17 +71,34 @@ class BookingTest {
 		booking.setExtras(Extras.AIRPORTTRANSFER);
 		booking.setExtrasPrice(new BigDecimal("15.00"));
 		BigDecimal totalPrice = bookingService.calculateTotalPrice(booking);
-		assertEquals(totalPrice, new BigDecimal("120.00"));
+		assertEquals(totalPrice, new BigDecimal("105.00"));
 	}
-	
-	@Test 
+
+	@Test
+	public void test_ThatPriceTotalCanBeCalculatedLessThanFiveDays() {
+		LocalDate checkInDate = LocalDate.of(2020, 04, 20);
+		LocalDate checkOutDate = LocalDate.of(2020, 04, 22);
+		Hotel hotel = hotelService.retrieveOne(1L);
+		Bookings booking = new Bookings();
+		booking.setRoomType("STANDARD");
+		booking.setHotel(hotel.getHotelName());
+		booking.setCheckInDate(checkInDate);
+		booking.setCheckOutDate(checkOutDate);
+		booking.setRoomPrice(new BigDecimal("15.00"));
+		booking.setExtras(Extras.AIRPORTTRANSFER);
+		booking.setExtrasPrice(new BigDecimal("15.00"));
+		BigDecimal totalPrice = bookingService.calculateTotalPrice(booking);
+		assertEquals(totalPrice, new BigDecimal("45.00"));
+	}
+
+	@Test
 	public void test_ThatBookingsCanBeCalledById() {
 		Bookings booking = bookingService.retrieveOne(1L);
 		long bookingId = booking.getBookingId();
 		Bookings bookingFromDatabase = bookingService.retrieveOne(bookingId);
 		assertEquals(booking.getBookingId(), bookingFromDatabase.getBookingId());
 	}
-	
+
 	@Test
 	public void test_DeleteABookingById() {
 		Bookings booking = bookingService.retrieveOne(2L);
@@ -100,9 +108,7 @@ class BookingTest {
 		bookingService.deleteById(bookingId);
 		List<Bookings> listAfterDelete = bookingService.findAll();
 		int listSizeAfter = listAfterDelete.size();
-		assert(listSizeBefore > listSizeAfter);
+		assert (listSizeBefore > listSizeAfter);
 	}
-	
-	
 
 }

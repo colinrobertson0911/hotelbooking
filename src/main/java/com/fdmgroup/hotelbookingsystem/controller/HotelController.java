@@ -27,7 +27,7 @@ import com.fdmgroup.hotelbookingsystem.services.RoomService;
 
 @Controller
 public class HotelController {
-	
+
 	public static final String SESSION_ATTRIBUTE_BOOKINGID = "BOOKINGID";
 
 	@Autowired
@@ -105,7 +105,8 @@ public class HotelController {
 	}
 
 	@PostMapping("BookingSubmit")
-	public ModelAndView bookingSubmit(@ModelAttribute("bookings") Bookings bookings, ModelMap model, HttpSession session) {
+	public ModelAndView bookingSubmit(@ModelAttribute("bookings") Bookings bookings, ModelMap model,
+			HttpSession session) {
 		ModelAndView modelAndView = new ModelAndView();
 		BigDecimal extraCosts = bookings.getExtras().getPrice();
 		bookings.setExtrasPrice(extraCosts);
@@ -117,21 +118,22 @@ public class HotelController {
 		modelAndView.addObject("bookings", bookings);
 		modelAndView.setViewName("WEB-INF/bookingConfirmation.jsp");
 		return modelAndView;
-	}	
+	}
 
 	@PostMapping("BookingConfirmationSubmit")
-	public ModelAndView bookingConfirmationSubmit(@ModelAttribute("bookings") Bookings bookings, ModelMap model, HttpSession session) {
+	public ModelAndView bookingConfirmationSubmit(@ModelAttribute("bookings") Bookings bookings, ModelMap model,
+			HttpSession session) {
 		ModelAndView modelAndView = new ModelAndView();
 		Object idFromSession = session.getAttribute("BOOKINGID");
 		String bookingIdString = idFromSession.toString();
 		Long bookingId = Long.parseLong(bookingIdString);
 		Bookings bookingFromDataBase = bookingService.retrieveOne(bookingId);
-		
-		String hotelName = bookingFromDataBase.getHotel();		
+
+		String hotelName = bookingFromDataBase.getHotel();
 		Hotel hotel = hotelService.findByHotelName(hotelName);
 		hotel.getBookings().add(bookingFromDataBase);
 		hotelService.save(hotel);
-		
+
 		modelAndView.setViewName("mainScreen.jsp");
 		modelAndView.addObject("ownerMessage", "Booking Confirmed");
 		modelAndView.addObject("visabilityMessage", "All Hotels");
@@ -139,13 +141,13 @@ public class HotelController {
 		modelAndView.addObject("allRooms", roomService.findAll());
 		return modelAndView;
 	}
-	
+
 	@GetMapping("CancelBackToMain")
 	public ModelAndView cancelBackToMain(HttpSession session) {
 		Object idFromSession = session.getAttribute("BOOKINGID");
 		String bookingIdString = idFromSession.toString();
 		Long bookingId = Long.parseLong(bookingIdString);
-		
+
 		bookingService.deleteById(bookingId);
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("mainScreen.jsp");
@@ -153,12 +155,10 @@ public class HotelController {
 		modelAndView.addObject("visabilityMessage", "All Hotels");
 		modelAndView.addObject("hotel", hotelService.findByVerifiedEqualsTrue());
 		modelAndView.addObject("allRooms", roomService.findAll());
-		
+
 		return modelAndView;
-		
-		
+
 	}
-	
 
 	@PostMapping("SearchByRoomType")
 	public ModelAndView searchByRoomType(@ModelAttribute("room") Room room, ModelMap model) {
