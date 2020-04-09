@@ -31,7 +31,7 @@
 	<form action="SearchByRoomType" method="post">
 		<label>Search by Room Type: </label> <input type="text"
 			list="roomTypes" name="roomType">
-		<datalist id="roomType">
+		<datalist id="roomTypes">
 			<c:forEach items="${allRooms}" var="allRooms">
 				<option value="${allRooms.roomType}">
 			</c:forEach>
