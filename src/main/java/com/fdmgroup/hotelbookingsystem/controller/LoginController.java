@@ -14,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fdmgroup.hotelbookingsystem.model.HotelOwner;
 import com.fdmgroup.hotelbookingsystem.model.User;
-import com.fdmgroup.hotelbookingsystem.services.AdminService;
 import com.fdmgroup.hotelbookingsystem.services.HotelOwnerService;
 import com.fdmgroup.hotelbookingsystem.services.UserService;
 
@@ -25,8 +24,6 @@ public class LoginController {
 	public final static String SESSION_ATTRIBUTE_HOTELOWNER = "HOTELOWNER";
 	public final static String SESSION_ATTRIBUTE_HOTELOWNERID = "HOTELOWNERID";
 
-	@Autowired
-	AdminService adminService;
 
 	@Autowired
 	HotelOwnerService hotelOwnerService;
