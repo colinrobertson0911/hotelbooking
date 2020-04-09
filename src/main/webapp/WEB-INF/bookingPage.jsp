@@ -33,7 +33,9 @@
 			<div>
 				<f:label path="extras">Extras</f:label>
 				<f:select path="extras" items="${Extras}" itemLabel="service"
-					required="required" />
+					required="required" >
+					<f:option value = "0"> None </f:option>
+					</f:select>
 			</div>
 			<f:hidden path="totalPrice" value="0"/>
 			<f:hidden path="bookingId"/>

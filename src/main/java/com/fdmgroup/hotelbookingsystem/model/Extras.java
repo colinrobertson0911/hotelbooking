@@ -4,7 +4,8 @@ import java.math.BigDecimal;
 
 public enum Extras {
 	
-	AIRPORTTRANSFER("airportTransfer",new BigDecimal ("20.00"));
+	AIRPORTTRANSFER("Airport Transfer",new BigDecimal ("20.00")),
+	NO_EXTRAS("No Extras",new BigDecimal ("0.00"));
 	
 	private final String service;
 	private final BigDecimal price;

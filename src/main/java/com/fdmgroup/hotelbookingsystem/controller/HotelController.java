@@ -94,6 +94,8 @@ public class HotelController {
 		modelAndView.addObject("bookings", new Bookings());
 		if (hotel.isAirportTransfers() == true) {
 			modelAndView.addObject("Extras", EnumSet.allOf(Extras.class));
+		} else {
+			modelAndView.addObject("Extras", EnumSet.of(Extras.NO_EXTRAS));
 		}
 		return modelAndView;
 	}
