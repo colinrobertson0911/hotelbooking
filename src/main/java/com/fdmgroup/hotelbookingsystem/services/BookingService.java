@@ -52,6 +52,10 @@ public class BookingService {
 		
 		return totalPrice;
 	}
+
+	public Bookings retrieveOne(long bookingId) {
+		return bookingDao.findByBookingId(bookingId);
+	}
 	
 	
 

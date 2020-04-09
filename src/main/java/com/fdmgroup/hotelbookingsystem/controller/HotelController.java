@@ -6,6 +6,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.EnumSet;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -25,6 +27,8 @@ import com.fdmgroup.hotelbookingsystem.services.RoomService;
 
 @Controller
 public class HotelController {
+	
+	public static final String SESSION_ATTRIBUTE_BOOKINGID = "BOOKINGID";
 
 	@Autowired
 	HotelService hotelService;
@@ -101,17 +105,31 @@ public class HotelController {
 	}
 
 	@PostMapping("BookingSubmit")
-	public ModelAndView bookingSubmit(@ModelAttribute("bookings") Bookings bookings, ModelMap model) {
+	public ModelAndView bookingSubmit(@ModelAttribute("bookings") Bookings bookings, ModelMap model, HttpSession session) {
 		ModelAndView modelAndView = new ModelAndView();
 		BigDecimal extraCosts = bookings.getExtras().getPrice();
 		bookings.setExtrasPrice(extraCosts);
 		BigDecimal finaltotal = bookingService.calculateTotalPrice(bookings);
 		bookings.setTotalPrice(finaltotal);
 		bookingService.save(bookings);
+		Long bookingId1 = bookingService.retrieveOne(bookings.getBookingId()).getBookingId();
+		session.setAttribute(SESSION_ATTRIBUTE_BOOKINGID, bookingId1);
 		modelAndView.addObject("bookings", bookings);
-		String hotelName = bookings.getHotel();		
+		modelAndView.setViewName("WEB-INF/bookingConfirmation.jsp");
+		return modelAndView;
+	}	
+
+	@PostMapping("BookingConfirmationSubmit")
+	public ModelAndView bookingConfirmationSubmit(@ModelAttribute("bookings") Bookings bookings, ModelMap model, HttpSession session) {
+		ModelAndView modelAndView = new ModelAndView();
+		Object idFromSession = session.getAttribute("BOOKINGID");
+		String bookingIdString = idFromSession.toString();
+		Long bookingId = Long.parseLong(bookingIdString);
+		Bookings bookingFromDataBase = bookingService.retrieveOne(bookingId);
+		
+		String hotelName = bookingFromDataBase.getHotel();		
 		Hotel hotel = hotelService.findByHotelName(hotelName);
-		hotel.getBookings().add(bookings);
+		hotel.getBookings().add(bookingFromDataBase);
 		hotelService.save(hotel);
 		
 		modelAndView.setViewName("mainScreen.jsp");
@@ -120,9 +138,7 @@ public class HotelController {
 		modelAndView.addObject("hotel", hotelService.findByVerifiedEqualsTrue());
 		modelAndView.addObject("allRooms", roomService.findAll());
 		return modelAndView;
-	}	
-
-	
+	}
 	
 
 	@PostMapping("SearchByRoomType")

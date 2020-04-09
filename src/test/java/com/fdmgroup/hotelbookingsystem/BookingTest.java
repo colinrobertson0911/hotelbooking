@@ -82,5 +82,15 @@ class BookingTest {
 		BigDecimal totalPrice = bookingService.calculateTotalPrice(booking);
 		assertEquals(totalPrice, new BigDecimal("120.00"));
 	}
+	
+	@Test 
+	public void test_ThatBookingsCanBeCalledById() {
+		Bookings booking = bookingService.retrieveOne(1L);
+		long bookingId = booking.getBookingId();
+		Bookings bookingFromDatabase = bookingService.retrieveOne(bookingId);
+		assertEquals(booking.getBookingId(), bookingFromDatabase.getBookingId());
+	}
+	
+	
 
 }
